@@ -7,6 +7,8 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
+
 :root{
     /* ===== Colors ===== */
     --primary-color: #1100ff;
@@ -206,7 +208,7 @@ body.dark .switch:before{
 .dashboard{
     position: relative;
     left: 250px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(238, 238, 238);
     min-height: 100vh;
     width: calc(100% - 250px);
     padding: 10px 14px;
