@@ -14,16 +14,13 @@ $filas=mysqli_fetch_array($resultado);
 if($filas['id_cargo']==1){ //administrador
     header("location:./vistas/admin.php");
 
-}else
-if($filas['id_cargo']==2){ //cliente
+}else if($filas['id_cargo']==2){ //cliente
 header("location:./vistas/recepcion.php");
-}
-else{
+
+}else{
     ?>
-    <?php
-    include("index.html");
-    ?>
-    <h1 class="bad">ERROR EN LA AUTENTIFICACION</h1>
+    echo "<script>alert('No existe cuenta');
+    window.location.href='index.php'</script>";
     <?php
 }
 mysqli_free_result($resultado);
