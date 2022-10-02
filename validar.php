@@ -19,7 +19,6 @@ header("location:./vistas/recepcion.php");
 
 }else{
     ?>
-    <h1>error</h1>
     <?php
     ?>
     echo "<script>alert('No existe cuenta');

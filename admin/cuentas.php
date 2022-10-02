@@ -98,8 +98,13 @@ if (!isset($usuario)) {
 
         <div class="dash-content">
         <div class="topnav" id="myTopnav">
-                <a href="./cuentas.php">Registrar Usuario</a>
-                <a href="./form_cuentas.php">Cuentas Registradas</a>
+                <a href="#home" class="active">Home</a>
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
             </div>
             <div class="signupFrm">
                 <form action="" class="form">
@@ -132,7 +137,6 @@ if (!isset($usuario)) {
     </section>
 
     <script src="./../JS/script.js"></script>
-    <script src="./../JS/registro.js"></script>
 
 </body>
 
