@@ -1,3 +1,12 @@
+<?php
+session_start();
+include '../db.php';
+
+$usuario = $_SESSION['usuario'];
+if(!isset($usuario)){
+    header("location:../index.php");   
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./../CSS/style.css">
      
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -17,7 +26,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="./IMG/logo.svg" alt="">
+                <img src="./../IMG/logo.svg" alt="">
             </div>
 
             <span class="logo_name">HOTEL</span>
@@ -52,19 +61,19 @@
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="../cerrar_sesion.php">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Cerrar Sesión</span>
                 </a></li>
 
-               <!-- <li class="mode">
+                <li class="mode">
                     <a href="#">
                         <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
+                    <span class="link-name">Modo Oscuro</span>
                 </a> 
-            -->
+            
                 <div class="mode-toggle">
-                 <!-- <span class="switch"></span>-->
+                 <span class="switch"></span>
                 </div>
             </li>
         
@@ -89,6 +98,6 @@
         </div>
     </section>
 
-    <script src="./JS/script.js"></script>
+    <script src="./../JS/script.js"></script>
 </body>
 </html>
