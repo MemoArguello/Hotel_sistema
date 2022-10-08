@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Condensed:wght@300&display=swap');
+
+.listado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+  }
+
+  .formu {
+    background-color: white;
+    width: 900px;
+    border-radius: 8px;
+    padding: 30px 40px;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+  }
+td {
+  width: 480px;
+  max-width: 480px;
+  overflow: hidden;
+}
+.submitBoton {
+  margin-left: auto;
+  padding: 15px 15px;
+  border: none;
+  background-color: #0003c7;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 10px;
+  margin-top: 10px;
+  font-family: "lato", sans-serif;
+}
+
+
+.submitBoton:hover {
+  background-color: #1100ff;
+  transform: translateY(2px);
+}

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../db.php';
+include '../../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
@@ -16,20 +16,25 @@ if (!isset($usuario)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuracion</title>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="./../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/registrar.css">
-
+    <link rel="stylesheet" href="./../../CSS/style.css">
+    <link rel="stylesheet" href="../../CSS/registrar.css">
+    <link rel="stylesheet" href="./listado.css">
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="./IMG/logo.svg" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<?php
+$conexiondb = conectardb();
+$consulta = "SELECT usuarios.id_usuario, usuarios.correo, usuarios.usuario, usuarios.codigo, cargo.id, cargo.descripcion FROM usuarios JOIN cargo ON cargo.id = usuarios.id_cargo";
+$resultado = mysqli_query($conexiondb, $consulta);
+mysqli_close($conexiondb);
+?>
 
 <body>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="./../IMG/logo.svg" alt="">
+                <img src="../../IMG/logo.svg" alt="">
             </div>
 
             <span class="logo_name">HOTEL</span>
@@ -45,7 +50,7 @@ if (!isset($usuario)) {
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../habitaciones/registrar_habitacion.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -57,14 +62,14 @@ if (!isset($usuario)) {
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                <li><a href="../admin/cuentas.php">
+                <li><a href="../../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
             <ul class="logout-mode">
-                <li><a href="../cerrar_sesion.php">
+                <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
@@ -79,7 +84,6 @@ if (!isset($usuario)) {
                         <span class="switch"></span>
                     </div>
                 </li>
-
             </ul>
         </div>
     </nav>
@@ -92,26 +96,59 @@ if (!isset($usuario)) {
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-
-            <img src="./IMG/user.jpg" alt="">
+            <div class="logo_name">
+                <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
+            </div>
+            <img src="../../IMG/admin.svg" alt="">
         </div>
 
         <div class="dash-content">
-        <div class="topnav" id="myTopnav">
-                <a href="./cuentas.php">Registrar Usuario</a>
-                <a href="./form_cuentas.php">Cuentas Registradas</a>
+            <div class="topnav" id="myTopnav">
+                <a href="./form_cuentas.php">Cuentas Existentes</a>
+                <a href="../cuentas.php">Registrar Cuenta</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
-
-
+            <div class="listado">
+                <table class="formu">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Correo Electronico</th>
+                            <th>Nombre de Usuario</th>
+                            <th>Cargo</th>
+                            <th align="left">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $index = 1;
+                        while ($usuario = mysqli_fetch_assoc($resultado)) {
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<th scope ='row'>" . $index++ . "</th>";
+                            echo "<td align= 'center'>" . $usuario['correo'] . "</td>";
+                            echo "<td align= 'center'>" . $usuario['usuario'] . "</td>";
+                            echo "<td align= 'center'>" . $usuario['descripcion'] . "</td>";
+                            echo "<td>";
+                            echo "<a href='../editar_cuenta.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='eliminar_cuenta.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBoton'> Borrar </a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </section>
 
-    <script src="./../JS/script.js"></script>
-    <script src="./../JS/registro.js"></script>
+    <script src="../../JS/script.js"></script>
+    <script src="../../JS/registro.js"></script>
 </body>
 
 </html>

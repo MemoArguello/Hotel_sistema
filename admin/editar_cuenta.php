@@ -7,8 +7,9 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM cargo ORDER BY id ASC";
+$query = "SELECT * FROM usuarios ";
 $resultado = mysqli_query($conexiondb, $query);
+$usuarios = mysqli_fetch_row($resultado);
 mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
@@ -109,19 +110,19 @@ mysqli_close($conexiondb);
             </div>
             <div class="signupFrm">
                 <form action="./guardar_habitacion.php" method="POST" class="form">
-                    <h1 class="title">Registrar Cuenta</h1>
+                    <h1 class="title">Editar Cuenta</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="correo">
+                        <input type="text" class="input" placeholder="a" name="correo" value='<?php echo $usuarios[1];?>'>
                         <label for="" class="label">Correo Electronico</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="usuario">
+                        <input type="text" class="input" placeholder="a" name="usuario" value='<?php echo $usuarios[2];?>'>
                         <label for="" class="label">Nombre de Usuario</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="codigo">
+                        <input type="password" class="input" placeholder="a" name="codigo" value='<?php echo $usuarios[3];?>'>
                         <label for="" class="label">Contraseña</label>
                     </div>
 
@@ -130,7 +131,7 @@ mysqli_close($conexiondb);
                         <label for="" class="label">Confirmar Contraseña</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="id" class="" id="inputGroupSelect01"></P>
+                        <select class="input" name="id" class="" id="inputGroupSelect01" value='<?php echo $usuarios[4];?>'></P>
                         <?php
                         while ($cargo = mysqli_fetch_assoc($resultado)) {
                             echo "<option value='" . $cargo['id'] . "'>" . $cargo['descripcion'] . "</option>";

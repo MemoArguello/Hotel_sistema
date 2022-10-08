@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/normalize.css">
     <link rel="stylesheet" href="./CSS/login.css">
+    
 </head>
 
 <body>
@@ -18,7 +19,7 @@
 
     <div class="contenedor-formulario contenedor">
         <div class="imagen-formulario">
-
+            
         </div>
 
         <form action="validar.php" method="POST" class="formulario">
@@ -33,11 +34,11 @@
             </div>
             <div class="input">
                 <label for="contraseña">Contraseña</label>
-                <input placeholder="Ingresa tu contraseña" type="password" id="contraseña" name="contraseña">
+                <input placeholder="Ingresa tu contraseña" type="password" id="codigo" name="codigo">
             </div>
-            <div class="password-olvidada">
+            <!--<div class="password-olvidada">
                 <a href="#">¿Olvidaste tu contraseña?</a>
-            </div>
+            </div>-->
             <div class="input">
                 <input name="btningresar" type="submit" value="Iniciar sesión">
             </div>

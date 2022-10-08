@@ -57,14 +57,14 @@
                     <span class="link-name">Cerrar Sesión</span>
                 </a></li>
 
-               <!-- <li class="mode">
+                <li class="mode">
                     <a href="#">
                         <i class="uil uil-moon"></i>
                     <span class="link-name">Dark Mode</span>
                 </a> 
-            -->
+            
                 <div class="mode-toggle">
-                 <!-- <span class="switch"></span>-->
+                 <span class="switch"></span>
                 </div>
             </li>
         

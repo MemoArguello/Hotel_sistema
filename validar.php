@@ -1,28 +1,28 @@
 <?php
 $usuario=$_POST['usuario'];
-$contraseña=$_POST['contraseña'];
+$codigo=$_POST['codigo'];
 session_start();
 $_SESSION['usuario']=$usuario;
 
-$conexion=mysqli_connect("localhost","root","","hotel");
+include 'db.php';
 
-$consulta="SELECT*FROM usuarios where usuario='$usuario' and contraseña='$contraseña'";
-$resultado=mysqli_query($conexion,$consulta);
+$conexiondb = conectardb();
+
+$consulta= "SELECT * FROM usuarios where usuario ='$usuario' and codigo='$codigo'";
+$resultado=mysqli_query($conexiondb,$consulta);
 
 $filas=mysqli_fetch_array($resultado);
 
 if($filas['id_cargo']==1){ //administrador
     header("location:./vistas/admin.php");
 
-}else if($filas['id_cargo']==2){ //cliente
+}else if($filas['id_cargo']==2){ //Recepcionista
 header("location:./vistas/recepcion.php");
 
 }else{
     ?>
-    <?php
-    ?>
-    echo "<script>alert('No existe cuenta');
-    window.location.href='index.php'</script>";
+        echo "<script>alert('No existe cuenta');
+        window.location.href='index.php'</script>";
     <?php
 }
 mysqli_free_result($resultado);

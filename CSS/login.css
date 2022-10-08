@@ -94,7 +94,7 @@ body{
     display: block;
     font-size: 22px;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 .password-olvidada a{
     display: inline-block;
@@ -121,3 +121,15 @@ body{
     cursor: pointer;
     background-color: var(--azulOscuro);
 }
+.inputContainer {
+    position: relative;
+    height: 45px;
+    width: 90%;
+    margin-bottom: 17px;
+  }
+  .signupFrm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  }

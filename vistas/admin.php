@@ -55,7 +55,7 @@ if(!isset($usuario)){
                     <i class="uil uil-coffee"></i>
                     <span class="link-name">Productos</span>
                 </a></li>
-                <li><a href="../admin/cuentas.php">
+                <li><a href="../admin/listado/form_cuentas.php">
                     <i class="uil uil-setting"></i>
                     <span class="link-name">Configuración</span>
                 </a></li>
@@ -90,8 +90,10 @@ if(!isset($usuario)){
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            
-            <img src="./IMG/user.jpg" alt="">
+            <div class="logo_name">
+                <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
+            </div>
+            <img src="../IMG/admin.svg" alt="">
         </div>
 
        
