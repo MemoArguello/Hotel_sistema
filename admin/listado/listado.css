@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30vh;
+    height: 50vh;
   }
 
   .formu {
@@ -20,20 +20,33 @@ td {
   overflow: hidden;
 }
 .submitBoton {
-  margin-left: auto;
-  padding: 15px 15px;
+  background-color: #4CAF50; /* verde */
   border: none;
-  background-color: #0003c7;
   color: white;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 10px;
-  margin-top: 10px;
-  font-family: "lato", sans-serif;
+  padding: 5px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+.submitBotonEliminar {
+  background-color: #f44336; /* Rojo */
+  border: none;
+  color: white;
+  padding: 5px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
 }
 
-
 .submitBoton:hover {
+  background-color: #1100ff;
+  transform: translateY(2px);
+}
+.submitBotonEliminar:hover {
   background-color: #1100ff;
   transform: translateY(2px);
 }

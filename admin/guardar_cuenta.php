@@ -3,8 +3,8 @@ include ('../db.php');
         $cargo=$_POST['id'];
         $correo=$_POST['correo'];
         $usuario=$_POST['usuario'];
-        $password=($_POST['codigo']);
-        $cpassword=($_POST['ccodigo']);
+        $password=md5($_POST['codigo']);
+        $cpassword=md5($_POST['ccodigo']);
 
         $conexiondb = conectardb();
 
@@ -13,13 +13,13 @@ include ('../db.php');
             correo='$correo'";
             $result= mysqli_query($conexiondb, $sql);
             if(!$result->num_rows>0){
-                $sql="INSERT INTO usuarios (correo, usuario, codigo, id_cargo) VALUES 
-                ('$correo', '$usuario', '$password','$cargo')";
+                    $sql="INSERT INTO usuarios (correo, usuario, codigo, id_cargo) VALUES 
+                    ('$correo', '$usuario', '$password','$cargo')";
                 $result=mysqli_query($conexiondb ,$sql);
     
                 if($result){
                     echo "<script>alert('Usuario registrado');
-                    window.location.href='./cuentas.php'</script>";
+                   window.location.href='./listado/form_cuentas.php'</script>";
                 }else{
                     echo "<script>alert('Usuario no registrado');
                     window.location.href='./cuentas.php'</script>";
@@ -32,4 +32,6 @@ include ('../db.php');
             echo "<script>alert('La contraseña no coincide, vuelva a intentarlo');
             window.location.href='./cuentas.php'</script>";
         }
+        mysqli_close($conexiondb);
+
 ?>

@@ -14,7 +14,7 @@ if (!isset($usuario)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuracion</title>
+    <title>Cuentas</title>
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="./../../CSS/style.css">
     <link rel="stylesheet" href="../../CSS/registrar.css">
@@ -50,7 +50,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../habitaciones/registrar_habitacion.php">
+                <li><a href="../listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -58,7 +58,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../producto/productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -135,7 +135,7 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $usuario['descripcion'] . "</td>";
                             echo "<td>";
                             echo "<a href='../editar_cuenta.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBoton'> Editar </a>";
-                            echo "<a href='eliminar_cuenta.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBoton'> Borrar </a>";
+                            echo "<a href='../eliminar_cuenta.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBotonEliminar'> Borrar </a>";
                             echo "</td>";
                             echo "</tr>";
                         }

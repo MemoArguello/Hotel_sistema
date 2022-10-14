@@ -43,7 +43,7 @@ if(!isset($usuario)){
                     <i class="uil uil-clipboard-notes"></i>
                     <span class="link-name">Recepción</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="../admin/habitaciones/registrar_habitacion.php">
                     <i class="uil uil-bed"></i>
                     <span class="link-name">Habitación</span>
                 </a></li>

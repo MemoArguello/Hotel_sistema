@@ -49,7 +49,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="./habitaciones/registrar_habitacion.php">
+                <li><a href="./listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -97,7 +97,7 @@ mysqli_close($conexiondb);
                 <input type="text" placeholder="Search here...">
             </div>
             <?php
-                echo "Bienvenido $usuario";
+            echo "Bienvenido $usuario";
             ?>
             <img src="../IMG/admin.svg" alt="">
         </div>
@@ -108,7 +108,7 @@ mysqli_close($conexiondb);
                 <a href="./cuentas.php">Registrar Cuenta</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_habitacion.php" method="POST" class="form">
+                <form action="./guardar_cuenta.php" method="POST" class="form">
                     <h1 class="title">Registrar Cuenta</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="correo">
@@ -130,15 +130,15 @@ mysqli_close($conexiondb);
                         <label for="" class="label">Confirmar Contraseña</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="id" class="" id="inputGroupSelect01"></P>
-                        <?php
-                        while ($cargo = mysqli_fetch_assoc($resultado)) {
-                            echo "<option value='" . $cargo['id'] . "'>" . $cargo['descripcion'] . "</option>";
-                        }
-                        ?>
+                        <select class="input" name="id" class="" id="inputGroupSelect01">
+                            <?php
+                            while ($cargo = mysqli_fetch_assoc($resultado)) {
+                                echo "<option value='" . $cargo['id'] . "'>" . $cargo['descripcion'] . "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
-                    <input type="submit" class="submitBtn" value="GUARDAR">
+                        <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
 

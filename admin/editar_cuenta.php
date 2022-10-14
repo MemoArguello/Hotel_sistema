@@ -7,11 +7,18 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM usuarios ";
+$id_usuario = $_GET['id_usuario'];
+$query_c = "SELECT * FROM cargo";
+$resultado_c = mysqli_query($conexiondb, $query_c);
+$cargos = mysqli_fetch_row($resultado_c);
+
+$query = "SELECT * FROM usuarios WHERE id_usuario=" . $id_usuario;
 $resultado = mysqli_query($conexiondb, $query);
 $usuarios = mysqli_fetch_row($resultado);
-mysqli_close($conexiondb);
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +105,7 @@ mysqli_close($conexiondb);
                 <input type="text" placeholder="Search here...">
             </div>
             <?php
-                echo "Bienvenido $usuario";
+            echo "Bienvenido $usuario";
             ?>
             <img src="../IMG/admin.svg" alt="">
         </div>
@@ -109,36 +116,42 @@ mysqli_close($conexiondb);
                 <a href="./cuentas.php">Registrar Cuenta</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_habitacion.php" method="POST" class="form">
+                <form action="./editar_cuentamysql.php" method="POST" class="form">
                     <h1 class="title">Editar Cuenta</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="correo" value='<?php echo $usuarios[1];?>'>
+                        <input type="text" class="input" placeholder="a" name="correo" value='<?php echo $usuarios[1]; ?>'>
                         <label for="" class="label">Correo Electronico</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="usuario" value='<?php echo $usuarios[2];?>'>
+                        <input type="text" class="input" placeholder="a" name="usuario" value='<?php echo $usuarios[2]; ?>'>
                         <label for="" class="label">Nombre de Usuario</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="codigo" value='<?php echo $usuarios[3];?>'>
-                        <label for="" class="label">Contraseña</label>
+                        <input type="password" class="input" placeholder="a" name="codigo" >
+                        <label for="" class="label">Contraseña Nueva</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="ccodigo">
-                        <label for="" class="label">Confirmar Contraseña</label>
-                    </div>
-                    <div class="inputContainer">
-                        <select class="input" name="id" class="" id="inputGroupSelect01" value='<?php echo $usuarios[4];?>'></P>
                         <?php
-                        while ($cargo = mysqli_fetch_assoc($resultado)) {
-                            echo "<option value='" . $cargo['id'] . "'>" . $cargo['descripcion'] . "</option>";
-                        }
+                        $query_rol = mysqli_query($conexiondb, "select * FROM cargo");
+                        $result_cargo = mysqli_num_rows($query_rol);
                         ?>
+                        <select class="input" name="id" class="" id="inputGroupSelect01">
+                            <?php
+                            if ($result_cargo > 0) {
+                                while ($cargo = mysqli_fetch_array($query_rol)) {
+                            ?>
+                                    <option value="<?php echo $cargo['id'] ?>"><?php echo $cargo['descripcion']?></option>
+                            <?php
+                                }
+                            }
+                            ?> 
                         </select>
                     </div>
+                    <input type="hidden" name="id_usuario" id="" value='<?php echo $usuarios[0] ?>' readonly>
+                    <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
@@ -147,7 +160,9 @@ mysqli_close($conexiondb);
     </section>
 
     <script src="./../JS/script.js"></script>
-
+    <?php
+    mysqli_close($conexiondb);
+    ?>                        
 </body>
 
 </html>

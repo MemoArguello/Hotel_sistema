@@ -7,7 +7,7 @@ if (!isset($usuario)) {
     header("location:../../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM cargo ORDER BY id ASC";
+$query = "SELECT * FROM categorias";
 $resultado = mysqli_query($conexiondb, $query);
 mysqli_close($conexiondb);
 ?>
@@ -18,7 +18,7 @@ mysqli_close($conexiondb);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuracion</title>
+    <title>Habitaciones</title>
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../../CSS/style.css">
     <link rel="stylesheet" href="../../CSS/registrar.css">
@@ -49,7 +49,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -104,8 +104,9 @@ mysqli_close($conexiondb);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./cuentas.php">Registrar Habitacion</a>
-                <a href="./listado/form_cuentas.php">Habitaciones Existentes</a>
+                <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
+                <a href="./registrar_habitacion.php">Registrar Habitacion</a>
+                <a href="../categoria/categoria.php">Categorias</a>
             </div>
             <div class="signupFrm">
                 <form action="./guardar_habitacion.php" method="POST" class="form_habitacion">
@@ -115,10 +116,10 @@ mysqli_close($conexiondb);
                         <label for="" class="label">Nombre</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="id_categoria" class="" id="inputGroupSelect01"></P>
+                        <select class="input" name="categoria" class="" id="inputGroupSelect01"></P>
                         <?php
                         while ($cargo = mysqli_fetch_assoc($resultado)) {
-                            echo "<option value='" . $cargo['id'] . "'>" . $cargo['descripcion'] . "</option>";
+                            echo "<option value='" . $cargo['id_categoria'] . "'>" . $cargo['categoria'] . "</option>";
                         }
                         ?>
                         </select>

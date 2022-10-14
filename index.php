@@ -9,39 +9,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/registrar.css">
     <link rel="stylesheet" href="./CSS/normalize.css">
     <link rel="stylesheet" href="./CSS/login.css">
-    
 </head>
 
 <body>
-
-
     <div class="contenedor-formulario contenedor">
-        <div class="imagen-formulario">
-            
-        </div>
-
+        <div class="imagen-formulario"></div>
         <form action="validar.php" method="POST" class="formulario">
             <div class="texto-formulario">
                 <h2>HOTEL CONTROLLER</h2>
+                <br>
                 <p>Inicia sesión con tu cuenta</p>
-        
+                <br>
             </div>
-            <div class="input">
-                <label for="usuario">Usuario</label>
-                <input placeholder="Ingresa tu nombre" type="text" id="usuario" name="usuario">
+            <div class="inputContainer">
+                <input type="text" class="input" placeholder="a" name="usuario">
+                <label for="" class="label">Usuario</label>
             </div>
-            <div class="input">
-                <label for="contraseña">Contraseña</label>
-                <input placeholder="Ingresa tu contraseña" type="password" id="codigo" name="codigo">
+            <div class="inputContainer">
+                <input type="password" class="input" placeholder="a" name="codigo">
+                <label for="" class="label">Contraseña</label>
             </div>
-            <!--<div class="password-olvidada">
-                <a href="#">¿Olvidaste tu contraseña?</a>
-            </div>-->
-            <div class="input">
-                <input name="btningresar" type="submit" value="Iniciar sesión">
-            </div>
+            <input type="submit" class="submitBtn" value="INGRESAR">
         </form>
     </div>
 </body>
