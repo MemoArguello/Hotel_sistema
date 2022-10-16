@@ -1,6 +1,6 @@
 <?php
 session_start();
-include './../../db.php';
+include '../../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
@@ -22,6 +22,7 @@ mysqli_close($conexiondb);
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../../CSS/style.css">
     <link rel="stylesheet" href="../../CSS/registrar.css">
+    <link rel="stylesheet" href="../listado/listado.css">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -97,7 +98,7 @@ mysqli_close($conexiondb);
                 <input type="text" placeholder="Search here...">
             </div>
             <?php
-                echo "Bienvenido $usuario";
+            echo "Bienvenido $usuario";
             ?>
             <img src="../../IMG/admin.svg" alt="">
         </div>
@@ -105,35 +106,20 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
-                <a href="./registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="../categoria/listado_categoria.php">Listado Categoria</a>
-                <a href="../categoria/categoria.php">Registrar Categorias</a>
+                <a href="../habitaciones/registrar_habitacion.php">Registrar Habitacion</a>
+                <a href="./listado_categoria.php">Listado Categoria</a>
+                <a href="categoria.php">Registrar Categorias</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_habitacion.php" method="POST" class="form_habitacion">
-                    <h1 class="title">Registrar Habitacion</h1>
+                <form action="./guardar_categoria.php" method="POST" class="form_categoria">
+                    <h1 class="title">Registrar Categoria</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre">
-                        <label for="" class="label">Nombre</label>
-                    </div>
-                    <div class="inputContainer">
-                        <select class="input" name="categoria" class="" id="inputGroupSelect01"></P>
-                        <?php
-                        while ($cargo = mysqli_fetch_assoc($resultado)) {
-                            echo "<option value='" . $cargo['id_categoria'] . "'>" . $cargo['categoria'] . "</option>";
-                        }
-                        ?>
-                        </select>
-                    </div>            
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="detalles">
-                        <label for="" class="label">Detalles</label>
+                        <label for="" class="label">Nombre Categoria</label>
                     </div>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
-
-        </div>
     </section>
 
     <script src="../../JS/script.js"></script>

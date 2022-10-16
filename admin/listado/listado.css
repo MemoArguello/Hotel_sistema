@@ -23,7 +23,7 @@ td {
   background-color: #4CAF50; /* verde */
   border: none;
   color: white;
-  padding: 5px 22px;
+  padding: 5px 12px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -34,7 +34,7 @@ td {
   background-color: #f44336; /* Rojo */
   border: none;
   color: white;
-  padding: 5px 22px;
+  padding: 5px 12px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -49,4 +49,18 @@ td {
 .submitBotonEliminar:hover {
   background-color: #1100ff;
   transform: translateY(2px);
+}
+
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,th {
+  border: 1px solid #d6d6d6;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+
 }

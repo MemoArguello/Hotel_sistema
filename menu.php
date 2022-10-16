@@ -1,13 +1,5 @@
 <?php
-session_start();
-include '../db.php';
-
-$usuario = $_SESSION['usuario'];
-if(!isset($usuario)){
-    header("location:../index.php");   
-}
-?>
-
+$menu = <<<END
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,7 +8,7 @@ if(!isset($usuario)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="./../CSS/style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
      
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -27,7 +19,7 @@ if(!isset($usuario)){
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="./../IMG/logo.svg" alt="">
+                <img src="./IMG/logo.svg" alt="">
             </div>
 
             <span class="logo_name">HOTEL</span>
@@ -39,11 +31,11 @@ if(!isset($usuario)){
                     <i class="uil uil-calendar-alt"></i>
                     <span class="link-name">Reservas</span>
                 </a></li>
-                <li><a href="../recepcionar.php">
+                <li><a href="#">
                     <i class="uil uil-clipboard-notes"></i>
                     <span class="link-name">Recepción</span>
                 </a></li>
-                <li><a href="../admin/habitaciones/registrar_habitacion.php">
+                <li><a href="#">
                     <i class="uil uil-bed"></i>
                     <span class="link-name">Habitación</span>
                 </a></li>
@@ -51,18 +43,18 @@ if(!isset($usuario)){
                     <i class="uil uil-file-graph"></i>
                     <span class="link-name">Reportes</span>
                 </a></li>
-                <li><a href="../producto/listado_productos.php">
+                <li><a href="#">
                     <i class="uil uil-coffee"></i>
                     <span class="link-name">Productos</span>
                 </a></li>
-                <li><a href="../admin/listado/form_cuentas.php">
+                <li><a href="#">
                     <i class="uil uil-setting"></i>
                     <span class="link-name">Configuración</span>
                 </a></li>
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="../cerrar_sesion.php">
+                <li><a href="#">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Cerrar Sesión</span>
                 </a></li>
@@ -70,7 +62,7 @@ if(!isset($usuario)){
                 <li class="mode">
                     <a href="#">
                         <i class="uil uil-moon"></i>
-                    <span class="link-name">Modo Oscuro</span>
+                    <span class="link-name">Dark Mode</span>
                 </a> 
             
                 <div class="mode-toggle">
@@ -90,17 +82,20 @@ if(!isset($usuario)){
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <div class="logo_name">
-                <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
-            </div>
-            <img src="../IMG/admin.svg" alt="">
+            
+            <img src="./IMG/user.jpg" alt="">
         </div>
-        <div class="dash-content">
-            <BR></BR>
-            <h1>HOLAAA</h1>
-            <H1>CALENDARIO</H1>
+
+       
+
         </div>
     </section>
-    <script src="./../JS/script.js"></script>
+
+    <script src="./JS/script.js"></script>
 </body>
 </html>
+END;
+
+echo($menu); 
+
+?>

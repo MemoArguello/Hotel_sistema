@@ -12,13 +12,12 @@ body {
 .signupFrm {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
 }
 
 .form_categoria {
   background-color: rgb(255, 255, 255);
-  width: 500px;
+  width: 600px;
   border-radius: 8px;
   padding: 10px 40px;
   box-shadow: 0 10px 25px rgba(92, 99, 105, .2);

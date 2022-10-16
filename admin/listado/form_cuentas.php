@@ -42,11 +42,11 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../../../Hotel_sistema/vistas/admin.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../recepcionar.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -58,7 +58,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../../producto/productos.php">
+                <li><a href="../../producto/listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -110,9 +110,9 @@ mysqli_close($conexiondb);
                     <i class="fa fa-bars"></i>
                 </a>
             </div>
-            <div class="listado">
-                <table class="formu">
-                    <thead>
+            <div class="">
+                <table class="">
+                    <thead >
                         <tr>
                             <th>Nº</th>
                             <th>Correo Electronico</th>

@@ -7,7 +7,7 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM cargo ORDER BY id ASC";
+$query = "SELECT * FROM producto";
 $resultado = mysqli_query($conexiondb, $query);
 mysqli_close($conexiondb);
 ?>
@@ -18,10 +18,11 @@ mysqli_close($conexiondb);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuracion</title>
+    <title>Habitaciones</title>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="./../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/registrar.css">
+    <link rel="stylesheet" href="../admin/listado/listado.css">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -33,7 +34,7 @@ mysqli_close($conexiondb);
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="./../IMG/logo.svg" alt="">
+                <img src="../IMG/logo.svg" alt="">
             </div>
 
             <span class="logo_name">HOTEL</span>
@@ -41,15 +42,15 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../reserva.php">
+                <li><a href="../../Hotel_sistema/vistas/admin.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../recepcionar.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="./listado/form_habitaciones.php">
+                <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -57,7 +58,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../producto/listado_productos.php">
+                <li><a href="./listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -104,48 +105,49 @@ mysqli_close($conexiondb);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./listado/form_cuentas.php">Cuentas Existentes</a>
-                <a href="./cuentas.php">Registrar Cuenta</a>
+                <a href="./listado_productos.php">Productos</a>
+                <a href="./productos.php">Registrar Producto</a>
             </div>
-            <div class="signupFrm">
-                <form action="./guardar_cuenta.php" method="POST" class="form">
-                    <h1 class="title">Registrar Cuenta</h1>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="correo">
-                        <label for="" class="label">Correo Electronico</label>
+            <div class="">
+                        <table class="">
+                            <thead>
+                                <tr>
+                                    <th>Nº</th>
+                                    <th align="center">Codigo</th>
+                                    <th align="center">Nombre</th>
+                                    <th align="center">PrecioCompra</th>
+                                    <th align="center">PrecioVenta</th>
+                                    <th align="center">Stock</th>
+                                    <th align="center">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $index = 1;
+                                while ($producto = mysqli_fetch_assoc($resultado)) {
+                                    echo "<tr>";
+                                    echo "<tr>";
+                                    echo "<tr>";
+                                    echo "<th scope ='row'>" . $index++ . "</th>";
+                                    echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['nombre'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['precio_compra'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['precio_venta'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['stock_inicial'] . "</td>";
+                                    echo "<td>";
+                                    echo "<a href='./editar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
+                                    echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
+                                    echo "</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="usuario">
-                        <label for="" class="label">Nombre de Usuario</label>
-                    </div>
-
-                    <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="codigo">
-                        <label for="" class="label">Contraseña</label>
-                    </div>
-
-                    <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="ccodigo">
-                        <label for="" class="label">Confirmar Contraseña</label>
-                    </div>
-                    <div class="inputContainer">
-                        <select class="input" name="id" class="" id="inputGroupSelect01">
-                            <?php
-                            while ($cargo = mysqli_fetch_assoc($resultado)) {
-                                echo "<option value='" . $cargo['id'] . "'>" . $cargo['descripcion'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                        <input type="submit" class="submitBtn" value="GUARDAR">
-                </form>
             </div>
-
-        </div>
     </section>
 
-    <script src="./../JS/script.js"></script>
+    <script src="../JS/script.js"></script>
 
 </body>
 

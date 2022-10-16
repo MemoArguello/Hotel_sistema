@@ -1,15 +1,16 @@
 <?php
 session_start();
-include './../../db.php';
+include '../../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
     header("location:../../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM categorias";
+$id_categoria = $_GET['id_categoria'];
+$query = "SELECT * FROM categorias where id_categoria=". $id_categoria;
 $resultado = mysqli_query($conexiondb, $query);
-mysqli_close($conexiondb);
+$categoria = mysqli_fetch_row($resultado);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,7 @@ mysqli_close($conexiondb);
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../../CSS/style.css">
     <link rel="stylesheet" href="../../CSS/registrar.css">
+    <link rel="stylesheet" href="../listado/listado.css">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -57,7 +59,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../../producto/listado_productos.php">
+                <li><a href="#">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -97,7 +99,7 @@ mysqli_close($conexiondb);
                 <input type="text" placeholder="Search here...">
             </div>
             <?php
-                echo "Bienvenido $usuario";
+            echo "Bienvenido $usuario";
             ?>
             <img src="../../IMG/admin.svg" alt="">
         </div>
@@ -105,35 +107,21 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
-                <a href="./registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="../categoria/listado_categoria.php">Listado Categoria</a>
-                <a href="../categoria/categoria.php">Registrar Categorias</a>
+                <a href="../habitaciones/registrar_habitacion.php">Registrar Habitacion</a>
+                <a href="categoria.php">Categorias</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_habitacion.php" method="POST" class="form_habitacion">
-                    <h1 class="title">Registrar Habitacion</h1>
+                <form action="./guardar_categoria.php" method="POST" class="form_categoria">
+                    <h3 class="title">Editar Categoria</h3>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre">
-                        <label for="" class="label">Nombre</label>
+                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $categoria[1]; ?>'>
+                        <label for="" class="label">Nombre Categoria</label>
                     </div>
-                    <div class="inputContainer">
-                        <select class="input" name="categoria" class="" id="inputGroupSelect01"></P>
-                        <?php
-                        while ($cargo = mysqli_fetch_assoc($resultado)) {
-                            echo "<option value='" . $cargo['id_categoria'] . "'>" . $cargo['categoria'] . "</option>";
-                        }
-                        ?>
-                        </select>
-                    </div>            
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="detalles">
-                        <label for="" class="label">Detalles</label>
-                    </div>
+                    <input type="hidden" name="categoria" id="" value='<?php echo $categoria[0] ?>' readonly>
+                    <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
-
-        </div>
     </section>
 
     <script src="../../JS/script.js"></script>

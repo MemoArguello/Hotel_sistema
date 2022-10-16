@@ -1,15 +1,16 @@
 <?php
 session_start();
-include './../../db.php';
+include '../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
-    header("location:../../index.php");
+    header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM categorias";
+$id_producto = $_GET['id_producto'];
+$query = "SELECT * FROM producto where id_producto=". $id_producto;
 $resultado = mysqli_query($conexiondb, $query);
-mysqli_close($conexiondb);
+$producto = mysqli_fetch_row($resultado);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +21,9 @@ mysqli_close($conexiondb);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habitaciones</title>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="../../CSS/style.css">
-    <link rel="stylesheet" href="../../CSS/registrar.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/registrar.css">
+    <link rel="stylesheet" href="../admin/listado/listado.css">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -33,7 +35,7 @@ mysqli_close($conexiondb);
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="../../IMG/logo.svg" alt="">
+                <img src="../IMG/logo.svg" alt="">
             </div>
 
             <span class="logo_name">HOTEL</span>
@@ -49,7 +51,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../listado/form_habitaciones.php">
+                <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -57,18 +59,18 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../../producto/listado_productos.php">
+                <li><a href="./productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                <li><a href="../listado/form_cuentas.php">
+                <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
             <ul class="logout-mode">
-                <li><a href="../../cerrar_sesion.php">
+                <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
@@ -97,46 +99,47 @@ mysqli_close($conexiondb);
                 <input type="text" placeholder="Search here...">
             </div>
             <?php
-                echo "Bienvenido $usuario";
+            echo "Bienvenido $usuario";
             ?>
-            <img src="../../IMG/admin.svg" alt="">
+            <img src="../IMG/admin.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
-                <a href="./registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="../categoria/listado_categoria.php">Listado Categoria</a>
-                <a href="../categoria/categoria.php">Registrar Categorias</a>
+                <a href="./listado_productos.php">Productos</a>
+                <a href="./productos.php">Registrar Producto</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_habitacion.php" method="POST" class="form_habitacion">
-                    <h1 class="title">Registrar Habitacion</h1>
+                <form action="./guardar_producto.php" method="POST" class="form_categoria">
+                    <h1 class="title">Registrar Productos</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre">
-                        <label for="" class="label">Nombre</label>
+                        <input type="text" class="input" placeholder="a" name="codigo" value='<?php echo $producto[1]; ?>'>
+                        <label for="" class="label">Codigo</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="categoria" class="" id="inputGroupSelect01"></P>
-                        <?php
-                        while ($cargo = mysqli_fetch_assoc($resultado)) {
-                            echo "<option value='" . $cargo['id_categoria'] . "'>" . $cargo['categoria'] . "</option>";
-                        }
-                        ?>
-                        </select>
-                    </div>            
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="detalles">
-                        <label for="" class="label">Detalles</label>
+                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $producto[2]; ?>'>
+                        <label for="" class="label">Nombre Producto</label>
                     </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="precio_compra" value='<?php echo $producto[3]; ?>'>
+                        <label for="" class="label">Precio de Compra</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="precio_venta" value='<?php echo $producto[4]; ?>'>
+                        <label for="" class="label">Precio de Venta</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[5]; ?>'>
+                        <label for="" class="label">Stock Inicial</label>
+                    </div>
+                    <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>
+                    <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
-
-        </div>
     </section>
 
-    <script src="../../JS/script.js"></script>
+    <script src="../JS/script.js"></script>
 
 </body>
 
