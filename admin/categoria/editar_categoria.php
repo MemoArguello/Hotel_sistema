@@ -117,6 +117,10 @@ $categoria = mysqli_fetch_row($resultado);
                         <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $categoria[1]; ?>'>
                         <label for="" class="label">Nombre Categoria</label>
                     </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="piso" value='<?php echo $categoria[2]; ?>'>
+                        <label for="" class="label">Ingrese Piso</label>
+                    </div>
                     <input type="hidden" name="categoria" id="" value='<?php echo $categoria[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">

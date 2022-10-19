@@ -3,11 +3,7 @@ include ('../db.php');
         $cargo=$_POST['id'];
         $correo=$_POST['correo'];
         $usuario=$_POST['usuario'];
-<<<<<<< HEAD
         $password=md5($_POST['codigo']);
-=======
-        $password=($_POST['codigo']);
->>>>>>> 1ec8531f8163c4cc9b41ee89d375c1561141c830
         $editar = $_POST['editar'];
 
         $conexiondb = conectardb();
@@ -31,8 +27,4 @@ include ('../db.php');
                 echo "<script>alert('El correo ya existe');
                 window.location.href='./listado/form_cuentas.php'</script>";
             }   
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> 1ec8531f8163c4cc9b41ee89d375c1561141c830

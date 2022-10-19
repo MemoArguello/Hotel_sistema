@@ -15,7 +15,7 @@ $filas=mysqli_fetch_array($resultado);
 
 if($codigo == $filas['codigo']){
     if($filas['id_cargo']==1){ //administrador
-        header("location:./vistas/admin.php");
+        header("location:./calendario/index.php");
     
     }else if($filas['id_cargo']==2){ //Recepcionista
         header("location:./vistas/recepcion.php");
