@@ -44,7 +44,7 @@ if (!isset($usuario)) {
             <i class="uil uil-clipboard-notes"></i>
             <span class="link-name">Recepción</span>
           </a></li>
-        <li><a href="../admin/habitaciones/registrar_habitacion.php">
+        <li><a href="../admin/listado/form_habitaciones.php">
             <i class="uil uil-bed"></i>
             <span class="link-name">Habitación</span>
           </a></li>
@@ -94,6 +94,7 @@ if (!isset($usuario)) {
       <div class="topnav" id="myTopnav">
         <a href="./index.php">Reservas</a>
         <a href="./registrar_reserva.php">Registrar Reserva</a>
+        <a href="./listado_reserva.php">Listado de Reservas</a>
       </div>
       <br>
       <br>
@@ -161,6 +162,21 @@ if (!isset($usuario)) {
 
         },
 
+//Moviendo Evento Drag - Drop
+eventDrop: function (event, delta) {
+  var idEvento = event.id;
+  var start = (event.start.format('DD-MM-YYYY'));
+  var end = (event.end.format("DD-MM-YYYY"));
+
+    $.ajax({
+        url: 'drag_drop_evento.php',
+        data: 'start=' + start + '&end=' + end + '&idEvento=' + idEvento,
+        type: "POST",
+        success: function (response) {
+         // $("#respuesta").html(response);
+        }
+    });
+},
         events: [
           <?php
           while ($dataEvento = mysqli_fetch_array($resulEventos)) {

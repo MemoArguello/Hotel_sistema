@@ -6,6 +6,9 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
   header("location:../index.php");
 }
+$conexiondb = conectardb();
+$query = "SELECT * FROM reserva";
+$resultado = mysqli_query($conexiondb, $query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,6 +22,7 @@ if (!isset($usuario)) {
   <link rel="stylesheet" href="../CSS/style.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
   <link rel="stylesheet" href="../CSS/registrar.css">
+  <link rel="stylesheet" href="../admin/listado/listado.css">
 </head>
 
 <body>
@@ -93,26 +97,39 @@ if (!isset($usuario)) {
             <div class="topnav" id="myTopnav">
                 <a href="./index.php">Reservas</a>
                 <a href="./registrar_reserva.php">Registrar Reserva</a>
-                <a href="./registrar_reserva.php">Listado de Reservas</a>
+                <a href="./listado_reserva.php">Listado de Reservas</a>
             </div>
-            <div class="signupFrm">
-                <form action="./nuevoEvento.php" method="POST" class="form_categoria">
-                    <h1 class="title">Registrar Reserva</h1>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre">
-                        <label for="" class="label">Nombre Completo</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_inicio">
-                        <label for="" class="label">Fecha de Inicio</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_fin">
-                        <label for="" class="label">Fecha de Salida</label>
-                    </div>
-                    <input type="submit" class="submitBtn" value="GUARDAR">
-                </form>
-            </div>
+            <table class="">
+                    <thead >
+                        <tr>
+                            <th>Nº</th>
+                            <th>Nombre</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Final</th>
+                            <th align="left">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $index = 1;
+                        while ($reserva = mysqli_fetch_assoc($resultado)) {
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<th scope ='row'>" . $index++ . "</th>";
+                            echo "<td align= 'center'>" . $reserva['nombre'] . "</td>";
+                            echo "<td align= 'center'>" . $reserva['fecha_inicio'] . "</td>";
+                            echo "<td align= 'center'>" . $reserva['fecha_fin'] . "</td>";
+                            echo "<td>";
+                            echo "<a href='./editar_reserva.php?id=" . $reserva['id'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='./eliminar_reserva.php?id=" . $reserva['id'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
     </section>
 
     <script src="../JS/script.js"></script>

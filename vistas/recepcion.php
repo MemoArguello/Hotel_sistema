@@ -36,7 +36,7 @@ if (!isset($usuario)) {
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>

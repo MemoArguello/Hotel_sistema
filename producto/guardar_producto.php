@@ -19,10 +19,10 @@
 
         if ($respuesta) {
                 echo "<script>alert('Registro Exitoso');
-                                       window.location.href='productos.php'</script>";
+                                       window.location.href='listado_productos.php'</script>";
             } else {
                 echo "<script>alert('Registro Fallido');
-                                        window.location.href='productos.php'</script>";
+                                        window.location.href='listado_productos.php'</script>";
             }
          if ($editar == "si") {
                 echo ("Se pudo actualizar correctamente");

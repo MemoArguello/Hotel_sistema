@@ -120,11 +120,11 @@ mysqli_close($conexiondb);
                         <label for="" class="label">Nombre Producto</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="precio_compra">
+                        <input type="number" class="input" placeholder="a" name="precio_compra">
                         <label for="" class="label">Precio de Compra</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="precio_venta">
+                        <input type="number" class="input" placeholder="a" name="precio_venta">
                         <label for="" class="label">Precio de Venta</label>
                     </div>
                     <div class="inputContainer">

@@ -4,31 +4,26 @@ include '../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
-    header("location:../index.php");
+  header("location:../index.php");
 }
 $conexiondb = conectardb();
-$id_producto = $_GET['id_producto'];
-$query = "SELECT * FROM producto where id_producto=". $id_producto;
+$id_categoria = $_GET['id'];
+$query = "SELECT * FROM reserva where id=". $id_categoria;
 $resultado = mysqli_query($conexiondb, $query);
-$producto = mysqli_fetch_row($resultado);
+$reserva = mysqli_fetch_row($resultado);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habitaciones</title>
-    <!----======== CSS ======== -->
-    <link rel="stylesheet" href="../CSS/style.css">
-    <link rel="stylesheet" href="../CSS/registrar.css">
-    <link rel="stylesheet" href="../admin/listado/listado.css">
-
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link href="./IMG/logo.svg" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Reserva</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="../CSS/registrar.css">
 </head>
 
 <body>
@@ -51,7 +46,7 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../admin/listado/form_habitaciones.php">
+                <li><a href="../listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -59,11 +54,11 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./productos.php">
+                <li><a href="../../producto/listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                <li><a href="../admin/listado/form_cuentas.php">
+                <li><a href="../listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
                     </a></li>
@@ -93,11 +88,6 @@ $producto = mysqli_fetch_row($resultado);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
             <?php
             echo "Bienvenido $usuario";
             ?>
@@ -106,33 +96,26 @@ $producto = mysqli_fetch_row($resultado);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./listado_productos.php">Productos</a>
-                <a href="./productos.php">Registrar Producto</a>
+                <a href="./index.php">Reservas</a>
+                <a href="./registrar_reserva.php">Registrar Reserva</a>
+                <a href="./registrar_reserva.php">Listado de Reservas</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_producto.php" method="POST" class="form_categoria">
-                    <h1 class="title">Registrar Productos</h1>
+                <form action="./update_reserva.php" method="POST" class="form_categoria">
+                    <h1 class="title">Editar Reserva</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="codigo" value='<?php echo $producto[1]; ?>'>
-                        <label for="" class="label">Codigo</label>
+                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $reserva[1];?>'>
+                        <label for="" class="label">Nombre Completo</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $producto[2]; ?>'>
-                        <label for="" class="label">Nombre Producto</label>
+                        <input type="date" class="input" placeholder="a" name="fecha_inicio" value='<?php echo $reserva[2];?>'>
+                        <label for="" class="label">Fecha de Inicio</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_compra" value='<?php echo $producto[3]; ?>'>
-                        <label for="" class="label">Precio de Compra</label>
+                        <input type="date" class="input" placeholder="a" name="fecha_fin" value='<?php echo $reserva[3];?>'>
+                        <label for="" class="label">Fecha de Salida</label>
                     </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_venta" value='<?php echo $producto[4]; ?>'>
-                        <label for="" class="label">Precio de Venta</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[5]; ?>'>
-                        <label for="" class="label">Stock Inicial</label>
-                    </div>
-                    <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>
+                    <input type="hidden" name="id" id="" value='<?php echo $reserva[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

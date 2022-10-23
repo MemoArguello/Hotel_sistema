@@ -42,7 +42,7 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../../Hotel_sistema/vistas/admin.php">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
@@ -131,9 +131,9 @@ mysqli_close($conexiondb);
                                     echo "<th scope ='row'>" . $index++ . "</th>";
                                     echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
                                     echo "<td align= 'center'>" . $producto['nombre'] . "</td>";
-                                    echo "<td align= 'center'>" . $producto['precio_compra'] . "</td>";
-                                    echo "<td align= 'center'>" . $producto['precio_venta'] . "</td>";
-                                    echo "<td align= 'center'>" . $producto['stock_inicial'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['precio_compra'] ." Gs". "</td>";
+                                    echo "<td align= 'center'>" . $producto['precio_venta'] . " Gs". "</td>";
+                                    echo "<td align= 'center'>" . $producto['stock_inicial'] ."</td>";
                                     echo "<td>";
                                     echo "<a href='./editar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
                                     echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
