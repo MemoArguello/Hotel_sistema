@@ -116,23 +116,25 @@ mysqli_close($conexiondb);
                         <th>Nº</th>
                         <th align="center">Categoria</th>
                         <th align="center">Piso</th>
+                        <th align="center">Precio</th>
                         <th align="left">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $index = 1;
-                    while ($habitaciones = mysqli_fetch_assoc($resultado)) {
+                    while ($categoria = mysqli_fetch_assoc($resultado)) {
                         echo "<tr>";
                         echo "<tr>";
                         echo "<tr>";
                         echo "<tr>";
                         echo "<th scope ='row'>" . $index++ . "</th>";
-                        echo "<td align= 'center'>" . $habitaciones['categoria'] . "</td>";
-                        echo "<td align= 'center'>" . $habitaciones['piso'] . "</td>";
+                        echo "<td align= 'center'>" . $categoria['categoria'] . "</td>";
+                        echo "<td align= 'center'>" . $categoria['piso']. "</td>";
+                        echo "<td align= 'center'>" . $categoria['tarifa']. " Gs". "</td>";
                         echo "<td>";
-                        echo "<a href='./editar_categoria.php?id_categoria=" . $habitaciones['id_categoria'] . "' class='submitBoton'> Editar </a>";
-                        echo "<a href='./eliminar_categoria.php?id_categoria=" . $habitaciones['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";
+                        echo "<a href='./editar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBoton'> Editar </a>";
+                        echo "<a href='./eliminar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";
                         echo "</td>";
                         echo "</tr>";
                     }

@@ -98,7 +98,7 @@ mysqli_close($conexiondb);
                 <input type="text" placeholder="Search here...">
             </div>
             <?php
-            echo "Bienvenido $usuario";
+             echo "Bienvenido $usuario";
             ?>
             <img src="../../IMG/admin.svg" alt="">
         </div>
@@ -120,6 +120,10 @@ mysqli_close($conexiondb);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="piso">
                         <label for="" class="label">Ingrese Piso</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="tarifa">
+                        <label for="" class="label">Ingrese tarifa</label>
                     </div>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

@@ -40,7 +40,7 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../../../Hotel_sistema/vistas/admin.php">
+                <li><a href="../../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
@@ -134,7 +134,7 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $habitaciones['categoria'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['detalles'] . "</td>";
                             echo "<td>";
-                            echo "<a href='../editar_cuenta.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='../habitaciones/editar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='../habitaciones/eliminar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBotonEliminar'> Borrar </a>";
                             echo "</td>";
                             echo "</tr>";

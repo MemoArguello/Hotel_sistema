@@ -42,7 +42,7 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../../../Hotel_sistema/vistas/admin.php">
+                <li><a href="../../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>

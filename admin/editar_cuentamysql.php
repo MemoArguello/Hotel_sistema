@@ -1,5 +1,11 @@
 <?php
 include ('../db.php');
+if (!empty($_POST)) {
+    $alert = '';
+    if (empty($_POST['correo']) || empty($_POST['usuario']) || empty($_POST['codigo']) || empty($_POST['ccodigo'])) {
+            echo "<script>alert('Todos los campos son obligatorios');
+            window.location.href='./listado/form_cuentas.php'</script>";
+    } else {
         $cargo=$_POST['id'];
         $correo=$_POST['correo'];
         $usuario=$_POST['usuario'];
@@ -26,5 +32,7 @@ include ('../db.php');
             }else{
                 echo "<script>alert('El correo ya existe');
                 window.location.href='./listado/form_cuentas.php'</script>";
-            }   
+            } 
+    }
+}  
 ?>
