@@ -22,7 +22,6 @@ mysqli_close($conexiondb);
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/registrar.css">
-
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="./IMG/logo.svg" rel="icon">
@@ -107,35 +106,34 @@ mysqli_close($conexiondb);
             </div>
             <div class="signupFrm">
                 <form action="./guardar_cuenta.php" method="POST" class="form">
-                    <h1 class="title">Recepcion</h1>
+                    <h1 class="title">Datos del Cliente</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="correo">
-                        <label for="" class="label">Correo Electronico</label>
+                        <input type="number" class="input" placeholder="a" name="cedula">
+                        <label for="" class="label">Numero de Cedula</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="usuario">
-                        <label for="" class="label">Nombre de Usuario</label>
+                        <input type="text" class="input" placeholder="a" name="nombre">
+                        <label for="" class="label">Nombres</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="codigo">
-                        <label for="" class="label">Contraseña</label>
+                        <input type="number" class="input" placeholder="a" name="telefono">
+                        <label for="" class="label">Telefono</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="ccodigo">
-                        <label for="" class="label">Confirmar Contraseña</label>
+                        <input type="text" class="input" placeholder="a" name="procedencia">
+                        <label for="" class="label">Procedencia</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="id" class="" id="inputGroupSelect01">
-                            <?php
-                            while ($cargo = mysqli_fetch_assoc($resultado)) {
-                                echo "<option value='" . $cargo['id'] . "'>" . $cargo['descripcion'] . "</option>";
-                            }
-                            ?>
-                        </select>
+                        <input type="text" class="input" placeholder="a" name="factura">
+                        <label for="" class="label">Factura</label>
                     </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="toallas">
+                        <label for="" class="label">Toallas</label>
+                    </div>     
                         <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
@@ -143,7 +141,7 @@ mysqli_close($conexiondb);
         </div>
     </section>
 
-    <script src="./../JS/script.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 
