@@ -4,26 +4,30 @@ include '../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
-  header("location:../index.php");
+    header("location:../index.php");
 }
 $conexiondb = conectardb();
 $id_categoria = $_GET['id'];
-$query = "SELECT * FROM reserva where id=". $id_categoria;
+$query = "SELECT * FROM reserva where id=" . $id_categoria;
 $resultado = mysqli_query($conexiondb, $query);
 $reserva = mysqli_fetch_row($resultado);
+
+$query_c = "SELECT * FROM habitaciones";
+$resultado_c = mysqli_query($conexiondb, $query_c);
+$habitacion = mysqli_fetch_row($resultado_c);
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Reserva</title>
-  <link rel="stylesheet" href="">
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="../CSS/style.css">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-  <link rel="stylesheet" href="../CSS/registrar.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Reserva</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="../CSS/registrar.css">
 </head>
 
 <body>
@@ -96,23 +100,53 @@ $reserva = mysqli_fetch_row($resultado);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./index.php">Reservas</a>
-                <a href="./registrar_reserva.php">Registrar Reserva</a>
-                <a href="./registrar_reserva.php">Listado de Reservas</a>
+                <a href="../Recepcion/habitaciones.php">Habitaciones</a>
+                <a href="./listado_reserva.php">Listado de Reservas</a>
             </div>
             <div class="signupFrm">
-                <form action="./update_reserva.php" method="POST" class="form_categoria">
-                    <h1 class="title">Editar Reserva</h1>
+                <form action="./update_reserva.php" method="POST" class="formRecepcion">
+                    <h3 align="center">Recepcion</h3>
+                    <br>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $reserva[1];?>'>
-                        <label for="" class="label">Nombre Completo</label>
+                        <input type="number" class="input" placeholder="a" name="cedula" value='<?php echo $reserva[1]; ?>'>
+                        <label for="" class="label">Numero de Cedula</label>
+                    </div>
+
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $reserva[2]; ?>'>
+                        <label for="" class="label">Nombres</label>
+                    </div>
+
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="telefono" value='<?php echo $reserva[3]; ?>'>
+                        <label for="" class="label">Telefono</label>
+                    </div>
+
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="procedencia" value='<?php echo $reserva[4]; ?>'>
+                        <label for="" class="label">Procedencia</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_inicio" value='<?php echo $reserva[2];?>'>
+                        <input type="text" class="input" placeholder="a" name="factura" value='<?php echo $reserva[5]; ?>'>
+                        <label for="" class="label">Factura</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="cant_personas" value='<?php echo $reserva[6]; ?>'>
+                        <label for="" class="label">Cantidad de Personas</label>
+                    </div>
+                    <div class="inputContainer">
+                        <select name="pago" class="input">
+                            <option value="Pagado">Pagado</option>
+                            <option value="No pagado">Falta Pagar</option>
+                        </select>
+                        <label for="" class="label">Estado de Pago</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="date" class="input" placeholder="a" name="fecha_inicio" value='<?php echo $reserva[7]; ?>'>
                         <label for="" class="label">Fecha de Inicio</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_fin" value='<?php echo $reserva[3];?>'>
+                        <input type="date" class="input" placeholder="a" name="fecha_fin" value='<?php echo $reserva[8]; ?>'>
                         <label for="" class="label">Fecha de Salida</label>
                     </div>
                     <input type="hidden" name="id" id="" value='<?php echo $reserva[0] ?>' readonly>

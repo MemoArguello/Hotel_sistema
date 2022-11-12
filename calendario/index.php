@@ -40,7 +40,7 @@ if (!isset($usuario)) {
             <i class="uil uil-calendar-alt"></i>
             <span class="link-name">Reservas</span>
           </a></li>
-        <li><a href="../recepcionar.php">
+        <li><a href="../Recepcion/habitaciones.php">
             <i class="uil uil-clipboard-notes"></i>
             <span class="link-name">Recepción</span>
           </a></li>
@@ -48,7 +48,7 @@ if (!isset($usuario)) {
             <i class="uil uil-bed"></i>
             <span class="link-name">Habitación</span>
           </a></li>
-        <li><a href="#">
+        <li><a href="../reportes/reporte.php">
             <i class="uil uil-file-graph"></i>
             <span class="link-name">Reportes</span>
           </a></li>
@@ -92,9 +92,9 @@ if (!isset($usuario)) {
     </div>
     <div class="dash-content">
       <div class="topnav" id="myTopnav">
-        <a href="./index.php">Reservas</a>
-        <a href="./registrar_reserva.php">Registrar Reserva</a>
-        <a href="./listado_reserva.php">Listado de Reservas</a>
+        <a href="./index.php">Calendario</a>
+        <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
+        <a href="./listado_reserva.php">Lista de Clientes</a>
       </div>
       <br>
       <br>

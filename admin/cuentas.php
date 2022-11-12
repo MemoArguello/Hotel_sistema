@@ -137,6 +137,7 @@ mysqli_close($conexiondb);
                             }
                             ?>
                         </select>
+                        <label for="" class="label">Cambiar Cargo</label>
                     </div>
                         <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

@@ -1,13 +1,13 @@
 <?php
 session_start();
-include 'db.php';
+include '../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
-    header("location:index.php");
+    header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM cargo ORDER BY id ASC";
+$query = "SELECT * FROM habitaciones";
 $resultado = mysqli_query($conexiondb, $query);
 mysqli_close($conexiondb);
 ?>
@@ -20,8 +20,8 @@ mysqli_close($conexiondb);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuracion</title>
     <!----======== CSS ======== -->
-    <link rel="stylesheet" href="./CSS/style.css">
-    <link rel="stylesheet" href="./CSS/registrar.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/registrar.css">
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="./IMG/logo.svg" rel="icon">
@@ -32,7 +32,7 @@ mysqli_close($conexiondb);
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="./IMG/logo.svg" alt="">
+                <img src="../IMG/logo.svg" alt="">
             </div>
 
             <span class="logo_name">HOTEL</span>
@@ -40,7 +40,7 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="calendario/index.php">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
@@ -48,7 +48,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="admin/listado/form_habitaciones.php">
+                <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -56,18 +56,18 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./producto/listado_productos.php">
+                <li><a href="../producto/listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                <li><a href="admin/listado/form_cuentas.php">
+                <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
             <ul class="logout-mode">
-                <li><a href="./cerrar_sesion.php">
+                <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
@@ -90,23 +90,22 @@ mysqli_close($conexiondb);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-
-
             <?php
             echo "Bienvenido $usuario";
             ?>
-            <img src="img/admin.svg" alt="">
+            <img src="../IMG/admin.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./recepcionar.php">Recepcion</a>
-                <a href="./listado_recepciones.php">Lista de Recepciones</a>
+                <a href="../calendario/index.php">Calendario</a>
+                <a href="./recepcionar.php">Registrar Cliente</a>
+                <a href="../calendario/listado_reserva.php">Lista de Clientes</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_cuenta.php" method="POST" class="form">
-                    <h1 class="title">Datos del Cliente</h1>
+                <form action="../calendario/nuevoEvento.php" method="POST" class="formRecepcion">
+                    <h3 align="center">Recepcion</h3>
+                    <br>
                     <div class="inputContainer">
                         <input type="number" class="input" placeholder="a" name="cedula">
                         <label for="" class="label">Numero de Cedula</label>
@@ -131,17 +130,32 @@ mysqli_close($conexiondb);
                         <label for="" class="label">Factura</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="toallas">
-                        <label for="" class="label">Toallas</label>
-                    </div>     
-                        <input type="submit" class="submitBtn" value="GUARDAR">
+                        <input type="number" class="input" placeholder="a" name="cant_personas">
+                        <label for="" class="label">Cantidad de Personas</label>
+                    </div>
+                    <div class="inputContainer">
+                        <select name="pago" class="input">
+                            <option value="Pagado">Pagado</option>
+                            <option value="No pagado">Falta Pagar</option>
+                        </select>
+                        <label for="" class="label">Estado de Pago</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="date" class="input" placeholder="a" name="fecha_inicio">
+                        <label for="" class="label">Fecha de Inicio</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="date" class="input" placeholder="a" name="fecha_salida">
+                        <label for="" class="label">Fecha de Salida</label>
+                    </div>
+                    <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
 
         </div>
     </section>
 
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
 
 </body>
 

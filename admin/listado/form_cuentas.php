@@ -46,7 +46,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../recepcionar.php">
+                <li><a href="../../Recepcion/recepcionar.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>

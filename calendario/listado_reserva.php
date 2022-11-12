@@ -87,6 +87,11 @@ $resultado = mysqli_query($conexiondb, $query);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
+            
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
             <?php
             echo "Bienvenido $usuario";
             ?>
@@ -95,15 +100,21 @@ $resultado = mysqli_query($conexiondb, $query);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./index.php">Reservas</a>
-                <a href="./registrar_reserva.php">Registrar Reserva</a>
-                <a href="./listado_reserva.php">Listado de Reservas</a>
-            </div>
+            <a href="./index.php">Calendario</a>
+            <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
+            <a href="./listado_reserva.php">Lista de Clientes</a>
+        </div>
             <table class="">
                     <thead >
                         <tr>
                             <th>Nº</th>
+                            <th>Cedula</th>
                             <th>Nombre</th>
+                            <th>telefono</th>
+                            <th>Procedencia</th>
+                            <th>Factura</th>
+                            <th>Personas</th>
+                            <th>Pago</th>
                             <th>Fecha Inicio</th>
                             <th>Fecha Final</th>
                             <th align="left">Opciones</th>
@@ -118,7 +129,13 @@ $resultado = mysqli_query($conexiondb, $query);
                             echo "<tr>";
                             echo "<tr>";
                             echo "<th scope ='row'>" . $index++ . "</th>";
+                            echo "<td align= 'center'>" . $reserva['cedula'] . "</td>";
                             echo "<td align= 'center'>" . $reserva['nombre'] . "</td>";
+                            echo "<td align= 'center'>" . $reserva['telefono'] . "</td>";
+                            echo "<td align= 'center'>" . $reserva['procedencia'] . "</td>";
+                            echo "<td align= 'center'>" . $reserva['factura'] . "</td>";
+                            echo "<td align= 'center'>" . $reserva['cant_personas'] . "</td>";
+                            echo "<td align= 'center'>" . $reserva['pago'] . "</td>";
                             echo "<td align= 'center'>" . $reserva['fecha_inicio'] . "</td>";
                             echo "<td align= 'center'>" . $reserva['fecha_fin'] . "</td>";
                             echo "<td>";

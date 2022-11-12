@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-10-2022 a las 20:54:02
+-- Tiempo de generación: 11-11-2022 a las 21:06:36
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.5
 
@@ -52,12 +52,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categoria`, `categoria`, `piso`, `tarifa`) VALUES
-(16, 'mixto', 'tercero', 50000),
-(19, 'Matrimonial', 'primero', 45000),
-(20, 'personal', 'primero', 40000),
-(24, 'cuadruple', 'segundo', 50000),
-(25, 'sdf', 'tercero', 45000),
-(26, 'sdf', 'segundo', 50000);
+(28, 'Matrimonial', 'tercero', 50000);
 
 -- --------------------------------------------------------
 
@@ -68,18 +63,16 @@ INSERT INTO `categorias` (`id_categoria`, `categoria`, `piso`, `tarifa`) VALUES
 CREATE TABLE `habitaciones` (
   `id_habitaciones` int(11) NOT NULL,
   `nombre` varchar(250) NOT NULL,
-  `categoria` int(11) NOT NULL,
-  `detalles` varchar(250) NOT NULL
+  `detalles` varchar(250) NOT NULL,
+  `id_categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `habitaciones`
 --
 
-INSERT INTO `habitaciones` (`id_habitaciones`, `nombre`, `categoria`, `detalles`) VALUES
-(20, '001', 16, 'TV, AIRE'),
-(21, 'A02', 19, 'TV, cama doble, aire acondicionado'),
-(22, 'A03', 20, 'TV, cama, aire acondicionado');
+INSERT INTO `habitaciones` (`id_habitaciones`, `nombre`, `detalles`, `id_categoria`) VALUES
+(35, 'A01', 'TV, AIRE', 28);
 
 -- --------------------------------------------------------
 
@@ -109,26 +102,54 @@ INSERT INTO `producto` (`id_producto`, `codigo`, `nombre`, `precio_compra`, `pre
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `recepcion`
+--
+
+CREATE TABLE `recepcion` (
+  `id_recepcion` int(11) NOT NULL,
+  `id_reserva` int(11) NOT NULL,
+  `id_habitacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `recepcion`
+--
+
+INSERT INTO `recepcion` (`id_recepcion`, `id_reserva`, `id_habitacion`) VALUES
+(97, 73, 35),
+(98, 73, 35),
+(99, 73, 35),
+(80, 76, 35),
+(96, 76, 35);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `reserva`
 --
 
 CREATE TABLE `reserva` (
   `id` int(11) NOT NULL,
+  `cedula` text NOT NULL,
   `nombre` varchar(250) DEFAULT NULL,
+  `telefono` int(250) NOT NULL,
+  `procedencia` text CHARACTER SET utf8 NOT NULL,
+  `factura` text CHARACTER SET utf8 NOT NULL,
+  `cant_personas` text CHARACTER SET utf8 NOT NULL,
+  `pago` text CHARACTER SET utf8 NOT NULL,
   `fecha_inicio` date DEFAULT NULL,
   `fecha_fin` date DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`id`, `nombre`, `fecha_inicio`, `fecha_fin`) VALUES
-(56, 'Mica Bustamante', '2022-09-29', '2022-10-01'),
-(58, 'Manolo Lamas', '2022-10-12', '2022-10-14'),
-(59, 'manolo cordobes', '2022-10-11', '2022-10-13'),
-(60, 'Memo Arguello', '2022-10-04', '2022-10-06'),
-(61, 'Lourdes', '2022-10-06', '2022-10-09');
+INSERT INTO `reserva` (`id`, `cedula`, `nombre`, `telefono`, `procedencia`, `factura`, `cant_personas`, `pago`, `fecha_inicio`, `fecha_fin`) VALUES
+(73, '1234567', 'Micaela Bustamante', 21313, 'Ayolas', '212', '2', 'No pagado', '2022-11-10', '2022-10-04'),
+(74, '2313', 'Carlos Barbozaa', 332342, 'Ayolas', '234234', '2', 'Pagado', '2022-10-07', '2022-10-09'),
+(76, '7304680', 'Guillermo ', 986884553, 'Ayolas', '234234', '2', 'No pagado', '2022-11-03', '2022-11-05'),
+(78, '1234', 'Carlos BarbozaA', 986884553, 'Ayolas', '23123', '2', 'No pagado', '2022-11-21', '2022-11-24');
 
 -- --------------------------------------------------------
 
@@ -174,13 +195,21 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `habitaciones`
   ADD PRIMARY KEY (`id_habitaciones`),
-  ADD KEY `categoria` (`categoria`);
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id_producto`);
+
+--
+-- Indices de la tabla `recepcion`
+--
+ALTER TABLE `recepcion`
+  ADD PRIMARY KEY (`id_recepcion`),
+  ADD KEY `id_reserva` (`id_reserva`,`id_habitacion`),
+  ADD KEY `recepcion_habitacion` (`id_habitacion`);
 
 --
 -- Indices de la tabla `reserva`
@@ -209,13 +238,13 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `id_habitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_habitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -224,10 +253,16 @@ ALTER TABLE `producto`
   MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de la tabla `recepcion`
+--
+ALTER TABLE `recepcion`
+  MODIFY `id_recepcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+
+--
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -243,7 +278,14 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  ADD CONSTRAINT `categoria_id_categoria` FOREIGN KEY (`categoria`) REFERENCES `categorias` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `habitaciones_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `recepcion`
+--
+ALTER TABLE `recepcion`
+  ADD CONSTRAINT `recepcion_habitacion` FOREIGN KEY (`id_habitacion`) REFERENCES `habitaciones` (`id_habitaciones`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `recepcion_reserva` FOREIGN KEY (`id_reserva`) REFERENCES `reserva` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `usuarios`

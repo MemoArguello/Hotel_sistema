@@ -25,7 +25,7 @@ if (!isset($usuario)) {
 <body>
 <?php
 $conexiondb = conectardb();
-$consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre, habitaciones.categoria, habitaciones.detalles, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.categoria";
+$consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre, habitaciones.detalles, habitaciones.id_categoria, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.id_categoria";
 $resultado = mysqli_query($conexiondb, $consulta);
 mysqli_close($conexiondb);
 ?>
@@ -44,7 +44,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../recepcionar.php">
+                <li><a href="../../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>

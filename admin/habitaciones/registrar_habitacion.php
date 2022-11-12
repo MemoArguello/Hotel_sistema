@@ -117,7 +117,7 @@ mysqli_close($conexiondb);
                         <label for="" class="label">Nombre</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="categoria" class="" id="inputGroupSelect01"></P>
+                        <select class="input" name="id_categoria" class="" id="inputGroupSelect01"></P>
                         <?php
                         while ($cargo = mysqli_fetch_assoc($resultado)) {
                             echo "<option value='" . $cargo['id_categoria'] . "'>" . $cargo['categoria'] . "</option>";
