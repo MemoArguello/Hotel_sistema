@@ -77,18 +77,10 @@ $habitacion = mysqli_fetch_row($resultado);
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Modo Oscuro</span>
-                    </a>
-
+                    <li class="mode">
                     <div class="mode-toggle">
-                        <span class="switch"></span>
                     </div>
                 </li>
-
             </ul>
         </div>
     </nav>

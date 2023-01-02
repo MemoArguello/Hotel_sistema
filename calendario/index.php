@@ -67,17 +67,10 @@ if (!isset($usuario)) {
             <i class="uil uil-signout"></i>
             <span class="link-name">Cerrar Sesión</span>
           </a></li>
-
-        <li class="mode">
-          <a href="#">
-            <i class="uil uil-moon"></i>
-            <span class="link-name">Modo Oscuro</span>
-          </a>
-
-          <div class="mode-toggle">
-            <span class="switch"></span>
-          </div>
-        </li>
+          <li class="mode">
+                    <div class="mode-toggle">
+                    </div>
+                </li>
 
       </ul>
     </div>
