@@ -13,16 +13,19 @@ $resultado=mysqli_query($conexiondb,$consulta);
 
 $filas=mysqli_fetch_array($resultado);
 
-if($codigo == $filas['codigo']){
-    if($filas['id_cargo']==1){ //administrador
+if($codigo == isset($filas['codigo'])){
+    if(($filas['id_cargo'])==1){ //administrador
         header("location:./calendario/index.php");
     
-    }else if($filas['id_cargo']==2){ //Recepcionista
+    }else if(($filas['id_cargo'])==2){ //Recepcionista
         header("location:./vistas/recepcion.php");
-    
     }else{
-        header("location:./vistas/recepcion.php");
+        echo "<script>alert('no existe cuenta');
+        window.location.href='index.php'</script>";
     }
+}else{
+    echo "<script>alert('no existe cuenta');
+    window.location.href='index.php'</script>";
 }
 
 
