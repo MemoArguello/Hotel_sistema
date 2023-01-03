@@ -457,3 +457,7 @@ nav.close ~ .dashboard .top{
         width: 100%;
     }
 }
+table.dataTable thead {
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+    color: white;
+}

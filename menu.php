@@ -1,5 +1,3 @@
-<?php
-$menu = <<<END
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -60,15 +58,9 @@ $menu = <<<END
                 </a></li>
 
                 <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a> 
-            
-                <div class="mode-toggle">
-                 <span class="switch"></span>
-                </div>
-            </li>
+                    <div class="mode-toggle">
+                    </div>
+                </li>
         
             </ul>
         </div>
@@ -94,8 +86,3 @@ $menu = <<<END
     <script src="./JS/script.js"></script>
 </body>
 </html>
-END;
-
-echo($menu); 
-
-?>

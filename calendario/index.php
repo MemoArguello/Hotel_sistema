@@ -36,7 +36,7 @@ if (!isset($usuario)) {
 
     <div class="menu-items">
       <ul class="nav-links">
-        <li><a href="#">
+        <li><a href="./index.php">
             <i class="uil uil-calendar-alt"></i>
             <span class="link-name">Reservas</span>
           </a></li>
@@ -48,7 +48,7 @@ if (!isset($usuario)) {
             <i class="uil uil-bed"></i>
             <span class="link-name">Habitación</span>
           </a></li>
-        <li><a href="../reportes/reporte.php">
+        <li><a href="../reportes.php">
             <i class="uil uil-file-graph"></i>
             <span class="link-name">Reportes</span>
           </a></li>
