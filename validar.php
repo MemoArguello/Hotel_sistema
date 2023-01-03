@@ -18,7 +18,7 @@ if($codigo == isset($filas['codigo'])){
         header("location:./calendario/index.php");
     
     }else if(($filas['id_cargo'])==2){ //Recepcionista
-        header("location:./vistas/recepcion.php");
+        header("location:./calendario/index2.php");
     }else{
         echo "<script>alert('no existe cuenta');
         window.location.href='index.php'</script>";

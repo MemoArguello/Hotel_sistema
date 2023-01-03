@@ -60,10 +60,6 @@ mysqli_close($conexiondb);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                <li><a href="../admin/listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
-                    </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -93,12 +89,11 @@ mysqli_close($conexiondb);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../calendario/index.php">Calendario</a>
-                <a href="./recepcionar.php">Registrar Cliente</a>
-                <a href="../calendario/listado_reserva.php">Lista de Clientes</a>
+                <a href="../calendario/index2.php">Calendario</a>
+                <a href="./recepcionar2.php">Registrar Cliente</a>
             </div>
             <div class="signupFrm">
-                <form action="../calendario/nuevoEvento.php" method="POST" class="formRecepcion">
+                <form action="../calendario/nuevoEvento2.php" method="POST" class="formRecepcion">
                     <h3 align="center">Recepcion</h3>
                     <br>
                     <div class="inputContainer">

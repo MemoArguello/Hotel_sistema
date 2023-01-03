@@ -36,7 +36,7 @@ if (!isset($usuario)) {
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../calendario/index.php">
+                <li><a href="../recepcionista/recepcion_inicio.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
@@ -61,13 +61,7 @@ if (!isset($usuario)) {
                     </a></li>
 
                 <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Modo Oscuro</span>
-                    </a>
-
                     <div class="mode-toggle">
-                        <span class="switch"></span>
                     </div>
                 </li>
 
