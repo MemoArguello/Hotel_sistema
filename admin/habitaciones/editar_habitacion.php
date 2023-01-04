@@ -112,13 +112,17 @@ $habitacion = mysqli_fetch_row($resultado);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo$habitacion[1]; ?>'>
                         <label for="" class="label">Nombre</label>
+                    </div>           
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="detalles" value='<?php echo$habitacion[3]; ?>'>
+                        <label for="" class="label">Detalles</label>
                     </div>
                     <div class="inputContainer">
                         <?php
                             $query_categoria = mysqli_query($conexiondb, "select * FROM categorias");
                             $result_categoria = mysqli_num_rows($query_categoria);
                         ?>
-                        <select class="input" name="categoria" class="" id="inputGroupSelect01"></P>
+                        <select class="input" name="id_categoria" class="" id="inputGroupSelect01"></P>
                         <?php
                         if ($result_categoria > 0){
                             while ($categoria = mysqli_fetch_assoc($query_categoria)) {
@@ -129,11 +133,7 @@ $habitacion = mysqli_fetch_row($resultado);
                         }
                         ?>
                         </select>
-                    </div>            
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="detalles" value='<?php echo$habitacion[3]; ?>'>
-                        <label for="" class="label">Detalles</label>
-                    </div>
+                    </div>                     
                     <input type="hidden" name="habitacion" id="" value='<?php echo $habitacion[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">

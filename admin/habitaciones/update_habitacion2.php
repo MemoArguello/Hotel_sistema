@@ -13,10 +13,10 @@ $respuesta= mysqli_query($conexion, $query);
 
 if($respuesta){
     echo"<script>alert('Se edito correctamente');
-            window.location.href='../listado/form_habitaciones.php'</script>";
+            window.location.href='../listado/form_habitaciones2.php'</script>";
 }else{
     echo"<script>alert('No se pudo editar');
-            window.location.href='../listado/form_habitaciones.php'</alert>";
+            window.location.href='../listado/form_habitaciones2.php'</alert>";
 }
 mysqli_close($conexiondb);
 ?>

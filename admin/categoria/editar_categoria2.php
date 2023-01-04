@@ -7,9 +7,10 @@ if (!isset($usuario)) {
     header("location:../../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM categorias";
+$id_categoria = $_GET['id_categoria'];
+$query = "SELECT * FROM categorias where id_categoria=". $id_categoria;
 $resultado = mysqli_query($conexiondb, $query);
-mysqli_close($conexiondb);
+$categoria = mysqli_fetch_row($resultado);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,30 +42,26 @@ mysqli_close($conexiondb);
         </div>
 
         <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="#">
+        <ul class="nav-links">
+                <li><a href="../../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../Recepcion/habitaciones2.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../listado/form_habitaciones.php">
+                <li><a href="../listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../../producto/listado_productos.php">
+                <li><a href="../../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
-                    </a></li>
-                <li><a href="../listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
@@ -74,7 +71,9 @@ mysqli_close($conexiondb);
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
 
-                    <li class="mode">
+                <li class="mode">
+
+
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -94,53 +93,39 @@ mysqli_close($conexiondb);
             <?php
             echo "Bienvenido $usuario";
             ?>
-            <img src="../../IMG/admin.svg" alt="">
+            <img src="../../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
-                <a href="../habitaciones/registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="./listado_categoria.php">Listado Categoria</a>
-                <a href="categoria.php">Registrar Categorias</a>
+                <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
+                <a href="../habitaciones/registrar_habitacion2.php">Registrar Habitacion</a>
+                <a href="categoria.php">Categorias</a>
             </div>
-            <table id="example" class="table" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Nº</th>
-                        <th align="center">Categoria</th>
-                        <th align="center">Piso</th>
-                        <th align="center">Precio</th>
-                        <th align="left">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $index = 1;
-                    while ($categoria = mysqli_fetch_assoc($resultado)) {
-                        echo "<tr>";
-                        echo "<tr>";
-                        echo "<tr>";
-                        echo "<tr>";
-                        echo "<th scope ='row'>" . $index++ . "</th>";
-                        echo "<td align= 'center'>" . $categoria['categoria'] . "</td>";
-                        echo "<td align= 'center'>" . $categoria['piso']. "</td>";
-                        echo "<td align= 'center'>" . $categoria['tarifa']. " Gs". "</td>";
-                        echo "<td>";
-                        echo "<a href='./editar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBoton'> Editar </a>";
-                        echo "<a href='./eliminar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+            <div class="signupFrm">
+                <form action="./update_categoria2.php" method="POST" class="form_categoria">
+                    <h3 class="title">Editar Categoria</h3>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $categoria[1]; ?>'>
+                        <label for="" class="label">Nombre Categoria</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="piso" value='<?php echo $categoria[2]; ?>'>
+                        <label for="" class="label">Ingrese Piso</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="tarifa" value='<?php echo $categoria[3]; ?>'>
+                        <label for="" class="label">Ingrese Tarifa</label>
+                    </div>
+                    <input type="hidden" name="categoria" id="" value='<?php echo $categoria[0] ?>' readonly>
+                    <input type="hidden" name="editar" id="" value='si' readonly>
+                    <input type="submit" class="submitBtn" value="GUARDAR">
+                </form>
+            </div>
     </section>
 
     <script src="../../JS/script.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.j"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
 </body>
 
 </html>

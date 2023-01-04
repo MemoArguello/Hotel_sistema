@@ -42,29 +42,25 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../Recepcion/habitaciones2.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../listado/form_habitaciones.php">
+                <li><a href="../listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../../producto/listado_productos.php">
+                <li><a href="../../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
-                    </a></li>
-                <li><a href="../listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
@@ -94,15 +90,15 @@ mysqli_close($conexiondb);
             <?php
             echo "Bienvenido $usuario";
             ?>
-            <img src="../../IMG/admin.svg" alt="">
+            <img src="../../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
-                <a href="../habitaciones/registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="./listado_categoria.php">Listado Categoria</a>
-                <a href="categoria.php">Registrar Categorias</a>
+                <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
+                <a href="../habitaciones/registrar_habitacion2.php">Registrar Habitacion</a>
+                <a href="./listado_categoria2.php">Listado Categoria</a>
+                <a href="categoria2.php">Registrar Categorias</a>
             </div>
             <table id="example" class="table" style="width:100%">
                 <thead>
@@ -127,8 +123,8 @@ mysqli_close($conexiondb);
                         echo "<td align= 'center'>" . $categoria['piso']. "</td>";
                         echo "<td align= 'center'>" . $categoria['tarifa']. " Gs". "</td>";
                         echo "<td>";
-                        echo "<a href='./editar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBoton'> Editar </a>";
-                        echo "<a href='./eliminar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";
+                        echo "<a href='./editar_categoria2.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBoton'> Editar </a>";
+                        echo "<a href='./eliminar_categoria2.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";
                         echo "</td>";
                         echo "</tr>";
                     }

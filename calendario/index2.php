@@ -36,23 +36,23 @@ if (!isset($usuario)) {
 
     <div class="menu-items">
       <ul class="nav-links">
-        <li><a href="./index.php">
+        <li><a href="./index2.php">
             <i class="uil uil-calendar-alt"></i>
             <span class="link-name">Reservas</span>
           </a></li>
-        <li><a href="../Recepcion/habitaciones.php">
+        <li><a href="../Recepcion/habitaciones2.php">
             <i class="uil uil-clipboard-notes"></i>
             <span class="link-name">Recepción</span>
           </a></li>
-        <li><a href="../admin/listado/form_habitaciones.php">
+        <li><a href="../admin/listado/form_habitaciones2.php">
             <i class="uil uil-bed"></i>
             <span class="link-name">Habitación</span>
           </a></li>
-        <li><a href="../reportes.php">
+        <li><a href="../reportes2.php">
             <i class="uil uil-file-graph"></i>
             <span class="link-name">Reportes</span>
           </a></li>
-        <li><a href="../producto/listado_productos.php">
+        <li><a href="../producto/listado_productos2.php">
             <i class="uil uil-coffee"></i>
             <span class="link-name">Productos</span>
           </a></li>
@@ -77,7 +77,7 @@ if (!isset($usuario)) {
       <div class="logo_name">
         <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
       </div>
-      <img src="../IMG/admin.svg" alt="">
+      <img src="../IMG/recepcionista.svg" alt="">
     </div>
     <div class="dash-content">
       <div class="topnav" id="myTopnav">

@@ -41,7 +41,7 @@ mysqli_close($conexiondb);
         </div>
 
         <div class="menu-items">
-        <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
@@ -90,39 +90,50 @@ mysqli_close($conexiondb);
             <?php
             echo "Bienvenido $usuario";
             ?>
-            <img src="../IMG/admin.svg" alt="">
+            <img src="../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./listado_productos.php">Productos</a>
-                <a href="./productos.php">Registrar Producto</a>
+                <a href="./listado_productos2.php">Productos</a>
+                <a href="./producto2.php">Registrar Producto</a>
             </div>
-            <div class="signupFrm">
-                <form action="./guardar_producto.php" method="POST" class="form_categoria">
-                    <h1 class="title">Registrar Productos</h1>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="codigo">
-                        <label for="" class="label">Codigo</label>
+            <div class="">
+                        <table class="">
+                            <thead>
+                                <tr>
+                                    <th>Nº</th>
+                                    <th align="center">Codigo</th>
+                                    <th align="center">Nombre</th>
+                                    <th align="center">PrecioCompra</th>
+                                    <th align="center">PrecioVenta</th>
+                                    <th align="center">Stock</th>
+                                    <th align="center">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $index = 1;
+                                while ($producto = mysqli_fetch_assoc($resultado)) {
+                                    echo "<tr>";
+                                    echo "<tr>";
+                                    echo "<tr>";
+                                    echo "<th scope ='row'>" . $index++ . "</th>";
+                                    echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['nombre'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['precio_compra'] ." Gs". "</td>";
+                                    echo "<td align= 'center'>" . $producto['precio_venta'] . " Gs". "</td>";
+                                    echo "<td align= 'center'>" . $producto['stock_inicial'] ."</td>";
+                                    echo "<td>";
+                                    echo "<a href='./editar_producto2.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
+                                    echo "<a href='./eliminar_producto2.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
+                                    echo "</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre">
-                        <label for="" class="label">Nombre Producto</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_compra">
-                        <label for="" class="label">Precio de Compra</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_venta">
-                        <label for="" class="label">Precio de Venta</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial">
-                        <label for="" class="label">Stock Inicial</label>
-                    </div>
-                    <input type="submit" class="submitBtn" value="GUARDAR">
-                </form>
             </div>
     </section>
 

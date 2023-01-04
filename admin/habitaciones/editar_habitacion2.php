@@ -1,15 +1,20 @@
 <?php
 session_start();
-include '../../db.php';
+include './../../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
     header("location:../../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM categorias";
+$id_habitaciones = $_GET['id_habitaciones'];
+$query_c = "SELECT * FROM categorias";
+$resultado_c = mysqli_query($conexiondb, $query_c);
+$categorias = mysqli_fetch_row($resultado_c);
+
+$query = "SELECT * FROM habitaciones WHERE id_habitaciones=" . $id_habitaciones;
 $resultado = mysqli_query($conexiondb, $query);
-mysqli_close($conexiondb);
+$habitacion = mysqli_fetch_row($resultado);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +27,6 @@ mysqli_close($conexiondb);
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="../../CSS/style.css">
     <link rel="stylesheet" href="../../CSS/registrar.css">
-    <link rel="stylesheet" href="../listado/listado.css">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -42,15 +46,15 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../Recepcion/habitaciones2.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../listado/form_habitaciones.php">
+                <li><a href="../listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
@@ -58,13 +62,9 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../../producto/listado_productos.php">
+                <li><a href="../../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
-                    </a></li>
-                <li><a href="../listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
@@ -73,12 +73,10 @@ mysqli_close($conexiondb);
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
-
                     <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
-
             </ul>
         </div>
     </nav>
@@ -92,7 +90,7 @@ mysqli_close($conexiondb);
                 <input type="text" placeholder="Search here...">
             </div>
             <?php
-            echo "Bienvenido $usuario";
+                echo "Bienvenido $usuario";
             ?>
             <img src="../../IMG/admin.svg" alt="">
         </div>
@@ -100,47 +98,49 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
-                <a href="../habitaciones/registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="./listado_categoria.php">Listado Categoria</a>
-                <a href="categoria.php">Registrar Categorias</a>
+                <a href="./registrar_habitacion.php">Registrar Habitacion</a>
+                <a href="../categoria/listado_categoria.php">Listado Categoria</a>
+                <a href="../categoria/categoria.php">Registrar Categorias</a>
             </div>
-            <table id="example" class="table" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Nº</th>
-                        <th align="center">Categoria</th>
-                        <th align="center">Piso</th>
-                        <th align="center">Precio</th>
-                        <th align="left">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $index = 1;
-                    while ($categoria = mysqli_fetch_assoc($resultado)) {
-                        echo "<tr>";
-                        echo "<tr>";
-                        echo "<tr>";
-                        echo "<tr>";
-                        echo "<th scope ='row'>" . $index++ . "</th>";
-                        echo "<td align= 'center'>" . $categoria['categoria'] . "</td>";
-                        echo "<td align= 'center'>" . $categoria['piso']. "</td>";
-                        echo "<td align= 'center'>" . $categoria['tarifa']. " Gs". "</td>";
-                        echo "<td>";
-                        echo "<a href='./editar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBoton'> Editar </a>";
-                        echo "<a href='./eliminar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+            <div class="signupFrm">
+                <form action="./update_habitacion2.php" method="POST" class="form_habitacion">
+                    <h1 class="title">Registrar Habitacion</h1>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo$habitacion[1]; ?>'>
+                        <label for="" class="label">Nombre</label>
+                    </div>
+                    <div class="inputContainer">
+                        <?php
+                            $query_categoria = mysqli_query($conexiondb, "select * FROM categorias");
+                            $result_categoria = mysqli_num_rows($query_categoria);
+                        ?>
+                        <select class="input" name="id_categoria" class="" id="inputGroupSelect01"></P>
+                        <?php
+                        if ($result_categoria > 0){
+                            while ($categoria = mysqli_fetch_assoc($query_categoria)) {
+                        ?>
+                                <option value="<?php echo $categoria['id_categoria'] ?>"><?php echo $categoria['categoria']?></option>
+                        <?php
+                            }
+                        }
+                        ?>
+                        </select>
+                    </div>            
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="detalles" value='<?php echo$habitacion[3]; ?>'>
+                        <label for="" class="label">Detalles</label>
+                    </div>
+                    <input type="hidden" name="habitacion" id="" value='<?php echo $habitacion[0] ?>' readonly>
+                    <input type="hidden" name="editar" id="" value='si' readonly>
+                    <input type="submit" class="submitBtn" value="GUARDAR">
+                </form>
+            </div>
+
+        </div>
     </section>
 
     <script src="../../JS/script.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.j"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
 </body>
 
 </html>

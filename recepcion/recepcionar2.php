@@ -40,23 +40,23 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../calendario/index.php">
+                <li><a href="../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="./recepcionar.php">
+                <li><a href="../Recepcion/habitaciones2.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../admin/listado/form_habitaciones.php">
+                <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../producto/listado_productos.php">
+                <li><a href="../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -84,7 +84,7 @@ mysqli_close($conexiondb);
             <?php
             echo "Bienvenido $usuario";
             ?>
-            <img src="../IMG/admin.svg" alt="">
+            <img src="../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">

@@ -90,16 +90,16 @@ mysqli_close($conexiondb);
             <?php
             echo "Bienvenido $usuario";
             ?>
-            <img src="../IMG/admin.svg" alt="">
+            <img src="../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./listado_productos.php">Productos</a>
-                <a href="./productos.php">Registrar Producto</a>
+                <a href="./listado_productos2.php">Productos</a>
+                <a href="./producto2.php">Registrar Producto</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_producto.php" method="POST" class="form_categoria">
+                <form action="./guardar_producto2.php" method="POST" class="form_categoria">
                     <h1 class="title">Registrar Productos</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="codigo">
