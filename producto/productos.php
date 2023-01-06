@@ -42,26 +42,30 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
         <ul class="nav-links">
-                <li><a href="../calendario/index2.php">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/recepcionar2.php">
+                <li><a href="../Recepcion/recepcionar.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../admin/listado/form_habitaciones2.php">
+                <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="../reportes2.php">
+                <li><a href="../reportes.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./listado_productos2.php">
+                <li><a href="./listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                <li><a href="../admin/listado/form_cuentas.php">
+                    <i class="uil uil-setting"></i>
+                    <span class="link-name">Configuracion</span>
+                </a></li>
             </ul>
 
             <ul class="logout-mode">
