@@ -113,7 +113,7 @@ if (!isset($usuario)) {
                         <select class="input" name="id_habitacion" id="inputGroupSelect01"></P>
                         <?php
                         while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
-                            echo "<option value='" . $habitacion['id_habitaciones'] . "'>" . $habitacion['nombre'] . "</option>";
+                            echo "<option value='" . $habitacion['id_habitaciones'] . "'>" . $habitacion['nombre_habitacion'] . "</option>";
                         }
                         ?>
                         </select>

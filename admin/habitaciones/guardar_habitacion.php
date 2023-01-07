@@ -1,13 +1,13 @@
 <?php
 include('../../db.php');
-    $nombre=$_POST['nombre'];
+    $nombre=$_POST['nombre_habitacion'];
     $detalles=$_POST['detalles'];
     $categoria=$_POST['id_categoria'];
 
 
     $conexiondb = conectardb();
 
-    $query = "INSERT INTO habitaciones(nombre, detalles, id_categoria) VALUES
+    $query = "INSERT INTO habitaciones(nombre_habitacion, detalles, id_categoria) VALUES
     ('$nombre', '$detalles', '$categoria')";
 
     $respuesta = mysqli_query($conexiondb, $query);

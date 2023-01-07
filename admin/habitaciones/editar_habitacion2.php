@@ -106,8 +106,12 @@ $habitacion = mysqli_fetch_row($resultado);
                 <form action="./update_habitacion2.php" method="POST" class="form_habitacion">
                     <h1 class="title">Registrar Habitacion</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo$habitacion[1]; ?>'>
+                        <input type="text" class="input" placeholder="a" name="nombre_habitacion" value='<?php echo$habitacion[1]; ?>'>
                         <label for="" class="label">Nombre</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="detalles" value='<?php echo$habitacion[2]; ?>'>
+                        <label for="" class="label">Detalles</label>
                     </div>
                     <div class="inputContainer">
                         <?php
@@ -126,10 +130,6 @@ $habitacion = mysqli_fetch_row($resultado);
                         ?>
                         </select>
                     </div>            
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="detalles" value='<?php echo$habitacion[3]; ?>'>
-                        <label for="" class="label">Detalles</label>
-                    </div>
                     <input type="hidden" name="habitacion" id="" value='<?php echo $habitacion[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">

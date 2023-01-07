@@ -16,4 +16,5 @@ if ($respuesta) {
     echo "<script>alert('No se elimino el registro');
     window.location.href='../listado/form_habitaciones.php'</script>";
 }
+
 ?>

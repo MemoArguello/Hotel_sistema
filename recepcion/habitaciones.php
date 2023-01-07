@@ -47,7 +47,7 @@ if (!isset($usuario)) {
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="./recepcionar.php">
+                <li><a href="../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -55,7 +55,7 @@ if (!isset($usuario)) {
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../reportes.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
@@ -94,13 +94,13 @@ if (!isset($usuario)) {
             <div class="logo_name">
                 <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
             </div>
-            <img src="../../IMG/admin.svg" alt="">
+            <img src="../IMG/admin.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="./habitaciones.php">Recepcion</a>
-                <a href="../calendario/listado_reserva.php">Listado de Recepcion</a>
+                <a href="./listado_recepcion.php">Listado de Recepcion</a>
             </div>
         <div class="signupFrm">
             <form action="./guardar_recepcion.php" method="POST" class="formRecepcion">
@@ -120,7 +120,7 @@ if (!isset($usuario)) {
                         <select class="input" name="id_habitacion" id="inputGroupSelect01"></P>
                         <?php
                         while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
-                            echo "<option value='" . $habitacion['id_habitaciones'] . "'>" . $habitacion['nombre'] . "</option>";
+                            echo "<option value='" . $habitacion['id_habitaciones'] . "'>" . $habitacion['nombre_habitacion'] . "</option>";
                         }
                         ?>
                         </select>

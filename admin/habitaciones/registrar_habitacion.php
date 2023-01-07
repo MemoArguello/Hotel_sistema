@@ -106,7 +106,7 @@ mysqli_close($conexiondb);
                 <form action="./guardar_habitacion.php" method="POST" class="form_habitacion">
                     <h1 class="title">Registrar Habitacion</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre">
+                        <input type="text" class="input" placeholder="a" name="nombre_habitacion">
                         <label for="" class="label">Nombre</label>
                     </div>
                     <div class="inputContainer">

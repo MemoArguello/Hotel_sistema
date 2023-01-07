@@ -25,7 +25,7 @@ if (!isset($usuario)) {
 <body>
 <?php
 $conexiondb = conectardb();
-$consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre, habitaciones.detalles, habitaciones.id_categoria, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.id_categoria";
+$consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre_habitacion, habitaciones.detalles, habitaciones.id_categoria, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.id_categoria";
 $resultado = mysqli_query($conexiondb, $consulta);
 mysqli_close($conexiondb);
 ?>
@@ -120,7 +120,7 @@ mysqli_close($conexiondb);
                             echo "<tr>";
                             echo "<tr>";
                             echo "<th scope ='row'>" . $index++ . "</th>";
-                            echo "<td align= 'center'>" . $habitaciones['nombre'] . "</td>";
+                            echo "<td align= 'center'>" . $habitaciones['nombre_habitacion'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['categoria'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['detalles'] . "</td>";
                             echo "<td>";
