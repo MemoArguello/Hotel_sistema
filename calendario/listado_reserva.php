@@ -108,8 +108,6 @@ $resultado = mysqli_query($conexiondb, $query);
                             <th>Factura</th>
                             <th>Personas</th>
                             <th>Pago</th>
-                            <th>Fecha Inicio</th>
-                            <th>Fecha Final</th>
                             <th align="left">Opciones</th>
                         </tr>
                     </thead>
@@ -129,8 +127,6 @@ $resultado = mysqli_query($conexiondb, $query);
                             echo "<td align= 'center'>" . $reserva['factura'] . "</td>";
                             echo "<td align= 'center'>" . $reserva['cant_personas'] . "</td>";
                             echo "<td align= 'center'>" . $reserva['pago'] . "</td>";
-                            echo "<td align= 'center'>" . $reserva['fecha_inicio'] . "</td>";
-                            echo "<td align= 'center'>" . $reserva['fecha_fin'] . "</td>";
                             echo "<td>";
                             echo "<a href='./editar_reserva.php?id=" . $reserva['id'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='./eliminar_reserva.php?id=" . $reserva['id'] . "' class='submitBotonEliminar'> Borrar </a>";

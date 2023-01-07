@@ -5,8 +5,12 @@ $id_categoria = $_GET['id_categoria'];
 
 $conexiondb = conectardb();
 
-$query ="DELETE FROM categorias WHERE id_categoria=".$id_categoria;
-
+try{$query ="DELETE FROM categorias WHERE id_categoria=".$id_categoria;
+}
+finally{
+    echo "<script>alert('Registros Actualizados');
+    window.location.href='./listado_categoria2.php'</script>";
+}
 $respuesta= mysqli_query($conexiondb, $query);
 
 if ($respuesta) {

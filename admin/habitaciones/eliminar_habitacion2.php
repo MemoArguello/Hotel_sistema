@@ -5,8 +5,12 @@ $id_habitacion = $_GET['id_habitaciones'];
 
 $conexiondb = conectardb();
 
-$query ="DELETE FROM habitaciones WHERE id_habitaciones=".$id_habitacion;
-
+try{$query ="DELETE FROM habitaciones WHERE id_habitaciones=".$id_habitacion;
+}
+finally{
+    echo "<script>alert('Registros Actualizados');
+          window.location.href='../listado/form_habitaciones2.php'</script>";
+}
 $respuesta= mysqli_query($conexiondb, $query);
 
 if ($respuesta) {

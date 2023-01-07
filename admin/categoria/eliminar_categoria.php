@@ -1,12 +1,22 @@
 <?php
+
+use FFI\Exception;
+
 require('../../db.php');
 
 $id_categoria = $_GET['id_categoria'];
 
 $conexiondb = conectardb();
 
-$query ="DELETE FROM categorias WHERE id_categoria=".$id_categoria;
-
+try{$query ="DELETE FROM categorias WHERE id_categoria=".$id_categoria;
+}
+catch(Error){
+    echo "<script>alert('Registros Actualizados');
+    window.location.href='./listado_categoria.php'</script>";
+}finally{
+    echo "<script>alert('Registros Actualizados');
+    window.location.href='./listado_categoria.php'</script>";
+}
 $respuesta= mysqli_query($conexiondb, $query);
 
 if ($respuesta) {

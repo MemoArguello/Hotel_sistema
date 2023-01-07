@@ -6,9 +6,12 @@
         
         $conexiondb = conectardb();
 
-        $query = "INSERT INTO categorias (categoria, piso, tarifa) VALUES 
+        try{$query = "INSERT INTO categorias (categoria, piso, tarifa) VALUES 
             ('$categoria', '$piso',$tarifa)";
-        
+        }finally{
+            echo "<script>alert('Registros actualizados');
+                                        window.location.href='./categoria.php'</script>";
+        }
         $respuesta = mysqli_query($conexiondb, $query);
 
         if ($respuesta) {

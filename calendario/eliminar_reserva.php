@@ -5,8 +5,13 @@ $id = $_GET['id'];
 
 $conexiondb = conectardb();
 
-$query ="DELETE FROM reserva WHERE id=".$id;
-
+try{
+    $query ="DELETE FROM reserva WHERE id=".$id;
+}
+finally{
+    echo "<script>alert('Registros Actualizados');
+          window.location.href='./listado_reserva.php'</script>";
+}
 $respuesta= mysqli_query($conexiondb, $query);
 
 if ($respuesta) {
