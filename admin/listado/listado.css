@@ -42,6 +42,18 @@ td {
   border-radius: 4px;
 }
 
+.submitBotonPass {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
 .submitBoton:hover {
   background-color: #1100ff;
   transform: translateY(2px);
@@ -50,7 +62,10 @@ td {
   background-color: #1100ff;
   transform: translateY(2px);
 }
-
+.submitBotonPass:hover {
+  background-color: #1100ff;
+  transform: translateY(2px);
+}
 table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;

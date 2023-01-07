@@ -69,12 +69,17 @@ mysqli_close($conexiondb);
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
 
-                    <li class="mode">
+                <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -91,9 +96,6 @@ mysqli_close($conexiondb);
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <?php
-            echo "Bienvenido $usuario";
-            ?>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
@@ -103,42 +105,42 @@ mysqli_close($conexiondb);
                 <a href="./productos.php">Registrar Producto</a>
             </div>
             <div class="">
-                        <table class="">
-                            <thead>
-                                <tr>
-                                    <th>Nº</th>
-                                    <th align="center">Codigo</th>
-                                    <th align="center">Nombre</th>
-                                    <th align="center">PrecioCompra</th>
-                                    <th align="center">PrecioVenta</th>
-                                    <th align="center">Stock</th>
-                                    <th align="center">Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $index = 1;
-                                while ($producto = mysqli_fetch_assoc($resultado)) {
-                                    echo "<tr>";
-                                    echo "<tr>";
-                                    echo "<tr>";
-                                    echo "<th scope ='row'>" . $index++ . "</th>";
-                                    echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
-                                    echo "<td align= 'center'>" . $producto['nombre'] . "</td>";
-                                    echo "<td align= 'center'>" . $producto['precio_compra'] ." Gs". "</td>";
-                                    echo "<td align= 'center'>" . $producto['precio_venta'] . " Gs". "</td>";
-                                    echo "<td align= 'center'>" . $producto['stock_inicial'] ."</td>";
-                                    echo "<td>";
-                                    echo "<a href='./editar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
-                                    echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
-                                    echo "</td>";
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th align="center">Codigo</th>
+                            <th align="center">Nombre</th>
+                            <th align="center">PrecioCompra</th>
+                            <th align="center">PrecioVenta</th>
+                            <th align="center">Stock</th>
+                            <th align="center">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $index = 1;
+                        while ($producto = mysqli_fetch_assoc($resultado)) {
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<th scope ='row'>" . $index++ . "</th>";
+                            echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['nombre'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['precio_compra'] . " Gs" . "</td>";
+                            echo "<td align= 'center'>" . $producto['precio_venta'] . " Gs" . "</td>";
+                            echo "<td align= 'center'>" . $producto['stock_inicial'] . "</td>";
+                            echo "<td>";
+                            echo "<a href='./editar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
+        </div>
     </section>
 
     <script src="../JS/script.js"></script>

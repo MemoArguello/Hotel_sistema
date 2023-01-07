@@ -49,23 +49,23 @@ $usuarios = mysqli_fetch_row($resultado);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="./habitaciones/registrar_habitacion.php">
+                <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../reportes.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../producto/listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -76,6 +76,11 @@ $usuarios = mysqli_fetch_row($resultado);
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
@@ -88,14 +93,6 @@ $usuarios = mysqli_fetch_row($resultado);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            <?php
-            echo "Bienvenido $usuario";
-            ?>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
@@ -118,11 +115,6 @@ $usuarios = mysqli_fetch_row($resultado);
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="codigo">
-                        <label for="" class="label">Contraseña Nueva</label>
-                    </div>
-
-                    <div class="inputContainer">
                         <?php
                         $query_rol = mysqli_query($conexiondb, "select * FROM cargo");
                         $result_cargo = mysqli_num_rows($query_rol);
@@ -132,11 +124,11 @@ $usuarios = mysqli_fetch_row($resultado);
                             if ($result_cargo > 0) {
                                 while ($cargo = mysqli_fetch_array($query_rol)) {
                             ?>
-                                    <option value="<?php echo $cargo['id'] ?>"><?php echo $cargo['descripcion']?></option>
+                                    <option value="<?php echo $cargo['id'] ?>"><?php echo $cargo['descripcion'] ?></option>
                             <?php
                                 }
                             }
-                            ?> 
+                            ?>
                         </select>
                     </div>
                     <input type="hidden" name="id_usuario" id="" value='<?php echo $usuarios[0] ?>' readonly>
@@ -151,7 +143,7 @@ $usuarios = mysqli_fetch_row($resultado);
     <script src="./../JS/script.js"></script>
     <?php
     mysqli_close($conexiondb);
-    ?>                        
+    ?>
 </body>
 
 </html>

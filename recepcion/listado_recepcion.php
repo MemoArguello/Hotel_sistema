@@ -72,6 +72,11 @@ if (!isset($usuario)) {
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
@@ -93,9 +98,6 @@ if (!isset($usuario)) {
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <div class="logo_name">
-                <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
-            </div>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
@@ -116,7 +118,7 @@ if (!isset($usuario)) {
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                        <?php
                         $index = 1;
                         while ($recepcion = mysqli_fetch_assoc($resultado)) {
                             echo "<tr>";

@@ -4,7 +4,7 @@ if (!empty($_POST)) {
     $alert = '';
     if (empty($_POST['correo']) || empty($_POST['usuario']) || empty($_POST['codigo']) || empty($_POST['ccodigo'])) {
             echo "<script>alert('Todos los campos son obligatorios');
-            window.location.href='./cuentas.php'</script>";
+            window.location.href='./editar_cuenta.php'</script>";
         }else{
         $cargo=$_POST['id'];
         $correo=$_POST['correo'];

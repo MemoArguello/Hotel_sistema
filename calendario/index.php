@@ -63,14 +63,19 @@ if (!isset($usuario)) {
       </ul>
 
       <ul class="logout-mode">
+        <li><a>
+            <i class="uil uil-user"></i>
+            <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+          </a>
+        </li>
         <li><a href="../cerrar_sesion.php">
             <i class="uil uil-signout"></i>
             <span class="link-name">Cerrar Sesión</span>
           </a></li>
-          <li class="mode">
-                    <div class="mode-toggle">
-                    </div>
-                </li>
+        <li class="mode">
+          <div class="mode-toggle">
+          </div>
+        </li>
 
       </ul>
     </div>
@@ -78,9 +83,6 @@ if (!isset($usuario)) {
   <section class="dashboard">
     <div class="top">
       <i class="uil uil-bars sidebar-toggle"></i>
-      <div class="logo_name">
-        <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
-      </div>
       <img src="../IMG/admin.svg" alt="">
     </div>
     <div class="dash-content">
@@ -155,21 +157,21 @@ if (!isset($usuario)) {
 
         },
 
-//Moviendo Evento Drag - Drop
-eventDrop: function (event, delta) {
-  var idEvento = event.id;
-  var start = (event.start.format('DD-MM-YYYY'));
-  var end = (event.end.format("DD-MM-YYYY"));
+        //Moviendo Evento Drag - Drop
+        eventDrop: function(event, delta) {
+          var idEvento = event.id;
+          var start = (event.start.format('DD-MM-YYYY'));
+          var end = (event.end.format("DD-MM-YYYY"));
 
-    $.ajax({
-        url: 'drag_drop_evento.php',
-        data: 'start=' + start + '&end=' + end + '&idEvento=' + idEvento,
-        type: "POST",
-        success: function (response) {
-         // $("#respuesta").html(response);
-        }
-    });
-},
+          $.ajax({
+            url: 'drag_drop_evento.php',
+            data: 'start=' + start + '&end=' + end + '&idEvento=' + idEvento,
+            type: "POST",
+            success: function(response) {
+              // $("#respuesta").html(response);
+            }
+          });
+        },
         events: [
           <?php
           while ($dataEvento = mysqli_fetch_array($resulEventos)) {

@@ -46,11 +46,11 @@ $habitacion = mysqli_fetch_row($resultado);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -58,7 +58,7 @@ $habitacion = mysqli_fetch_row($resultado);
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../reportes.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
@@ -73,11 +73,16 @@ $habitacion = mysqli_fetch_row($resultado);
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
-                    <li class="mode">
+                <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -88,14 +93,6 @@ $habitacion = mysqli_fetch_row($resultado);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            <?php
-                echo "Bienvenido $usuario";
-            ?>
             <img src="../../IMG/admin.svg" alt="">
         </div>
 
@@ -110,30 +107,30 @@ $habitacion = mysqli_fetch_row($resultado);
                 <form action="./update_habitacion.php" method="POST" class="form_habitacion">
                     <h1 class="title">Registrar Habitacion</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre_habitacion" value='<?php echo$habitacion[1]; ?>'>
+                        <input type="text" class="input" placeholder="a" name="nombre_habitacion" value='<?php echo $habitacion[1]; ?>'>
                         <label for="" class="label">Nombre</label>
-                    </div>           
+                    </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="detalles" value='<?php echo$habitacion[2]; ?>'>
+                        <input type="text" class="input" placeholder="a" name="detalles" value='<?php echo $habitacion[2]; ?>'>
                         <label for="" class="label">Detalles</label>
                     </div>
                     <div class="inputContainer">
                         <?php
-                            $query_categoria = mysqli_query($conexiondb, "select * FROM categorias");
-                            $result_categoria = mysqli_num_rows($query_categoria);
+                        $query_categoria = mysqli_query($conexiondb, "select * FROM categorias");
+                        $result_categoria = mysqli_num_rows($query_categoria);
                         ?>
                         <select class="input" name="id_categoria" class="" id="inputGroupSelect01"></P>
-                        <?php
-                        if ($result_categoria > 0){
-                            while ($categoria = mysqli_fetch_assoc($query_categoria)) {
-                        ?>
-                                <option value="<?php echo $categoria['id_categoria'] ?>"><?php echo $categoria['categoria']?></option>
-                        <?php
+                            <?php
+                            if ($result_categoria > 0) {
+                                while ($categoria = mysqli_fetch_assoc($query_categoria)) {
+                            ?>
+                                    <option value="<?php echo $categoria['id_categoria'] ?>"><?php echo $categoria['categoria'] ?></option>
+                            <?php
+                                }
                             }
-                        }
-                        ?>
+                            ?>
                         </select>
-                    </div>                     
+                    </div>
                     <input type="hidden" name="habitacion" id="" value='<?php echo $habitacion[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">

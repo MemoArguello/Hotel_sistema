@@ -119,6 +119,14 @@ if (!isset($usuario)) {
                         </select>
                     <label for="" class="label">Habitacion</label>
                 </div>
+                <div class="inputContainer">
+                    <input type="date" class="input" placeholder="a" name="fecha_inicio">
+                    <label for="" class="label">Fecha de Entrada</label>
+                </div>
+                <div class="inputContainer">
+                    <input type="date" class="input" placeholder="a" name="fecha_fin">
+                    <label for="" class="label">Fecha de Salida</label>
+                </div>
                 <input type="hidden" name="editar" id="" value='no' readonly>
                 <input type="submit" class="submitBtn" value="GUARDAR">
             </form>

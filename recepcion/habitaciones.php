@@ -9,6 +9,7 @@ if (!isset($usuario)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +23,9 @@ if (!isset($usuario)) {
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="./IMG/logo.svg" rel="icon">
 </head>
+
 <body>
-<?php
+    <?php
     $conexiondb = conectardb();
     $query_r = "SELECT * FROM reserva";
     $query_h = "SELECT * FROM habitaciones";
@@ -31,7 +33,7 @@ if (!isset($usuario)) {
     $resultado_h = mysqli_query($conexiondb, $query_h);
 
     mysqli_close($conexiondb);
-?>
+    ?>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -70,6 +72,11 @@ if (!isset($usuario)) {
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
@@ -87,13 +94,6 @@ if (!isset($usuario)) {
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            <div class="logo_name">
-                <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
-            </div>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
@@ -102,38 +102,47 @@ if (!isset($usuario)) {
                 <a href="./habitaciones.php">Recepcion</a>
                 <a href="./listado_recepcion.php">Listado de Recepcion</a>
             </div>
-        <div class="signupFrm">
-            <form action="./guardar_recepcion.php" method="POST" class="formRecepcion">
-                <h3 align="center">Registrar Recepcion</h3>
-                <br>
-                <div class="inputContainer">
+            <div class="signupFrm">
+                <form action="./guardar_recepcion.php" method="POST" class="formRecepcion">
+                    <h3 align="center">Registrar Recepcion</h3>
+                    <br>
+                    <div class="inputContainer">
                         <select class="input" name="id_reserva" id="inputGroupSelect01"></P>
-                        <?php
-                        while ($habitacion = mysqli_fetch_assoc($resultado_r)) {
-                            echo "<option value='" . $habitacion['id'] . "'>" . $habitacion['nombre'] . "</option>";
-                        }
-                        ?>
+                            <?php
+                            while ($habitacion = mysqli_fetch_assoc($resultado_r)) {
+                                echo "<option value='" . $habitacion['id'] . "'>" . $habitacion['nombre'] . "</option>";
+                            }
+                            ?>
                         </select>
-                    <label for="" class="label">Cliente</label>
-                </div>
-                <div class="inputContainer">
+                        <label for="" class="label">Cliente</label>
+                    </div>
+                    <div class="inputContainer">
                         <select class="input" name="id_habitacion" id="inputGroupSelect01"></P>
-                        <?php
-                        while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
-                            echo "<option value='" . $habitacion['id_habitaciones'] . "'>" . $habitacion['nombre_habitacion'] . "</option>";
-                        }
-                        ?>
+                            <?php
+                            while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
+                                echo "<option value='" . $habitacion['id_habitaciones'] . "'>" . $habitacion['nombre_habitacion'] . "</option>";
+                            }
+                            ?>
                         </select>
-                    <label for="" class="label">Habitacion</label>
-                </div>
-                <input type="hidden" name="editar" id="" value='no' readonly>
-                <input type="submit" class="submitBtn" value="GUARDAR">
-            </form>
-        </div>
+                        <label for="" class="label">Habitacion</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="date" class="input" placeholder="a" name="fecha_inicio">
+                        <label for="" class="label">Fecha de Entrada</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="date" class="input" placeholder="a" name="fecha_fin">
+                        <label for="" class="label">Fecha de Salida</label>
+                    </div>
+                    <input type="hidden" name="editar" id="" value='no' readonly>
+                    <input type="submit" class="submitBtn" value="GUARDAR">
+                </form>
+            </div>
         </div>
     </section>
 
     <script src="../JS/script.js"></script>
     <script src="../JS/registro.js"></script>
 </body>
+
 </html>

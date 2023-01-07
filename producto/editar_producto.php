@@ -8,7 +8,7 @@ if (!isset($usuario)) {
 }
 $conexiondb = conectardb();
 $id_producto = $_GET['id_producto'];
-$query = "SELECT * FROM producto where id_producto=". $id_producto;
+$query = "SELECT * FROM producto where id_producto=" . $id_producto;
 $resultado = mysqli_query($conexiondb, $query);
 $producto = mysqli_fetch_row($resultado);
 ?>
@@ -70,12 +70,17 @@ $producto = mysqli_fetch_row($resultado);
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
 
-                    <li class="mode">
+                <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -87,14 +92,6 @@ $producto = mysqli_fetch_row($resultado);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            <?php
-            echo "Bienvenido $usuario";
-            ?>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
@@ -105,7 +102,7 @@ $producto = mysqli_fetch_row($resultado);
             </div>
             <div class="signupFrm">
                 <form action="./guardar_producto.php" method="POST" class="form_categoria">
-                    <h1 class="title">Registrar Productos</h1>
+                    <h1 class="title">Editar Productos</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="codigo" value='<?php echo $producto[1]; ?>'>
                         <label for="" class="label">Codigo</label>

@@ -37,10 +37,12 @@ mysqli_close($conexiondb);
                 <img src="../../IMG/logo.svg" alt="">
             </div>
 
-            <span class="logo_name">HOTEL</span>
+            <span class="logo_name">HOTEL </span>
+
         </div>
 
         <div class="menu-items">
+
             <ul class="nav-links">
                 <li><a href="../../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
@@ -69,15 +71,25 @@ mysqli_close($conexiondb);
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                    <i class="uil uil-user"></i>
+                    <span class="link-name"><?php echo "Usuario: $usuario";?></span>
+                    </a>
+                </li>
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Modo Oscuro</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
                 <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
-
-                    <li class="mode">
-                    <div class="mode-toggle">
-                    </div>
-                </li>
             </ul>
         </div>
     </nav>
@@ -90,12 +102,9 @@ mysqli_close($conexiondb);
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <div class="logo_name">
-                <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
-            </div>
             <img src="../../IMG/admin.svg" alt="">
         </div>
-
+    
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="./form_cuentas.php">Cuentas Existentes</a>
@@ -106,13 +115,13 @@ mysqli_close($conexiondb);
             </div>
             <div class="">
                 <table class="">
-                    <thead >
+                    <thead>
                         <tr>
                             <th>Nº</th>
                             <th>Correo Electronico</th>
                             <th>Nombre de Usuario</th>
                             <th>Cargo</th>
-                            <th align="left">Opciones</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,6 +139,7 @@ mysqli_close($conexiondb);
                             echo "<td>";
                             echo "<a href='../editar_cuenta.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='../eliminar_cuenta.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "<a href='../editar_contraseña.php?id_usuario=" . $usuario['id_usuario'] . "' class='submitBotonPass'> Cambiar Clave</a>";
                             echo "</td>";
                             echo "</tr>";
                         }
@@ -137,7 +147,6 @@ mysqli_close($conexiondb);
                     </tbody>
                 </table>
             </div>
-
         </div>
     </section>
 
