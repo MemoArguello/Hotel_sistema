@@ -26,6 +26,12 @@ if (!isset($usuario)) {
 </head>
 
 <body>
+<?php
+    $conexiondb = conectardb();
+    $consulta = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva";
+    $resultado = mysqli_query($conexiondb, $consulta);
+    mysqli_close($conexiondb);
+?>
   <nav>
     <div class="logo-name">
       <div class="logo-image">
@@ -97,10 +103,10 @@ if (!isset($usuario)) {
       <br>
       <?php
       $con = conectardb();
-      $SqlEventos   = ("SELECT * FROM recepcion");
+      $SqlEventos   = ("SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id, reserva.nombre FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva");
       $resulEventos = mysqli_query($con, $SqlEventos);
-
       ?>
+
       <div class="mt-5"></div>
 
       <div class="container">
@@ -168,7 +174,7 @@ if (!isset($usuario)) {
           while ($dataEvento = mysqli_fetch_array($resulEventos)) {
           ?> {
               id: '<?php echo $dataEvento['id_recepcion']; ?>',
-              title: '<?php echo $dataEvento['id_reserva']; ?>',
+              title: '<?php echo $dataEvento['nombre']; ?>',
               start: '<?php echo $dataEvento['fecha_inicio']; ?>',
               end: '<?php echo $dataEvento['fecha_fin']; ?>',
             },

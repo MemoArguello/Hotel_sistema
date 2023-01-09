@@ -106,11 +106,8 @@ if (!isset($usuario)) {
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Cedula</th>
                                     <th>Nombre</th>
-                                    <th>telefono</th>
-                                    <th>Procedencia</th>
-                                    <th>Factura</th>
+                                    <th>Habitacion</th>
                                     <th>Fecha de Entrada</th>
                                     <th>Fecha de salida</th>
                                 </tr>
@@ -161,22 +158,13 @@ if (!isset($usuario)) {
                             "dataSrc": ""
                         },
                         "columns": [{
-                                "data": "id"
-                            },
-                            {
-                                "data": "cedula"
+                                "data": "id_recepcion"
                             },
                             {
                                 "data": "nombre"
                             },
                             {
-                                "data": "telefono"
-                            },
-                            {
-                                "data": "procedencia"
-                            },
-                            {
-                                "data": "factura"
+                                "data": "nombre_habitacion"
                             },
                             {
                                 "data": "fecha_inicio"

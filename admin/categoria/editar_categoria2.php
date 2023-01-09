@@ -66,6 +66,11 @@ $categoria = mysqli_fetch_row($resultado);
             </ul>
 
             <ul class="logout-mode">
+            <li><a>
+            <i class="uil uil-user"></i>
+            <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+          </a>
+        </li>
                 <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
@@ -85,14 +90,6 @@ $categoria = mysqli_fetch_row($resultado);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            <?php
-            echo "Bienvenido $usuario";
-            ?>
             <img src="../../IMG/recepcionista.svg" alt="">
         </div>
 
@@ -100,7 +97,7 @@ $categoria = mysqli_fetch_row($resultado);
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
                 <a href="../habitaciones/registrar_habitacion2.php">Registrar Habitacion</a>
-                <a href="categoria.php">Categorias</a>
+                <a href="categoria2.php">Categorias</a>
             </div>
             <div class="signupFrm">
                 <form action="./update_categoria2.php" method="POST" class="form_categoria">

@@ -6,6 +6,7 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
   header("location:../index.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,12 @@ if (!isset($usuario)) {
 </head>
 
 <body>
+<?php
+    $conexiondb = conectardb();
+    $consulta = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva";
+    $resultado = mysqli_query($conexiondb, $consulta);
+    mysqli_close($conexiondb);
+?>
   <nav>
     <div class="logo-name">
       <div class="logo-image">
@@ -59,14 +66,19 @@ if (!isset($usuario)) {
       </ul>
 
       <ul class="logout-mode">
+        <li><a>
+            <i class="uil uil-user"></i>
+            <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+          </a>
+        </li>
         <li><a href="../cerrar_sesion.php">
             <i class="uil uil-signout"></i>
             <span class="link-name">Cerrar Sesión</span>
           </a></li>
-          <li class="mode">
-                    <div class="mode-toggle">
-                    </div>
-                </li>
+        <li class="mode">
+          <div class="mode-toggle">
+          </div>
+        </li>
 
       </ul>
     </div>
@@ -74,25 +86,23 @@ if (!isset($usuario)) {
   <section class="dashboard">
     <div class="top">
       <i class="uil uil-bars sidebar-toggle"></i>
-      <div class="logo_name">
-        <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
-      </div>
       <img src="../IMG/recepcionista.svg" alt="">
     </div>
     <div class="dash-content">
       <div class="topnav" id="myTopnav">
         <a href="./index2.php">Calendario</a>
         <a href="../Recepcion/recepcionar2.php">Registrar Cliente</a>
+        <a href="./listado_reserva2.php">Lista de Clientes</a>
       </div>
       <br>
       <br>
       <br>
       <?php
       $con = conectardb();
-      $SqlEventos   = ("SELECT * FROM reserva");
+      $SqlEventos   = ("SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id, reserva.nombre FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva");
       $resulEventos = mysqli_query($con, $SqlEventos);
-
       ?>
+
       <div class="mt-5"></div>
 
       <div class="container">
@@ -139,37 +149,27 @@ if (!isset($usuario)) {
         selectable: true,
         selectHelper: false,
 
-        //Nuevo Evento
-        select: function(start, end) {
-          $("#exampleModal").modal();
-          $("input[name=fecha_inicio]").val(start.format('DD-MM-YYYY'));
 
-          var valorFechaFin = end.format("DD-MM-YYYY");
-          var F_final = moment(valorFechaFin, "DD-MM-YYYY").subtract(1, 'days').format('DD-MM-YYYY'); //Le resto 1 dia
-          $('input[name=fecha_fin').val(F_final);
+        //Moviendo Evento Drag - Drop
+        eventDrop: function(event, delta) {
+          var idEvento = event.id_recepcion;
+          var start = (event.start.format('DD-MM-YYYY'));
+          var end = (event.end.format("DD-MM-YYYY"));
 
+          $.ajax({
+            url: 'drag_drop_evento.php',
+            data: 'start=' + start + '&end=' + end + '&idEvento=' + idEvento,
+            type: "POST",
+            success: function(response) {
+              // $("#respuesta").html(response);
+            }
+          });
         },
-
-//Moviendo Evento Drag - Drop
-eventDrop: function (event, delta) {
-  var idEvento = event.id;
-  var start = (event.start.format('DD-MM-YYYY'));
-  var end = (event.end.format("DD-MM-YYYY"));
-
-    $.ajax({
-        url: 'drag_drop_evento.php',
-        data: 'start=' + start + '&end=' + end + '&idEvento=' + idEvento,
-        type: "POST",
-        success: function (response) {
-         // $("#respuesta").html(response);
-        }
-    });
-},
         events: [
           <?php
           while ($dataEvento = mysqli_fetch_array($resulEventos)) {
           ?> {
-              id: '<?php echo $dataEvento['id']; ?>',
+              id: '<?php echo $dataEvento['id_recepcion']; ?>',
               title: '<?php echo $dataEvento['nombre']; ?>',
               start: '<?php echo $dataEvento['fecha_inicio']; ?>',
               end: '<?php echo $dataEvento['fecha_fin']; ?>',

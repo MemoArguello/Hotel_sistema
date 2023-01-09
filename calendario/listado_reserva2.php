@@ -7,27 +7,22 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM producto";
+$query = "SELECT * FROM reserva";
 $resultado = mysqli_query($conexiondb, $query);
-mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habitaciones</title>
-    <!----======== CSS ======== -->
+    <title>Reserva</title>
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="../CSS/registrar.css">
     <link rel="stylesheet" href="../admin/listado/listado.css">
-
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link href="./IMG/logo.svg" rel="icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -41,12 +36,12 @@ mysqli_close($conexiondb);
         </div>
 
         <div class="menu-items">
-        <ul class="nav-links">
-                <li><a href="../calendario/index2.php">
+            <ul class="nav-links">
+                <li><a href="index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/recepcionar2.php">
+                <li><a href="../Recepcion/habitaciones2.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -58,14 +53,14 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./listado_productos2.php">
+                <li><a href="../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
             </ul>
 
             <ul class="logout-mode">
-            <li><a>
+                <li><a>
                         <i class="uil uil-user"></i>
                         <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
                     </a>
@@ -74,8 +69,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
-
-                    <li class="mode">
+                <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -97,35 +91,45 @@ mysqli_close($conexiondb);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./listado_productos2.php">Productos</a>
-                <a href="./producto2.php">Registrar Producto</a>
+                <a href="./index2.php">Calendario</a>
+                <a href="../Recepcion/recepcionar2.php">Registrar Cliente</a>
+                <a href="./listado_reserva2.php">Lista de Clientes</a>
             </div>
-            <div class="signupFrm">
-                <form action="./insert_producto2.php" method="POST" class="form_categoria">
-                    <h1 class="title">Registrar Productos</h1>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="codigo">
-                        <label for="" class="label">Codigo</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre">
-                        <label for="" class="label">Nombre Producto</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_compra">
-                        <label for="" class="label">Precio de Compra</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_venta">
-                        <label for="" class="label">Precio de Venta</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial">
-                        <label for="" class="label">Stock Inicial</label>
-                    </div>
-                    <input type="submit" class="submitBtn" value="GUARDAR">
-                </form>
-            </div>
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Nº</th>
+                        <th>Cedula</th>
+                        <th>Nombre</th>
+                        <th>telefono</th>
+                        <th>Procedencia</th>
+                        <th>Factura</th>
+                        <th align="left">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $index = 1;
+                    while ($reserva = mysqli_fetch_assoc($resultado)) {
+                        echo "<tr>";
+                        echo "<tr>";
+                        echo "<tr>";
+                        echo "<tr>";
+                        echo "<th scope ='row'>" . $index++ . "</th>";
+                        echo "<td align= 'center'>" . $reserva['cedula'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['nombre'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['telefono'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['procedencia'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['factura'] . "</td>";
+                        echo "<td>";
+                        echo "<a href='./editar_reserva2.php?id=" . $reserva['id'] . "' class='submitBoton'> Editar </a>";
+                        echo "<a href='./eliminar_reserva2.php?id=" . $reserva['id'] . "' class='submitBotonEliminar'> Borrar </a>";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
     </section>
 
     <script src="../JS/script.js"></script>

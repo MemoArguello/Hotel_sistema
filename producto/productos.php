@@ -100,7 +100,7 @@ mysqli_close($conexiondb);
                 <a href="./productos.php">Registrar Producto</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_producto.php" method="POST" class="form_categoria">
+                <form action="./insert_producto.php" method="POST" class="form_categoria">
                     <h1 class="title">Registrar Productos</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="codigo">

@@ -9,6 +9,7 @@ if (!isset($usuario)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,13 +23,14 @@ if (!isset($usuario)) {
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="./IMG/logo.svg" rel="icon">
 </head>
+
 <body>
-<?php
-$conexiondb = conectardb();
-$consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre_habitacion, habitaciones.detalles, habitaciones.id_categoria, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.id_categoria";
-$resultado = mysqli_query($conexiondb, $consulta);
-mysqli_close($conexiondb);
-?>
+    <?php
+    $conexiondb = conectardb();
+    $consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre_habitacion, habitaciones.detalles, habitaciones.id_categoria, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.id_categoria";
+    $resultado = mysqli_query($conexiondb, $consulta);
+    mysqli_close($conexiondb);
+    ?>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -63,12 +65,17 @@ mysqli_close($conexiondb);
             </ul>
 
             <ul class="logout-mode">
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
 
-                    <li class="mode">
+                <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -84,9 +91,7 @@ mysqli_close($conexiondb);
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <div class="logo_name">
-                <span class="logo_name">Bienvenido <?php echo $usuario ?></span>
-            </div>
+
             <img src="../../IMG/recepcionista.svg" alt="">
         </div>
 
@@ -140,4 +145,5 @@ mysqli_close($conexiondb);
     <script src="../../JS/script.js"></script>
     <script src="../../JS/registro.js"></script>
 </body>
+
 </html>

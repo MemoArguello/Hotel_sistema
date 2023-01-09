@@ -40,29 +40,25 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../calendario/index.php">
+                <li><a href="../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="habitaciones.php">
+                <li><a href="habitaciones2.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
-                <li><a href="../admin/listado/form_habitaciones.php">
+                <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="../reportes.php">
+                <li><a href="../reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../producto/listado_productos.php">
+                <li><a href="../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
-                    </a></li>
-                <li><a href="../admin/listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
@@ -90,17 +86,17 @@ mysqli_close($conexiondb);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
-            <img src="../IMG/admin.svg" alt="">
+            <img src="../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../calendario/index.php">Calendario</a>
-                <a href="./recepcionar.php">Registrar Cliente</a>
-                <a href="../calendario/listado_reserva.php">Lista de Clientes</a>
+                <a href="../calendario/index2.php">Calendario</a>
+                <a href="./recepcionar2.php">Registrar Cliente</a>
+                <a href="../calendario/listado_reserva2.php">Lista de Clientes</a>
             </div>
             <div class="signupFrm">
-                <form action="../calendario/nuevoEvento.php" method="POST" class="formRecepcion">
+                <form action="../calendario/nuevoEvento2.php" method="POST" class="formRecepcion">
                     <h3 align="center">Recepcion</h3>
                     <br>
                     <div class="inputContainer">

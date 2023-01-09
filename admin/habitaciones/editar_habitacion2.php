@@ -58,7 +58,7 @@ $habitacion = mysqli_fetch_row($resultado);
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../../reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
@@ -69,6 +69,11 @@ $habitacion = mysqli_fetch_row($resultado);
             </ul>
 
             <ul class="logout-mode">
+            <li><a>
+            <i class="uil uil-user"></i>
+            <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+          </a>
+        </li>
                 <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
@@ -85,22 +90,16 @@ $habitacion = mysqli_fetch_row($resultado);
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
-            <?php
-                echo "Bienvenido $usuario";
-            ?>
-            <img src="../../IMG/admin.svg" alt="">
+
+            <img src="../../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
-                <a href="./registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="../categoria/listado_categoria.php">Listado Categoria</a>
-                <a href="../categoria/categoria.php">Registrar Categorias</a>
+                <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
+                <a href="./registrar_habitacion2.php">Registrar Habitacion</a>
+                <a href="../categoria/listado_categoria2.php">Listado Categoria</a>
+                <a href="../categoria/categoria2.php">Registrar Categorias</a>
             </div>
             <div class="signupFrm">
                 <form action="./update_habitacion2.php" method="POST" class="form_habitacion">

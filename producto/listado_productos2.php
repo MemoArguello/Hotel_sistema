@@ -65,6 +65,11 @@ mysqli_close($conexiondb);
             </ul>
 
             <ul class="logout-mode">
+            <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
@@ -87,9 +92,6 @@ mysqli_close($conexiondb);
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <?php
-            echo "Bienvenido $usuario";
-            ?>
             <img src="../IMG/recepcionista.svg" alt="">
         </div>
 
