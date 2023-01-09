@@ -96,7 +96,7 @@ if (!isset($usuario)) {
       <br>
       <?php
       $con = conectardb();
-      $SqlEventos   = ("SELECT * FROM reserva");
+      $SqlEventos   = ("SELECT * FROM recepcion");
       $resulEventos = mysqli_query($con, $SqlEventos);
 
       ?>
@@ -176,8 +176,8 @@ if (!isset($usuario)) {
           <?php
           while ($dataEvento = mysqli_fetch_array($resulEventos)) {
           ?> {
-              id: '<?php echo $dataEvento['id']; ?>',
-              title: '<?php echo $dataEvento['nombre']; ?>',
+              id: '<?php echo $dataEvento['id_recepcion']; ?>',
+              title: '<?php echo $dataEvento['id_reserva']; ?>',
               start: '<?php echo $dataEvento['fecha_inicio']; ?>',
               end: '<?php echo $dataEvento['fecha_fin']; ?>',
             },

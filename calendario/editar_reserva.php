@@ -127,25 +127,6 @@ $habitacion = mysqli_fetch_row($resultado_c);
                         <input type="text" class="input" placeholder="a" name="factura" value='<?php echo $reserva[5]; ?>'>
                         <label for="" class="label">Factura</label>
                     </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="cant_personas" value='<?php echo $reserva[6]; ?>'>
-                        <label for="" class="label">Cantidad de Personas</label>
-                    </div>
-                    <div class="inputContainer">
-                        <select name="pago" class="input">
-                            <option value="Pagado">Pagado</option>
-                            <option value="No pagado">Falta Pagar</option>
-                        </select>
-                        <label for="" class="label">Estado de Pago</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_inicio" value='<?php echo $reserva[7]; ?>'>
-                        <label for="" class="label">Fecha de Inicio</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_fin" value='<?php echo $reserva[8]; ?>'>
-                        <label for="" class="label">Fecha de Salida</label>
-                    </div>
                     <input type="hidden" name="id" id="" value='<?php echo $reserva[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">

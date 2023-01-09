@@ -126,26 +126,6 @@ mysqli_close($conexiondb);
                         <input type="text" class="input" placeholder="a" name="factura">
                         <label for="" class="label">Factura</label>
                     </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="cant_personas">
-                        <label for="" class="label">Cantidad de Personas</label>
-                    </div>
-                    <div class="inputContainer">
-                        <select name="pago" class="input">
-                            <option value=""></option>
-                            <option value="Pagado">Pagado</option>
-                            <option value="No pagado">Falta Pagar</option>
-                        </select>
-                        <label for="" class="label">Estado de Pago</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_inicio">
-                        <label for="" class="label">Fecha de Inicio</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_salida">
-                        <label for="" class="label">Fecha de Salida</label>
-                    </div>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>

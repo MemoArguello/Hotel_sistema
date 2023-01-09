@@ -5,23 +5,20 @@ $nombre =$_POST['nombre'];
 $telefono =$_POST['telefono'];
 $procedencia = $_POST['procedencia'];
 $factura = $_POST['factura'];
-$cant_persona = $_POST['cant_personas'];
-$pago = $_POST['pago'];
-$fecha_inicio = $_POST['fecha_inicio'];
-$fecha_fin = $_POST['fecha_fin'];
 
-$conexion = conectardb();
 
-$query = "INSERT into reserva(cedula, nombre, telefono, procedencia, factura, cant_personas, pago, fecha_inicio, fecha_fin) VALUES
-('$cedula','$nombre','$telefono','$procedencia','$factura', '$cant_persona','$pago', '$fecha_inicio','$fecha_fin')";
+$conexiondb = conectardb();
 
-$respuesta = mysqli_query($conexion, $query);
+$query = "INSERT into reserva(cedula, nombre, telefono, procedencia, factura) VALUES
+('$cedula','$nombre','$telefono','$procedencia','$factura')";
+
+$respuesta = mysqli_query($conexiondb, $query);
 if ($respuesta) {
   echo "<script>alert('Registro Exitoso');
-                         window.location.href='./index2.php'</script>";
+                          window.location.href='./index.php'</script>";
 } else {
   echo "<script>alert('Registro Fallido');
-                          window.location.href='./index2.php'</script>";
+                          window.location.href='./index.php'</script>";
 }
 mysqli_close($conexiondb);
 ?>
