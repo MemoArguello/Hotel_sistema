@@ -12,7 +12,7 @@ $end= $_REQUEST['end'];
 $fecha_fin= date('Y-m-d', strtotime($end));  
 
 
-$UpdateProd = ("UPDATE reserva 
+$UpdateProd = ("UPDATE recepcion 
     SET 
         fecha_inicio ='$fecha_inicio',
         fecha_fin ='$fecha_fin'

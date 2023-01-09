@@ -6,6 +6,7 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
   header("location:../index.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -146,20 +147,10 @@ if (!isset($usuario)) {
         selectable: true,
         selectHelper: false,
 
-        //Nuevo Evento
-        select: function(start, end) {
-          $("#exampleModal").modal();
-          $("input[name=fecha_inicio]").val(start.format('DD-MM-YYYY'));
-
-          var valorFechaFin = end.format("DD-MM-YYYY");
-          var F_final = moment(valorFechaFin, "DD-MM-YYYY").subtract(1, 'days').format('DD-MM-YYYY'); //Le resto 1 dia
-          $('input[name=fecha_fin').val(F_final);
-
-        },
 
         //Moviendo Evento Drag - Drop
         eventDrop: function(event, delta) {
-          var idEvento = event.id;
+          var idEvento = event.id_recepcion;
           var start = (event.start.format('DD-MM-YYYY'));
           var end = (event.end.format("DD-MM-YYYY"));
 
