@@ -99,6 +99,7 @@ mysqli_close($conexiondb);
                 <a href="./listado_productos.php">Productos</a>
                 <a href="./productos.php">Registrar Producto</a>
                 <a href="../ventas/ventas.php">Realizar Ventas</a>
+                <a href="../ventas/listado_ventas.php">Listado de Ventas</a>
             </div>
             <div class="signupFrm">
                 <form action="./insert_producto.php" method="POST" class="form_categoria">

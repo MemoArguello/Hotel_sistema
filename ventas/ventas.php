@@ -116,8 +116,8 @@ mysqli_close($conexiondb);
                 <a href="../producto/listado_productos.php">Productos</a>
                 <a href="../producto/productos.php">Registrar Producto</a>
                 <a href="../ventas/ventas.php">Realizar Ventas</a>
+                <a href="../ventas/listado_ventas.php">Listado de Ventas</a>
             </div>
-            <br>
             <div class="signupFrm">
                 <form action="./guardar_venta.php" method="POST" class="formDatos">
                     <h3 align="center">Venta</h3>
@@ -154,40 +154,6 @@ mysqli_close($conexiondb);
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
-            <table class="">
-                    <thead>
-                        <tr>
-                            <th>Nº</th>
-                            <th>Producto</th>
-                            <th>Cliente</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total a pagar</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $index = 1;
-                        while ($venta = mysqli_fetch_assoc($resultado)) {
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<th scope ='row'>" . $index++ . "</th>";
-                            echo "<td align= 'center'>" . $venta['nombre'] . "</td>";
-                            echo "<td align= 'center'>" . $venta['nombre_producto'] . "</td>";
-                            echo "<td align= 'center'>" . $venta['precio'] . ' Gs'."</td>";
-                            echo "<td align= 'center'>" . $venta['cantidad']. "</td>";
-                            echo "<td align= 'center'>" . $venta['total_pagar']. ' Gs'."</td>";
-                            echo "<td>";
-                            echo "<a href='../eliminar_cuenta.php?id_usuario=" . $venta['id_venta'] . "' class='submitBotonEliminar'> Borrar </a>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
         </div>
     </section>
 
