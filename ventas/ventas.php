@@ -7,8 +7,11 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM producto";
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
+FROM venta JOIN producto ON producto.id_producto = venta.id_producto
+JOIN reserva ON reserva.id = venta.id_cliente";
 $resultado = mysqli_query($conexiondb, $query);
+
 mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
@@ -31,6 +34,15 @@ mysqli_close($conexiondb);
 </head>
 
 <body>
+    <?php
+    $conexiondb = conectardb();
+    $query_r = "SELECT * FROM producto";
+    $query_h = "SELECT * FROM reserva";
+    $resultado_r = mysqli_query($conexiondb, $query_r);
+    $resultado_h = mysqli_query($conexiondb, $query_h);
+
+    mysqli_close($conexiondb);
+    ?>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -46,7 +58,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/recepcionar.php">
+                <li><a href="../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -58,7 +70,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./listado_productos.php">
+                <li><a href="../producto/listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -101,42 +113,81 @@ mysqli_close($conexiondb);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./listado_productos.php">Productos</a>
-                <a href="./productos.php">Registrar Producto</a>
+                <a href="../producto/listado_productos.php">Productos</a>
+                <a href="../producto/productos.php">Registrar Producto</a>
                 <a href="../ventas/ventas.php">Realizar Ventas</a>
             </div>
-            <div class="">
-                <table class="">
+            <br>
+            <div class="signupFrm">
+                <form action="./guardar_venta.php" method="POST" class="formDatos">
+                    <h3 align="center">Venta</h3>
+                    <br>
+                    <div class="inputContainer">
+                        <select class="input" name="id_producto" id="inputGroupSelect01"></P>
+                            <?php
+                            while ($habitacion = mysqli_fetch_assoc($resultado_r)) {
+                                echo "<option value='" . $habitacion['id_producto'] . "'>" . $habitacion['nombre_producto'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <label for="" class="label">Producto</label>
+                    </div>
+                    <div class="inputContainer">
+                        <select class="input" name="id_cliente" id="inputGroupSelect01"></P>
+                            <?php
+                            while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
+                                echo "<option value='" . $habitacion['id'] . "'>" . $habitacion['nombre'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <label for="" class="label">Cliente</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="precio" min="0">
+                        <label for="" class="label">Precio</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="cantidad" min="0">
+                        <label for="" class="label">Cantidad</label>
+                    </div>
+                    <input type="hidden" name="editar" id="" value='no' readonly>
+                    <input type="submit" class="submitBtn" value="GUARDAR">
+                </form>
+            </div>
+            <table class="">
                     <thead>
                         <tr>
                             <th>Nº</th>
-                            <th align="center">Codigo</th>
-                            <th align="center">Nombre</th>
-                            <th align="center">Stock</th>
-                            <th align="center">Opciones</th>
+                            <th>Producto</th>
+                            <th>Cliente</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Total a pagar</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $index = 1;
-                        while ($producto = mysqli_fetch_assoc($resultado)) {
+                        while ($venta = mysqli_fetch_assoc($resultado)) {
+                            echo "<tr>";
                             echo "<tr>";
                             echo "<tr>";
                             echo "<tr>";
                             echo "<th scope ='row'>" . $index++ . "</th>";
-                            echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
-                            echo "<td align= 'center'>" . $producto['nombre_producto'] . "</td>";
-                            echo "<td align= 'center'>" . $producto['stock_inicial'] . "</td>";
+                            echo "<td align= 'center'>" . $venta['nombre'] . "</td>";
+                            echo "<td align= 'center'>" . $venta['nombre_producto'] . "</td>";
+                            echo "<td align= 'center'>" . $venta['precio'] . ' Gs'."</td>";
+                            echo "<td align= 'center'>" . $venta['cantidad']. "</td>";
+                            echo "<td align= 'center'>" . $venta['total_pagar']. ' Gs'."</td>";
                             echo "<td>";
-                            echo "<a href='./editar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
-                            echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "<a href='../eliminar_cuenta.php?id_usuario=" . $venta['id_venta'] . "' class='submitBotonEliminar'> Borrar </a>";
                             echo "</td>";
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
-            </div>
         </div>
     </section>
 

@@ -99,6 +99,7 @@ mysqli_close($conexiondb);
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos2.php">Productos</a>
                 <a href="./producto2.php">Registrar Producto</a>
+                <a href="../ventas/ventas2.php">Realizar Ventas</a>
             </div>
             <div class="">
                         <table class="">
@@ -107,8 +108,6 @@ mysqli_close($conexiondb);
                                     <th>Nº</th>
                                     <th align="center">Codigo</th>
                                     <th align="center">Nombre</th>
-                                    <th align="center">PrecioCompra</th>
-                                    <th align="center">PrecioVenta</th>
                                     <th align="center">Stock</th>
                                     <th align="center">Opciones</th>
                                 </tr>
@@ -123,8 +122,6 @@ mysqli_close($conexiondb);
                                     echo "<th scope ='row'>" . $index++ . "</th>";
                                     echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
                                     echo "<td align= 'center'>" . $producto['nombre'] . "</td>";
-                                    echo "<td align= 'center'>" . $producto['precio_compra'] ." Gs". "</td>";
-                                    echo "<td align= 'center'>" . $producto['precio_venta'] . " Gs". "</td>";
                                     echo "<td align= 'center'>" . $producto['stock_inicial'] ."</td>";
                                     echo "<td>";
                                     echo "<a href='./editar_producto2.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";

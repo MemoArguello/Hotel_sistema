@@ -7,6 +7,8 @@ if (!isset($usuario)) {
   header("location:../index.php");
 }
 
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,12 +28,7 @@ if (!isset($usuario)) {
 </head>
 
 <body>
-<?php
-    $conexiondb = conectardb();
-    $consulta = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva";
-    $resultado = mysqli_query($conexiondb, $consulta);
-    mysqli_close($conexiondb);
-?>
+
   <nav>
     <div class="logo-name">
       <div class="logo-image">

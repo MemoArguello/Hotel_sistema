@@ -109,7 +109,7 @@ $usuarios = mysqli_fetch_row($resultado);
                         <label for="" class="label">Correo</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="codigo">
+                        <input type="password" class="input" placeholder="a" name="codigo" minlength="5">
                         <label for="" class="label">Contraseña Nueva</label>
                     </div>
                     <input type="hidden" name="id_usuario" id="" value='<?php echo $usuarios[0] ?>' readonly>

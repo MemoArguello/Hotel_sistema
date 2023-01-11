@@ -111,12 +111,12 @@ mysqli_close($conexiondb);
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="codigo">
+                        <input type="password" class="input" placeholder="a" name="codigo" minlength="5">
                         <label for="" class="label">Contraseña</label>
                     </div>
 
                     <div class="inputContainer">
-                        <input type="password" class="input" placeholder="a" name="ccodigo">
+                        <input type="password" class="input" placeholder="a" name="ccodigo" minlength="5">
                         <label for="" class="label">Confirmar Contraseña</label>
                     </div>
                     <div class="inputContainer">

@@ -99,6 +99,7 @@ mysqli_close($conexiondb);
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos2.php">Productos</a>
                 <a href="./producto2.php">Registrar Producto</a>
+                <a href="../ventas/ventas2.php">Realizar ventas</a>
             </div>
             <div class="signupFrm">
                 <form action="./insert_producto2.php" method="POST" class="form_categoria">
@@ -110,14 +111,6 @@ mysqli_close($conexiondb);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre">
                         <label for="" class="label">Nombre Producto</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_compra">
-                        <label for="" class="label">Precio de Compra</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_venta">
-                        <label for="" class="label">Precio de Venta</label>
                     </div>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="stock_inicial">
