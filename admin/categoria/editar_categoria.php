@@ -112,7 +112,8 @@ $categoria = mysqli_fetch_row($resultado);
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones.php">Habitaciones Existentes</a>
                 <a href="../habitaciones/registrar_habitacion.php">Registrar Habitacion</a>
-                <a href="categoria.php">Categorias</a>
+                <a href="../categoria/listado_categoria.php">Listado Categoria</a>
+                <a href="categoria.php">Registrar Categorias</a>
             </div>
             <div class="signupFrm">
                 <form action="./update_categoria.php" method="POST" class="form_categoria">
@@ -124,10 +125,6 @@ $categoria = mysqli_fetch_row($resultado);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="piso" value='<?php echo $categoria[2]; ?>'>
                         <label for="" class="label">Ingrese Piso</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="tarifa" value='<?php echo $categoria[3]; ?>'>
-                        <label for="" class="label">Ingrese Tarifa</label>
                     </div>
                     <input type="hidden" name="categoria" id="" value='<?php echo $categoria[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>

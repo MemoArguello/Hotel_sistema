@@ -135,6 +135,10 @@ $habitacion = mysqli_fetch_row($resultado);
                             ?>
                         </select>
                     </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="precio" value='<?php echo $habitacion[4]; ?>'>
+                        <label for="" class="label">Precio</label>
+                    </div>
                     <input type="hidden" name="habitacion" id="" value='<?php echo $habitacion[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">

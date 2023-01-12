@@ -3,11 +3,12 @@ include('../../db.php');
 $nombre = $_POST['nombre_habitacion'];
 $detalles=$_POST['detalles'];
 $categoria=$_POST['id_categoria'];
+$precio=$_POST['precio'];
 
 $conexion = conectardb();
 
 $id_habitaciones = $_POST['habitacion'];
-$query = "UPDATE habitaciones SET nombre_habitacion='" .$nombre . "', detalles='". $detalles . "', id_categoria='" . $categoria . "' WHERE id_habitaciones=" . $id_habitaciones;
+$query = "UPDATE habitaciones SET nombre_habitacion='" .$nombre . "', detalles='". $detalles . "', id_categoria='" . $categoria . "', precio='" . $precio . "' WHERE id_habitaciones=" . $id_habitaciones;
 
 $respuesta= mysqli_query($conexion, $query);
 

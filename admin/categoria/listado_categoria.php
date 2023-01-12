@@ -116,7 +116,6 @@ mysqli_close($conexiondb);
                         <th>Nº</th>
                         <th align="center">Categoria</th>
                         <th align="center">Piso</th>
-                        <th align="center">Precio</th>
                         <th align="left">Opciones</th>
                     </tr>
                 </thead>
@@ -131,7 +130,6 @@ mysqli_close($conexiondb);
                         echo "<th scope ='row'>" . $index++ . "</th>";
                         echo "<td align= 'center'>" . $categoria['categoria'] . "</td>";
                         echo "<td align= 'center'>" . $categoria['piso'] . "</td>";
-                        echo "<td align= 'center'>" . $categoria['tarifa'] . " Gs" . "</td>";
                         echo "<td>";
                         echo "<a href='./editar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBoton'> Editar </a>";
                         echo "<a href='./eliminar_categoria.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";

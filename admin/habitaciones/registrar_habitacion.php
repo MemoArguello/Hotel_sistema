@@ -123,6 +123,10 @@ mysqli_close($conexiondb);
                         <input type="text" class="input" placeholder="a" name="detalles">
                         <label for="" class="label">Detalles</label>
                     </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="precio">
+                        <label for="" class="label">Precio</label>
+                    </div>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
