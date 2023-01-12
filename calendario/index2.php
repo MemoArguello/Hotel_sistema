@@ -63,6 +63,10 @@ if (!isset($usuario)) {
             <i class="uil uil-coffee"></i>
             <span class="link-name">Productos</span>
           </a></li>
+          <li><a href="../ventas/ventas2.php">
+            <i class="uil uil-usd-circle"></i>
+            <span class="link-name">Venta</span>
+          </a></li>
       </ul>
 
       <ul class="logout-mode">

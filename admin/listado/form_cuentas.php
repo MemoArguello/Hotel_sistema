@@ -48,7 +48,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../Recepcion/recepcionar.php">
+                <li><a href="../../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -63,6 +63,10 @@ mysqli_close($conexiondb);
                 <li><a href="../../producto/listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
+                    </a></li>
+                    <li><a href="../../ventas/ventas.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Venta</span>
                     </a></li>
                 <li><a href="../../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>

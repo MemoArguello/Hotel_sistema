@@ -65,6 +65,10 @@ if (!isset($usuario)) {
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../ventas/ventas.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Venta</span>
+                    </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
@@ -130,8 +134,8 @@ if (!isset($usuario)) {
                             echo "<td align= 'center'>" . $recepcion['nombre'] . "</td>";
                             echo "<td align= 'center'>" . $recepcion['nombre_habitacion'] . "</td>";
                             echo "<td>";
-                            echo "<a href='../habitaciones/editar_habitacion.php?id_habitaciones=" . $recepcion['id_recepcion'] . "' class='submitBoton'> Editar </a>";
-                            echo "<a href='../habitaciones/eliminar_habitacion.php?id_habitaciones=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "<a href='../habitaciones/editar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='../habitaciones/eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
                             echo "</td>";
                             echo "</tr>";
                         }

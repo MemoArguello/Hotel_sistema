@@ -7,9 +7,10 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM venta";
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
+FROM venta JOIN producto ON producto.id_producto = venta.id_producto
+JOIN reserva ON reserva.id = venta.id_cliente";
 $resultado = mysqli_query($conexiondb, $query);
-mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +119,7 @@ mysqli_close($conexiondb);
                         <select class="input" name="id_producto" id="inputGroupSelect01"></P>
                             <?php
                             while ($habitacion = mysqli_fetch_assoc($resultado_r)) {
-                                echo "<option value='" . $habitacion['id_producto'] . "'>" . $habitacion['nombre'] . "</option>";
+                                echo "<option value='" . $habitacion['id_producto'] . "'>" . $habitacion['nombre_producto'] . "</option>";
                             }
                             ?>
                         </select>

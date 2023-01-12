@@ -63,6 +63,10 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../ventas/ventas.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Venta</span>
+                    </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
@@ -112,15 +116,7 @@ $producto = mysqli_fetch_row($resultado);
                         <label for="" class="label">Nombre Producto</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_compra" value='<?php echo $producto[3]; ?>'>
-                        <label for="" class="label">Precio de Compra</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_venta" value='<?php echo $producto[4]; ?>'>
-                        <label for="" class="label">Precio de Venta</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[5]; ?>'>
+                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[3]; ?>'>
                         <label for="" class="label">Stock Inicial</label>
                     </div>
                     <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>
