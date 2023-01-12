@@ -6,6 +6,7 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
     header("location:../index");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@ if (!isset($usuario)) {
 <body>
     <?php
     $conexiondb = conectardb();
-    $query = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion 
+    $query = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion, TIMESTAMPDIFF(DAY, fecha_inicio, fecha_fin) AS fecha 
     FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
     JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion";
     $resultado = mysqli_query($conexiondb, $query);
@@ -118,6 +119,8 @@ if (!isset($usuario)) {
                             <th>Cedula</th>
                             <th>Cliente</th>
                             <th>Habitacion</th>
+                            <th>Dias</th>
+                            <th>Total a Pagar</th>
                             <th align="left">Opciones</th>
                         </tr>
                     </thead>
@@ -133,9 +136,11 @@ if (!isset($usuario)) {
                             echo "<td align= 'center'>" . $recepcion['cedula'] . "</td>";
                             echo "<td align= 'center'>" . $recepcion['nombre'] . "</td>";
                             echo "<td align= 'center'>" . $recepcion['nombre_habitacion'] . "</td>";
+                            echo "<td align= 'center'>" . $recepcion['fecha'] . ' Dias'. "</td>";
+                            echo "<td align= 'center'>" . $recepcion['fecha'] * $recepcion[''] . "</td>";
                             echo "<td>";
                             echo "<a href='../habitaciones/editar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBoton'> Editar </a>";
-                            echo "<a href='../habitaciones/eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "<a href='./eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
                             echo "</td>";
                             echo "</tr>";
                         }

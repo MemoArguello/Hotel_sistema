@@ -133,8 +133,8 @@ if (!isset($usuario)) {
                             echo "<tr>";
                             echo "<th scope ='row'>" . $index++ . "</th>";
                             echo "<td align= 'center'>" . $habitaciones['nombre_habitacion'] . "</td>";
-                            echo "<td align= 'center'>" . $habitaciones['detalles'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['categoria'] . "</td>";
+                            echo "<td align= 'center'>" . $habitaciones['detalles'] . "</td>";
                             echo "<td>";
                             echo "<a href='../habitaciones/editar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='../habitaciones/eliminar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBotonEliminar'> Borrar </a>";
