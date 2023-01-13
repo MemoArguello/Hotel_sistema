@@ -4,9 +4,51 @@ include './db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
-  header("location:./index.php");
+    header("location:./index.php");
 }
+
+$conexiondb = conectardb();
+$query1 = "SELECT COUNT(*) total1 FROM reserva";
+$query2 = "SELECT COUNT(*) total2 FROM recepcion";
+$query3 = "SELECT COUNT(*) total3 FROM habitaciones";
+$query4 = "SELECT COUNT(*) total4 FROM producto";
+$query5 = "SELECT COUNT(*) total5 FROM venta";
+
+$resultado1 = mysqli_query($conexiondb, $query1);
+$resultado2 = mysqli_query($conexiondb, $query2);
+$resultado3 = mysqli_query($conexiondb, $query3);
+$resultado4 = mysqli_query($conexiondb, $query4);
+$resultado5 = mysqli_query($conexiondb, $query5);
+
+
 ?>
+<style>
+    .card {
+        box-shadow: 0px 10px 10px -5px rgb(0 0 0 / 10%);
+        background: #fff;
+        padding: 1rem;
+        border-radius: 3px;
+        height: 50px;
+    }
+
+    .card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .analytics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 2rem;
+        margin-top: 0.5rem;
+        margin-bottom: 2rem;
+    }
+    .page-content {
+    padding: 1.3rem 1rem;
+    background: #f1f4f9;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,6 +59,8 @@ if (!isset($usuario)) {
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/registrar.css">
+
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -62,7 +106,7 @@ if (!isset($usuario)) {
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                    <li><a href="ventas/ventas.php">
+                <li><a href="ventas/ventas.php">
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
@@ -98,90 +142,68 @@ if (!isset($usuario)) {
 
             <img src="./IMG/admin.svg" alt="">
         </div>
-        <div>
-            <br>
-            <br>
-            <br>
-            <div class="container">
-                <br>
-                <div class"row">
-                    <div class="col-lg-12">
-                        <table id="tablaUsuarios" class="table-striped table-bordered" style="width: 100%">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Habitacion</th>
-                                    <th>Fecha de Entrada</th>
-                                    <th>Fecha de salida</th>
-                                </tr>
-                            </thead>
-                        </table>
+        <div class="dash-content">
+        <div class="topnav" id="myTopnav">
+                <a href="./reportes.php">General</a>
+                <a href="./reportes_recepcion.php">Reporte Reservas</a>
+                <a href="./reportes_habitacion.php">Reporte Habitaciones</a>
+            </div>
+            <div class="analytics">
+                <div class="card">
+                    <div class="card-head">
+                        <?php
+                        while ($reserva = mysqli_fetch_assoc($resultado1)) {
+                            echo "<td align= 'center'>" . $reserva['total1'] . ' Clientes totales' . "</td>";
+                        }
+                        ?>
+                        <span class="uil uil-user"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <?php
+                        while ($reserva = mysqli_fetch_assoc($resultado2)) {
+                            echo "<td align= 'center'>" . $reserva['total2'] . ' Habitaciones ocupadas' . "</td>";
+                        }
+                        ?>
+                        <span class="uil uil-bed"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <?php
+                        while ($reserva = mysqli_fetch_assoc($resultado3)) {
+                            echo "<td align= 'center'>" . $reserva['total3'] . ' Habitaciones Registradas' . "</td>";
+                        }
+                        ?>
+                        <span class="uil uil-house-user"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <?php
+                        while ($reserva = mysqli_fetch_assoc($resultado4)) {
+                            echo "<td align= 'center'>" . $reserva['total4'] . ' Total de Productos' . "</td>";
+                        }
+                        ?>
+                        <span class="uil uil-house-user"></span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <?php
+                        while ($reserva = mysqli_fetch_assoc($resultado5)) {
+                            echo "<td align= 'center'>" . $reserva['total5'] . ' Ventas Realizadas' . "</td>";
+                        }
+                        ?>
+                        <span class="uil uil-house-user"></span>
                     </div>
                 </div>
             </div>
-            <!--Jquery. popper.js, Bootstrap JS-->
-            <script src="jquery/jquery-3.5.1.min.js"></script>
-            <script src="popper/popper.min.js"></script>
-            <script src="bootstrap/js/bootstrap.min.js"></script>
-            <!--Datatables JS-->
-            <script type="text/javascript" src="datatables/datatables.min.js"></script>
-            <!--Para usar botones en datatables JS-->
-            <script src="datatables/Buttons-2.3.2/js/dataTables.buttons.js"></script>
-            <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>
-            <script src="datatables/pdfmake-0.1.36/pdfmake.js"></script>
-            <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-            <script src="datatables/Buttons-2.3.2/js/buttons.html5.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $('#tablaUsuarios').DataTable({
-                        //para usar botones
-                        responsive: "true",
-                        dom: 'Bfrtilp',
-                        buttons: [{
-                                extend: 'excelHtml5',
-                                text: 'Excel',
-                                titleAttr: 'Exportar a Excel',
-                                className: 'btn btn-success'
-                            },
-                            {
-                                extend: 'pdfHtml5',
-                                text: 'PDF',
-                                titleAttr: 'Exportar a PDF',
-                                className: 'btn btn-danger'
-                            },
-                            {
-                                extend: 'print',
-                                text: 'imprimir',
-                                titleAttr: 'imprimir',
-                                className: 'btn btn-info'
-                            },
-                        ],
-                        "ajax": {
-                            "url": "list.php",
-                            "dataSrc": ""
-                        },
-                        "columns": [{
-                                "data": "id_recepcion"
-                            },
-                            {
-                                "data": "nombre"
-                            },
-                            {
-                                "data": "nombre_habitacion"
-                            },
-                            {
-                                "data": "fecha_inicio"
-                            },
-                            {
-                                "data": "fecha_fin"
-                            },
-                        ]
-                    });
-                });
-            </script>
         </div>
     </section>
+
+    
 
     <script src="./JS/script.js"></script>
 </body>
