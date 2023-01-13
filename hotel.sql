@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2022 a las 21:06:36
+-- Tiempo de generación: 13-01-2023 a las 14:26:07
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.5
 
@@ -43,16 +43,16 @@ INSERT INTO `cargo` (`id`, `descripcion`) VALUES
 CREATE TABLE `categorias` (
   `id_categoria` int(11) NOT NULL,
   `categoria` varchar(250) NOT NULL,
-  `piso` varchar(250) NOT NULL,
-  `tarifa` int(11) NOT NULL
+  `piso` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`id_categoria`, `categoria`, `piso`, `tarifa`) VALUES
-(28, 'Matrimonial', 'tercero', 50000);
+INSERT INTO `categorias` (`id_categoria`, `categoria`, `piso`) VALUES
+(28, 'matrimonial DOBLE', 'primero'),
+(37, 'individual', 'segundo');
 
 -- --------------------------------------------------------
 
@@ -62,17 +62,21 @@ INSERT INTO `categorias` (`id_categoria`, `categoria`, `piso`, `tarifa`) VALUES
 
 CREATE TABLE `habitaciones` (
   `id_habitaciones` int(11) NOT NULL,
-  `nombre` varchar(250) NOT NULL,
+  `nombre_habitacion` varchar(250) NOT NULL,
   `detalles` varchar(250) NOT NULL,
-  `id_categoria` int(11) NOT NULL
+  `id_categoria` int(11) NOT NULL,
+  `precio` int(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `habitaciones`
 --
 
-INSERT INTO `habitaciones` (`id_habitaciones`, `nombre`, `detalles`, `id_categoria`) VALUES
-(35, 'A01', 'TV, AIRE', 28);
+INSERT INTO `habitaciones` (`id_habitaciones`, `nombre_habitacion`, `detalles`, `id_categoria`, `precio`) VALUES
+(35, 'A03', 'aire', 28, 100000),
+(37, 'A04', 'aire', 28, 50000),
+(45, 'Individual01', 'cama individual, tv, aire', 28, 50000),
+(46, 'ewrew', 'TV, AIRE, Agua', 28, 100000);
 
 -- --------------------------------------------------------
 
@@ -83,9 +87,7 @@ INSERT INTO `habitaciones` (`id_habitaciones`, `nombre`, `detalles`, `id_categor
 CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL,
   `codigo` varchar(250) NOT NULL,
-  `nombre` varchar(250) NOT NULL,
-  `precio_compra` int(11) NOT NULL,
-  `precio_venta` int(11) NOT NULL,
+  `nombre_producto` varchar(250) NOT NULL,
   `stock_inicial` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -93,11 +95,12 @@ CREATE TABLE `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id_producto`, `codigo`, `nombre`, `precio_compra`, `precio_venta`, `stock_inicial`) VALUES
-(6, '1223', 'galleta', 3000, 8000, ' 20'),
-(7, '2321', 'Agua', 4000, 7000, ' 20'),
-(8, '12232', 'pan', 4000, 7000, ' 30'),
-(9, '888', 'Agua', 4000, 5000, ' 50');
+INSERT INTO `producto` (`id_producto`, `codigo`, `nombre_producto`, `stock_inicial`) VALUES
+(23, '1234567', 'pan', ' 11'),
+(29, '12232', 'Coca Cola', ' 20'),
+(30, '1234567', 'Agua', ' 10'),
+(31, '21312', 'Toallas', ' 20'),
+(32, '888', 'Pepsi', ' 10');
 
 -- --------------------------------------------------------
 
@@ -108,19 +111,18 @@ INSERT INTO `producto` (`id_producto`, `codigo`, `nombre`, `precio_compra`, `pre
 CREATE TABLE `recepcion` (
   `id_recepcion` int(11) NOT NULL,
   `id_reserva` int(11) NOT NULL,
-  `id_habitacion` int(11) NOT NULL
+  `id_habitacion` int(11) NOT NULL,
+  `fecha_inicio` date DEFAULT NULL,
+  `fecha_fin` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `recepcion`
 --
 
-INSERT INTO `recepcion` (`id_recepcion`, `id_reserva`, `id_habitacion`) VALUES
-(97, 73, 35),
-(98, 73, 35),
-(99, 73, 35),
-(80, 76, 35),
-(96, 76, 35);
+INSERT INTO `recepcion` (`id_recepcion`, `id_reserva`, `id_habitacion`, `fecha_inicio`, `fecha_fin`) VALUES
+(124, 73, 45, '2023-01-01', '2023-01-05'),
+(125, 86, 45, '2023-01-01', '2023-01-04');
 
 -- --------------------------------------------------------
 
@@ -134,22 +136,16 @@ CREATE TABLE `reserva` (
   `nombre` varchar(250) DEFAULT NULL,
   `telefono` int(250) NOT NULL,
   `procedencia` text CHARACTER SET utf8 NOT NULL,
-  `factura` text CHARACTER SET utf8 NOT NULL,
-  `cant_personas` text CHARACTER SET utf8 NOT NULL,
-  `pago` text CHARACTER SET utf8 NOT NULL,
-  `fecha_inicio` date DEFAULT NULL,
-  `fecha_fin` date DEFAULT NULL
+  `factura` text CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `reserva`
 --
 
-INSERT INTO `reserva` (`id`, `cedula`, `nombre`, `telefono`, `procedencia`, `factura`, `cant_personas`, `pago`, `fecha_inicio`, `fecha_fin`) VALUES
-(73, '1234567', 'Micaela Bustamante', 21313, 'Ayolas', '212', '2', 'No pagado', '2022-11-10', '2022-10-04'),
-(74, '2313', 'Carlos Barbozaa', 332342, 'Ayolas', '234234', '2', 'Pagado', '2022-10-07', '2022-10-09'),
-(76, '7304680', 'Guillermo ', 986884553, 'Ayolas', '234234', '2', 'No pagado', '2022-11-03', '2022-11-05'),
-(78, '1234', 'Carlos BarbozaA', 986884553, 'Ayolas', '23123', '2', 'No pagado', '2022-11-21', '2022-11-24');
+INSERT INTO `reserva` (`id`, `cedula`, `nombre`, `telefono`, `procedencia`, `factura`) VALUES
+(73, '12222222', 'Micaela Bustamante', 21319, 'Ayolas', '212'),
+(86, '1234', 'Carlos Barbozaa', 12345678, 'Ayolas', '234234');
 
 -- --------------------------------------------------------
 
@@ -171,8 +167,35 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `correo`, `usuario`, `codigo`, `id_cargo`) VALUES
 (1, 'elmemozac6@gmail.com', 'Guillermo', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(2, 'lourdes12@gmail.com', 'lourdes', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(2, 'lourdes12@gmail.com', 'lourdes', 'b59c67bf196a4758191e42f76670ceba', 1),
 (14, 'ronaldo7@gmail.com', 'ronaldo', '81dc9bdb52d04dc20036dbd8313ed055', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `venta`
+--
+
+CREATE TABLE `venta` (
+  `id_venta` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `precio` varchar(100) NOT NULL,
+  `cantidad` varchar(100) NOT NULL,
+  `total_pagar` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`id_venta`, `id_producto`, `id_cliente`, `precio`, `cantidad`, `total_pagar`) VALUES
+(9, 23, 86, '1000', '2', '2000'),
+(10, 29, 86, '10000', '2', '20000'),
+(11, 31, 73, '10000', '2', '20000'),
+(12, 30, 73, '5000', '1', '5000'),
+(13, 30, 86, '2000', '2', '4000'),
+(14, 30, 86, '5000', '2', '10000');
 
 --
 -- Índices para tablas volcadas
@@ -225,6 +248,14 @@ ALTER TABLE `usuarios`
   ADD KEY `id_cargo` (`id_cargo`);
 
 --
+-- Indices de la tabla `venta`
+--
+ALTER TABLE `venta`
+  ADD PRIMARY KEY (`id_venta`),
+  ADD KEY `id_producto` (`id_producto`,`id_cliente`),
+  ADD KEY `cliente_venta` (`id_cliente`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -238,37 +269,43 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `id_habitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_habitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `recepcion`
 --
 ALTER TABLE `recepcion`
-  MODIFY `id_recepcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id_recepcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de la tabla `venta`
+--
+ALTER TABLE `venta`
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
@@ -292,4 +329,11 @@ ALTER TABLE `recepcion`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_cargo`) REFERENCES `cargo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `venta`
+--
+ALTER TABLE `venta`
+  ADD CONSTRAINT `cliente_venta` FOREIGN KEY (`id_cliente`) REFERENCES `reserva` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `producto_venta` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`);
 COMMIT;
