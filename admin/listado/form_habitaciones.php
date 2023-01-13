@@ -27,7 +27,7 @@ if (!isset($usuario)) {
 <body>
     <?php
     $conexiondb = conectardb();
-    $consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre_habitacion, habitaciones.detalles, habitaciones.id_categoria, habitaciones.precio, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.id_categoria";
+    $consulta = "SELECT habitaciones.id_habitaciones, habitaciones.nombre_habitacion, habitaciones.detalles, habitaciones.id_categoria, habitaciones.precio, habitaciones.estado, categorias.id_categoria, categorias.categoria FROM habitaciones JOIN categorias ON categorias.id_categoria = habitaciones.id_categoria";
     $resultado = mysqli_query($conexiondb, $consulta);
     mysqli_close($conexiondb);
     ?>
@@ -121,6 +121,7 @@ if (!isset($usuario)) {
                             <th>Categoria</th>
                             <th>Detalles</th>
                             <th>Precio</th>
+                            <th>Estado</th>
                             <th align="left">Opciones</th>
                         </tr>
                     </thead>
@@ -137,6 +138,7 @@ if (!isset($usuario)) {
                             echo "<td align= 'center'>" . $habitaciones['categoria'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['detalles'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['precio'] . "</td>";
+                            echo "<td align= 'center'>" . $habitaciones['estado'] . "</td>";
                             echo "<td>";
                             echo "<a href='../habitaciones/editar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='../habitaciones/eliminar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBotonEliminar'> Borrar </a>";

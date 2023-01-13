@@ -148,7 +148,7 @@ mysqli_close($conexiondb);
                     echo "<td align= 'center'>" . $venta['cantidad'] . "</td>";
                     echo "<td align= 'center'>" . $venta['total_pagar'] . ' Gs' . "</td>";
                     echo "<td>";
-                    echo "<a href='../eliminar_cuenta.php?id_usuario=" . $venta['id_venta'] . "' class='submitBotonEliminar'> Borrar </a>";
+                    echo "<a href='./eliminar_ventas.php?id_venta=" . $venta['id_venta'] . "' class='submitBotonEliminar'> Borrar </a>";
                     echo "</td>";
                     echo "</tr>";
                 }

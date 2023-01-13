@@ -18,6 +18,7 @@ if (!isset($usuario)) {
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/registrar.css">
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -100,9 +101,12 @@ if (!isset($usuario)) {
             <img src="./IMG/admin.svg" alt="">
         </div>
         <div>
-            <br>
-            <br>
-            <br>
+        <div class="dash-content">
+            <div class="topnav" id="myTopnav">
+                <a href="./reportes.php">General</a>
+                <a href="./reportes_recepcion.php">Reporte Reservas</a>
+                <a href="./reportes_habitacion.php">Reporte Habitaciones</a>
+            </div>
             <div class="container">
                 <br>
                 <div class"row">

@@ -143,7 +143,7 @@ $resultado5 = mysqli_query($conexiondb, $query5);
             <img src="./IMG/admin.svg" alt="">
         </div>
         <div class="dash-content">
-        <div class="topnav" id="myTopnav">
+            <div class="topnav" id="myTopnav">
                 <a href="./reportes.php">General</a>
                 <a href="./reportes_recepcion.php">Reporte Reservas</a>
                 <a href="./reportes_habitacion.php">Reporte Habitaciones</a>
@@ -183,7 +183,7 @@ $resultado5 = mysqli_query($conexiondb, $query5);
                     <div class="card-head">
                         <?php
                         while ($reserva = mysqli_fetch_assoc($resultado4)) {
-                            echo "<td align= 'center'>" . $reserva['total4'] . ' Total de Productos' . "</td>";
+                            echo "<td align= 'center'>" . $reserva['total4'] . ' Productos Registrados' . "</td>";
                         }
                         ?>
                         <span class="uil uil-house-user"></span>
@@ -200,6 +200,7 @@ $resultado5 = mysqli_query($conexiondb, $query5);
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
 

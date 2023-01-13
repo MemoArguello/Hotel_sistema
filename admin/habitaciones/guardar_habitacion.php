@@ -8,8 +8,8 @@ include('../../db.php');
 
     $conexiondb = conectardb();
 
-    $query = "INSERT INTO habitaciones(nombre_habitacion, detalles, id_categoria, precio) VALUES
-    ('$nombre', '$detalles', '$categoria','$precio')";
+    $query = "INSERT INTO habitaciones(nombre_habitacion, detalles, id_categoria, precio, estado) VALUES
+    ('$nombre', '$detalles', '$categoria','$precio', 'Disponible')";
 
     $respuesta = mysqli_query($conexiondb, $query);
 
