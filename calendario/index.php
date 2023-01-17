@@ -12,7 +12,7 @@ if (!isset($usuario)) {
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Mi Calendario:: Ing. Urian Viera</title>
+	<title>Reservas</title>
 	<link rel="stylesheet" href="">
 	<link rel="stylesheet" type="text/css" href="css/fullcalendar.min.css">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -93,7 +93,7 @@ if (!isset($usuario)) {
       <div class="topnav" id="myTopnav">
         <a href="./index.php">Calendario</a>
         <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
-        <a href="./listado_reserva.php">Lista de Clientes</a>
+        <a href="../calendario22/listado_reserva.php">Lista de Clientes</a>
       </div>
 <?php
 include('config.php');

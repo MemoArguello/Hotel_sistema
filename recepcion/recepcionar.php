@@ -101,7 +101,7 @@ mysqli_close($conexiondb);
             <div class="topnav" id="myTopnav">
                 <a href="../calendario/index.php">Calendario</a>
                 <a href="./recepcionar.php">Registrar Cliente</a>
-                <a href="../calendario/listado_reserva.php">Lista de Clientes</a>
+                <a href="../calendario22/listado_reserva.php">Lista de Clientes</a>
             </div>
             <div class="signupFrm">
                 <form action="../calendario/nuevoEvento.php" method="POST" class="formRecepcion">

@@ -12,7 +12,7 @@
     <div class="form-group">
       <label for="fecha_inicio" class="col-sm-12 control-label">Habitacion</label>
       <div class="col-sm-10">
-        <input type="" class="form-control" name="id_habitacion" id="fecha_inicio" placeholder="Fecha Inicio">
+        <input type="" class="form-control" name="id_habitacion" id="fecha_inicio" placeholder="">
       </div>
     </div>
     <div class="form-group">

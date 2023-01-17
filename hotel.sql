@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-01-2023 a las 14:26:07
+-- Tiempo de generación: 17-01-2023 a las 02:14:22
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.5
 
@@ -57,6 +57,29 @@ INSERT INTO `categorias` (`id_categoria`, `categoria`, `piso`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `eventoscalendar`
+--
+
+CREATE TABLE `eventoscalendar` (
+  `id` int(11) NOT NULL,
+  `evento` varchar(250) DEFAULT NULL,
+  `color_evento` varchar(20) DEFAULT NULL,
+  `fecha_inicio` varchar(20) DEFAULT NULL,
+  `fecha_fin` varchar(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `eventoscalendar`
+--
+
+INSERT INTO `eventoscalendar` (`id`, `evento`, `color_evento`, `fecha_inicio`, `fecha_fin`) VALUES
+(51, 'Mi Primera Prueba', 'teal', '2021-07-07', '2021-07-08'),
+(52, 'Mi Segunda Prueba', 'amber', '2021-07-17', '2021-07-18'),
+(53, 'Mi Tercera Prueba', 'orange', '2021-07-03', '2021-07-04');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `habitaciones`
 --
 
@@ -65,18 +88,20 @@ CREATE TABLE `habitaciones` (
   `nombre_habitacion` varchar(250) NOT NULL,
   `detalles` varchar(250) NOT NULL,
   `id_categoria` int(11) NOT NULL,
-  `precio` int(250) NOT NULL
+  `precio` int(250) NOT NULL,
+  `estado` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `habitaciones`
 --
 
-INSERT INTO `habitaciones` (`id_habitaciones`, `nombre_habitacion`, `detalles`, `id_categoria`, `precio`) VALUES
-(35, 'A03', 'aire', 28, 100000),
-(37, 'A04', 'aire', 28, 50000),
-(45, 'Individual01', 'cama individual, tv, aire', 28, 50000),
-(46, 'ewrew', 'TV, AIRE, Agua', 28, 100000);
+INSERT INTO `habitaciones` (`id_habitaciones`, `nombre_habitacion`, `detalles`, `id_categoria`, `precio`, `estado`) VALUES
+(35, 'A03', 'aire', 28, 100000, ' ocupado'),
+(37, 'A04', 'aire', 28, 50000, ' ocupado'),
+(45, 'Individual01', 'cama individual, tv, aire', 28, 50000, ' ocupado'),
+(46, 'ewrew', 'TV, AIRE, Agua', 28, 100000, ' ocupado'),
+(53, 'ASDAD', 'TV, cama doble, aire acondicionado', 37, 30000, ' ocupado');
 
 -- --------------------------------------------------------
 
@@ -121,8 +146,9 @@ CREATE TABLE `recepcion` (
 --
 
 INSERT INTO `recepcion` (`id_recepcion`, `id_reserva`, `id_habitacion`, `fecha_inicio`, `fecha_fin`) VALUES
-(124, 73, 45, '2023-01-01', '2023-01-05'),
-(125, 86, 45, '2023-01-01', '2023-01-04');
+(136, 97, 35, '2023-01-25', '2023-01-29'),
+(144, 98, 35, '2023-01-18', '2023-01-21'),
+(145, 73, 37, '2023-01-10', '2023-01-15');
 
 -- --------------------------------------------------------
 
@@ -145,7 +171,11 @@ CREATE TABLE `reserva` (
 
 INSERT INTO `reserva` (`id`, `cedula`, `nombre`, `telefono`, `procedencia`, `factura`) VALUES
 (73, '12222222', 'Micaela Bustamante', 21319, 'Ayolas', '212'),
-(86, '1234', 'Carlos Barbozaa', 12345678, 'Ayolas', '234234');
+(86, '1234', 'Carlos Barbozaa', 12345678, 'Ayolas', '234234'),
+(97, '1234567', 'Leo Messi', 123123, 'Rosario', '23123'),
+(98, '1234567', 'Richar Balbuena', 234324, 'fsfds', '34234'),
+(99, '1234567', 'werwer', 34, 'werwer', '3244'),
+(100, '1444', 'dsfsdf', 32443, 'sdfsdf', '3434324');
 
 -- --------------------------------------------------------
 
@@ -192,10 +222,7 @@ CREATE TABLE `venta` (
 INSERT INTO `venta` (`id_venta`, `id_producto`, `id_cliente`, `precio`, `cantidad`, `total_pagar`) VALUES
 (9, 23, 86, '1000', '2', '2000'),
 (10, 29, 86, '10000', '2', '20000'),
-(11, 31, 73, '10000', '2', '20000'),
-(12, 30, 73, '5000', '1', '5000'),
-(13, 30, 86, '2000', '2', '4000'),
-(14, 30, 86, '5000', '2', '10000');
+(15, 29, 98, '10000', '2', '20000');
 
 --
 -- Índices para tablas volcadas
@@ -212,6 +239,12 @@ ALTER TABLE `cargo`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `eventoscalendar`
+--
+ALTER TABLE `eventoscalendar`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `habitaciones`
@@ -272,10 +305,16 @@ ALTER TABLE `categorias`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
+-- AUTO_INCREMENT de la tabla `eventoscalendar`
+--
+ALTER TABLE `eventoscalendar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `id_habitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_habitaciones` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -287,13 +326,13 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `recepcion`
 --
 ALTER TABLE `recepcion`
-  MODIFY `id_recepcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `id_recepcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -305,7 +344,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
