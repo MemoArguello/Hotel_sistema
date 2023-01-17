@@ -111,7 +111,7 @@ if (!isset($usuario)) {
                     <h3 align="center">Registrar Recepcion</h3>
                     <br>
                     <div class="inputContainer">
-                        <select class="input" name="id_reserva" id="inputGroupSelect01"></P>
+                        <select class="input" name="id_reserva" id="inputGroupSelect01" ></P>
                             <?php
                             while ($habitacion = mysqli_fetch_assoc($resultado_r)) {
                                 echo "<option value='" . $habitacion['id'] . "'>" . $habitacion['nombre'] . "</option>";
@@ -120,6 +120,7 @@ if (!isset($usuario)) {
                         </select>
                         <label for="" class="label">Cliente</label>
                     </div>
+                    <br>
                     <div class="inputContainer">
                         <select class="input" name="id_habitacion" id="inputGroupSelect01"></P>
                             <?php

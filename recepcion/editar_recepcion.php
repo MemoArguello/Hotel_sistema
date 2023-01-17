@@ -6,7 +6,11 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
     header("location:../index");
 }
-
+$conexiondb = conectardb();
+$id_recepcion = $_GET['id_recepcion'];
+$query = "SELECT * FROM recepcion WHERE id_recepcion=" . $id_recepcion;
+$resultado = mysqli_query($conexiondb, $query);
+$recepcion = mysqli_fetch_row($resultado);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,15 +30,6 @@ if (!isset($usuario)) {
 </head>
 
 <body>
-    <?php
-    $conexiondb = conectardb();
-    $query = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion, habitaciones.precio, TIMESTAMPDIFF(DAY, fecha_inicio, fecha_fin) AS fecha 
-    FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
-    JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion";
-    $resultado = mysqli_query($conexiondb, $query);
-
-    mysqli_close($conexiondb);
-    ?>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -99,10 +94,6 @@ if (!isset($usuario)) {
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
@@ -111,46 +102,57 @@ if (!isset($usuario)) {
                 <a href="./habitaciones.php">Recepcion</a>
                 <a href="./listado_recepcion.php">Listado de Recepcion</a>
             </div>
-            <div class="">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>N°</th>
-                            <th>Cedula</th>
-                            <th>Cliente</th>
-                            <th>Habitacion</th>
-                            <th>Precio</th>
-                            <th>Dias</th>
-                            <th>Total a Pagar</th>
-                            <th align="left">Opciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <div class="signupFrm">
+                <form action="./update_recepcion.php" method="POST" class="formRecepcion">
+                    <h3 align="center">Registrar Recepcion</h3>
+                    <br>
+                    <div class="inputContainer">
                         <?php
-                        $index = 1;
-                        while ($recepcion = mysqli_fetch_assoc($resultado)) {
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<th scope ='row'>" . $index++ . "</th>";
-                            echo "<td align= 'center'>" . $recepcion['cedula'] . "</td>";
-                            echo "<td align= 'center'>" . $recepcion['nombre'] . "</td>";
-                            echo "<td align= 'center'>" . $recepcion['nombre_habitacion'] . "</td>";
-                            echo "<td align= 'center'>" . $recepcion['precio'] . 'Gs'."</td>";
-                            echo "<td align= 'center'>" . $recepcion['fecha'] . ' Dias'. "</td>";
-                            echo "<td align= 'center'>" . $recepcion['fecha'] * $recepcion['precio'] . 'Gs' . "</td>";
-                            echo "<td>";
-                            echo "<a href='./editar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBoton'> Editar </a>";
-                            echo "<a href='./eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
+                        $query_reserva = mysqli_query($conexiondb, "SELECT * FROM reserva");
+                        $result_reserva = mysqli_num_rows($query_reserva);
                         ?>
-                    </tbody>
-                </table>
-
-
+                        <select class="input" name="id_reserva" id="inputGroupSelect01" value='<?php echo $recepcion[1]; ?>'></P>
+                            <?php
+                                if ($result_reserva > 0) {
+                                    while ($reserva = mysqli_fetch_assoc($query_reserva)) {
+                                ?>
+                                        <option value="<?php echo $reserva['id'] ?>"><?php echo $reserva['nombre'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="inputContainer">
+                        <?php
+                        $query_habitaciones = mysqli_query($conexiondb, "SELECT * FROM habitaciones");
+                        $result_habitaciones= mysqli_num_rows($query_habitaciones);
+                        ?>
+                        <select class="input" name="id_habitaciones" id="inputGroupSelect01" value='<?php echo $recepcion[2]; ?>'></P>
+                            <?php
+                                if ($result_habitaciones > 0) {
+                                    while ($habitaciones = mysqli_fetch_assoc($query_habitaciones)) {
+                                ?>
+                                        <option value="<?php echo $habitaciones['id_habitaciones'] ?>"><?php echo $habitaciones['nombre_habitacion'] ?></option>
+                                <?php
+                                    }
+                                }
+                                ?>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="inputContainer">
+                        <input type="date" class="input" placeholder="a" name="fecha_inicio" value='<?php echo $recepcion[3]; ?>'>
+                        <label for="" class="label">Fecha de Entrada</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="date" class="input" placeholder="a" name="fecha_fin" value='<?php echo $recepcion[4]; ?>'>
+                        <label for="" class="label">Fecha de Salida</label>
+                    </div>
+                    <input type="hidden" name="id_recepcion" id="" value='<?php echo $recepcion[0] ?>' readonly>
+                    <input type="submit" class="submitBtn" value="GUARDAR">
+                </form>
             </div>
         </div>
     </section>

@@ -6,26 +6,30 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
   header("location:../index.php");
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Mi Calendario:: Ing. Urian Viera</title>
-	<link rel="stylesheet" href="">
-	<link rel="stylesheet" type="text/css" href="css/fullcalendar.min.css">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-  <link rel="stylesheet" type="text/css" href="css/home.css">
-  <link rel="stylesheet" href="../CSS/registrar.css">
-  <link rel="stylesheet" href="../CSS/style.css">
 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Reserva</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" type="text/css" href="css/fullcalendar.min.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="../CSS/registrar.css">
 </head>
+
 <body>
-<nav>
+
+  <nav>
     <div class="logo-name">
       <div class="logo-image">
         <img src="./../IMG/logo.svg" alt="">
@@ -56,7 +60,7 @@ if (!isset($usuario)) {
             <i class="uil uil-coffee"></i>
             <span class="link-name">Productos</span>
           </a></li>
-          <li><a href="../ventas/ventas.php">
+        <li><a href="../ventas/ventas.php">
             <i class="uil uil-usd-circle"></i>
             <span class="link-name">Venta</span>
           </a></li>
@@ -95,12 +99,13 @@ if (!isset($usuario)) {
         <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
         <a href="./listado_reserva.php">Lista de Clientes</a>
       </div>
-<?php
+      <br>
+      <br>
+      <br>
+      <?php
 include('config.php');
 
-$SqlEventos   = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion, habitaciones.precio, TIMESTAMPDIFF(DAY, fecha_inicio, fecha_fin) AS fecha 
-FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
-JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion";
+$SqlEventos   = ("SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id, reserva.nombre FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva");
 $resulEventos = mysqli_query($con, $SqlEventos);
 
 ?>
@@ -171,7 +176,7 @@ $(document).ready(function() {
           {
           _id: '<?php echo $dataEvento['id_recepcion']; ?>',
           title: '<?php echo $dataEvento['nombre']; ?>',
-          title2: '<?php echo $dataEvento['nombre_habitacion']; ?>',
+          title2: '<?php echo $dataEvento['id_habitacion']; ?>',
           start: '<?php echo $dataEvento['fecha_inicio']; ?>',
           end:   '<?php echo $dataEvento['fecha_fin']; ?>',
           },
@@ -230,10 +235,9 @@ eventDrop: function (event, delta) {
 
 //Modificar Evento del Calendario 
 eventClick:function(event){
-    var id_recepcion = event._id;
-    $('input[name=id_recepcion').val(id_recepcion);
-    $('input[name=id_reserva').val(event.title);
-    $('input[name=id_habitacion').val(event.title2);
+    var idEvento = event._id;
+    $('input[name=idEvento').val(idEvento);
+    $('input[name=evento').val(event.title);
     $('input[name=fecha_inicio').val(event.start.format('DD-MM-YYYY'));
     $('input[name=fecha_fin').val(event.end.format("DD-MM-YYYY"));
 
@@ -254,4 +258,5 @@ eventClick:function(event){
 
 </script>
 </body>
+
 </html>
