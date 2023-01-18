@@ -31,6 +31,12 @@ mysqli_close($conexiondb);
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="./IMG/logo.svg" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!---bootstrap 4 css-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- datatables css basico-->
+    <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css">
+    <!---datatables bootstrap 4 css-->
+    <link rel="stylesheet" type="text/css" href="../datatables/DataTables-1.13.1/css/dataTables.bootstrap.css"
 </head>
 
 <body>
@@ -74,11 +80,11 @@ mysqli_close($conexiondb);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                    <li><a href="./ventas.php">
+                    <li><a href="../ventas/ventas.php">
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
-                    <li><a href="../reportes_caja.php">
+                    <li><a href="./caja.php">
                         <i class="uil uil-money-withdrawal"></i>
                         <span class="link-name">Caja</span>
                     </a></li>
@@ -120,49 +126,23 @@ mysqli_close($conexiondb);
         </div>
 
         <div class="dash-content">
-            <div class="topnav" id="myTopnav">
-                <a href="../ventas/ventas.php">Realizar Ventas</a>
-                <a href="../ventas/listado_ventas.php">Listado de Ventas</a>
-            </div>
+            <br>
             <div class="signupFrm">
-                <form action="./guardar_venta.php" method="POST" class="formDatos">
-                    <h3 align="center">Venta</h3>
+                <form action="./guardar_caja.php" method="POST" class="formCaja">
+                    <h3 align="center">Apertura de Caja</h3>
                     <br>
                     <div class="inputContainer">
-                        <select class="input" name="id_producto" id="inputGroupSelect01"></P>
-                            <?php
-                            while ($habitacion = mysqli_fetch_assoc($resultado_r)) {
-                                echo "<option value='" . $habitacion['id_producto'] . "'>" . $habitacion['nombre_producto'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                        <label for="" class="label">Producto</label>
+                        <input type="date" class="input" placeholder="a" name="fecha_aper" min="0">
+                        <label for="" class="label">Apertura de caja</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="id_cliente" id="inputGroupSelect01"></P>
-                            <?php
-                            while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
-                                echo "<option value='" . $habitacion['id'] . "'>" . $habitacion['nombre'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                        <label for="" class="label">Cliente</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio" min="0">
-                        <label for="" class="label">Precio</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="cantidad" min="0">
-                        <label for="" class="label">Cantidad</label>
+                        <input type="time" class="input" placeholder="a" name="hora_aper" min="0">
+                        <label for="" class="label">Hora de Apertura</label>
                     </div>
                     <input type="hidden" name="editar" id="" value='no' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
-        </div>
-    </section>
-
     <script src="../JS/script.js"></script>
 
 </body>

@@ -53,7 +53,17 @@ td {
   font-size: 16px;
   border-radius: 4px;
 }
-
+.submitBotonClose {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
 .submitBoton:hover {
   background-color: #1100ff;
   transform: translateY(2px);
@@ -63,6 +73,10 @@ td {
   transform: translateY(2px);
 }
 .submitBotonPass:hover {
+  background-color: #1100ff;
+  transform: translateY(2px);
+}
+.submitBotonClose:hover {
   background-color: #1100ff;
   transform: translateY(2px);
 }
