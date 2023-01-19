@@ -8,9 +8,13 @@ $cantidad       =$_POST['cantidad'];
 $total_pagar    =($_POST['total_pagar'] = $precio * $cantidad);
 
 $conexion = conectardb();
+$estado = "SELECT estado FROM `caja` WHERE estado = 'abierto'";
+
 
 $query = "INSERT INTO venta (id_producto, id_cliente, precio, cantidad, total_pagar) VALUES
 ('$producto','$cliente','$precio','$cantidad','$total_pagar')";
+
+
 
 $respuesta = mysqli_query($conexion, $query);
 

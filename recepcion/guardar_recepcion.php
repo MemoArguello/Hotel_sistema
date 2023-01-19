@@ -8,8 +8,11 @@ $fecha_fin = $_POST['fecha_fin'];
 $conexiondb = conectardb();
 
 
-$query = "INSERT INTO recepcion (id_reserva, id_habitacion, fecha_inicio, fecha_fin, total_dias) VALUES
-('$reserva','$habitacion', '$fecha_inicio', '$fecha_fin', 'SELECT TIMESTAMPDIFF(DAY, fecha_inicio, fecha_fin) AS total_dias')";
+$query = "INSERT INTO recepcion (id_reserva, id_habitacion, fecha_inicio, fecha_fin) VALUES
+('$reserva','$habitacion', '$fecha_inicio', '$fecha_fin')";
+
+$sql = "SELECT TIMESTAMPDIFF(DAY, 'fecha_inicio', 'fecha_fin') AS total_dias;";
+
 
 $query2 = "UPDATE habitaciones SET estado='" .' ocupado' . "' WHERE id_habitaciones=" . $habitacion;
 $respuesta2 = mysqli_query($conexiondb, $query2);
