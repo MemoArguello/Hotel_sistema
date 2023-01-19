@@ -61,6 +61,10 @@ $resultado = mysqli_query($conexiondb, $query);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
+                    <li><a href="../reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
@@ -99,7 +103,7 @@ $resultado = mysqli_query($conexiondb, $query);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./index.php">Calendario</a>
+                <a href="../calendario/index.php">Calendario</a>
                 <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
                 <a href="./listado_reserva.php">Lista de Clientes</a>
             </div>

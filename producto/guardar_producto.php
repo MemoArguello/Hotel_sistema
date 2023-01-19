@@ -1,18 +1,14 @@
 <?php
         include('../db.php');
-        $codigo =$_POST['codigo'];
-        $nombre=$_POST['nombre_producto'];
-        $stock=$_POST['stock_inicial'];
-        $editar = $_POST['editar'];
-        $conexiondb = conectardb();
+        $codigo         =$_POST['codigo'];
+        $nombre         =$_POST['nombre_producto'];
+        $proveedor      =$_POST['id_proveedor'];
+        $stock          =$_POST['stock_inicial'];
+        $conexiondb     =conectardb();
 
-        if ($editar == "si") {
-            $id_producto = $_POST['id_producto'];
-            $query = "UPDATE producto SET codigo='" . $codigo . "', nombre_producto='" . $nombre . "',  stock_inicial='" . $stock."' WHERE id_producto=" . $id_producto;
-        } else {
-            $query = "INSERT INTO producto (codigo,nombre_producto,stock_inicial) VALUES 
-            ('$codigo','$nombre',' $stock')";
-        }
+        $id_producto = $_POST['id_producto'];
+        $query = "UPDATE producto SET codigo='" . $codigo . "', nombre_producto='" . $nombre . "',id_proveedor ='" . $proveedor ."',  stock_inicial='" . $stock."' WHERE id_producto=" . $id_producto;
+
         $respuesta = mysqli_query($conexiondb, $query);
 
         if ($respuesta) {
@@ -21,11 +17,6 @@
             } else {
                 echo "<script>alert('Registro Fallido');
                                         window.location.href='listado_productos.php'</script>";
-            }
-         if ($editar == "si") {
-                echo ("Se pudo actualizar correctamente");
-            } else {
-                echo ("No se pudo actualizar");
             }
           mysqli_close($conexiondb);
 ?>

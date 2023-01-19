@@ -84,7 +84,7 @@ mysqli_close($conexiondb);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
-                    <li><a href="./caja.php">
+                    <li><a href="../reportes_caja.php">
                         <i class="uil uil-money-withdrawal"></i>
                         <span class="link-name">Caja</span>
                     </a></li>

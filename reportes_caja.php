@@ -74,7 +74,11 @@ mysqli_close($conexiondb);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
-                <li><a href="admin/cuentas.php">
+                    <li><a href="reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
+                <li><a href="admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
                     </a></li>
@@ -123,8 +127,6 @@ mysqli_close($conexiondb);
                             <th align="center">hora_cierre</th>
                             <th align="center">Ingreso</th>
                             <th align="center">Egreso</th>
-                            <th align="center">Saldo_anterior</th>
-                            <th align="center">Saldo_apertura</th>
                             <th align="center">Saldo Cierre</th>
                             <th align="center">Estado</th>
                             <th align="center">Opciones</th>
@@ -144,8 +146,6 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $producto['hora_cierre'] . "</td>";
                             echo "<td align= 'center'>" . $producto['ingreso'] . "</td>";
                             echo "<td align= 'center'>" . $producto['egreso'] . "</td>";
-                            echo "<td align= 'center'>" . $producto['saldo_anterior'] . "</td>";
-                            echo "<td align= 'center'>" . $producto['saldo_apertura'] . "</td>";
                             echo "<td align= 'center'>" . $producto['saldo_cierre'] . "</td>";
                             echo "<td align= 'center'>" . $producto['estado'] . "</td>";
                             echo "<td>";

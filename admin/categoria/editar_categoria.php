@@ -67,6 +67,10 @@ $categoria = mysqli_fetch_row($resultado);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
+                    <li><a href="../../reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
                 <li><a href="../listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
@@ -74,22 +78,15 @@ $categoria = mysqli_fetch_row($resultado);
             </ul>
 
             <ul class="logout-mode">
+            <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Modo Oscuro</span>
-                    </a>
-
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-
             </ul>
         </div>
     </nav>
@@ -102,9 +99,7 @@ $categoria = mysqli_fetch_row($resultado);
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <?php
-            echo "Bienvenido $usuario";
-            ?>
+
             <img src="../../IMG/admin.svg" alt="">
         </div>
 

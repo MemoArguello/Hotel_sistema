@@ -13,7 +13,7 @@ $conexion = conectardb();
 $query = "INSERT INTO venta (id_producto, id_cliente, precio, cantidad, total_pagar) VALUES
 ('$producto','$cliente','$precio','$cantidad','$total_pagar')";
 
-$query2 = "UPDATE caja SET ingreso='" . $total_pagar."' WHERE estado= 'abierto'";
+$query2 = "UPDATE caja SET ingreso= (ingreso +" . $total_pagar. ") WHERE estado= 'abierto'";
 
 $query3 = "UPDATE producto SET stock_inicial= (stock_inicial -" . $cantidad . ") WHERE id_producto=" . $producto;
 

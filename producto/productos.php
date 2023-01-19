@@ -31,6 +31,13 @@ mysqli_close($conexiondb);
 </head>
 
 <body>
+<?php
+    $conexiondb = conectardb();
+    $query = "SELECT * FROM proveedores";
+    $resultadop = mysqli_query($conexiondb, $query);
+
+    mysqli_close($conexiondb);
+    ?>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
@@ -104,6 +111,7 @@ mysqli_close($conexiondb);
                 <a href="./productos.php">Registrar Producto</a>
                 <a href="./proveedores.php">Proveedores</a>
                 <a href="./agg_proveedor.php">Agregar Proveedor</a>
+                <a href="./list_compra.php">Compras</a>
             </div>
             <div class="signupFrm">
                 <form action="./insert_producto.php" method="POST" class="form_categoria">
@@ -115,6 +123,16 @@ mysqli_close($conexiondb);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre_producto">
                         <label for="" class="label">Nombre Producto</label>
+                    </div>
+                    <div class="inputContainer">
+                    <select class="input" name="id_proveedor" id="inputGroupSelect01"></P>
+                            <?php
+                            while ($proveedores = mysqli_fetch_assoc($resultadop)) {
+                                echo "<option value='" . $proveedores['id_proveedor'] . "'>" . $proveedores['nombre_prov'] . "</option>";
+                            }
+                            ?>
+                        </select>                        
+                        <label for="" class="label">Proveedor</label>
                     </div>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="stock_inicial">

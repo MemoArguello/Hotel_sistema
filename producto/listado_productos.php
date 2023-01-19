@@ -7,7 +7,8 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM producto";
+$query = "SELECT producto.id_producto, producto.codigo, producto.nombre_producto, producto.id_proveedor, producto.stock_inicial, proveedores.nombre_prov FROM producto
+JOIN proveedores ON proveedores.id_proveedor = producto.id_proveedor";
 $resultado = mysqli_query($conexiondb, $query);
 mysqli_close($conexiondb);
 ?>
@@ -66,6 +67,10 @@ mysqli_close($conexiondb);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
+                    <li><a href="../reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
@@ -109,6 +114,7 @@ mysqli_close($conexiondb);
                 <a href="./productos.php">Registrar Producto</a>
                 <a href="./proveedores.php">Proveedores</a>
                 <a href="./agg_proveedor.php">Agregar Proveedor</a>
+                <a href="./list_compra.php">Compras</a>
             </div>
             <div class="">
                 <table class="">
@@ -117,8 +123,10 @@ mysqli_close($conexiondb);
                             <th>Nº</th>
                             <th align="center">Codigo</th>
                             <th align="center">Nombre</th>
+                            <th align="center">Proveedor</th>
                             <th align="center">Stock</th>
                             <th align="center">Opciones</th>
+                            <th align="center"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,10 +139,14 @@ mysqli_close($conexiondb);
                             echo "<th scope ='row'>" . $index++ . "</th>";
                             echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
                             echo "<td align= 'center'>" . $producto['nombre_producto'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['nombre_prov'] . "</td>";
                             echo "<td align= 'center'>" . $producto['stock_inicial'] . "</td>";
                             echo "<td>";
                             echo "<a href='./editar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "</td>";
+                            echo "<td>";
+                            echo "<a href='./cargar_productos.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonPass'> Comprar </a>";
                             echo "</td>";
                             echo "</tr>";
                         }

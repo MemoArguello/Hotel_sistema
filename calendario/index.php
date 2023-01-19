@@ -60,6 +60,10 @@ if (!isset($usuario)) {
             <i class="uil uil-usd-circle"></i>
             <span class="link-name">Venta</span>
           </a></li>
+          <li><a href="../reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
         <li><a href="../admin/listado/form_cuentas.php">
             <i class="uil uil-setting"></i>
             <span class="link-name">Configuración</span>
@@ -76,11 +80,6 @@ if (!isset($usuario)) {
             <i class="uil uil-signout"></i>
             <span class="link-name">Cerrar Sesión</span>
           </a></li>
-        <li class="mode">
-          <div class="mode-toggle">
-          </div>
-        </li>
-
       </ul>
     </div>
   </nav>

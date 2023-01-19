@@ -7,10 +7,10 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$id_proveedor= $_GET['id_proveedor'];
-$query = "SELECT * FROM proveedores where id_proveedor=" . $id_proveedor;
+$query = "SELECT compra.id_compra, compra.producto, compra.id_proveedor, compra.precio, compra.cantidad, compra.total_pagar, proveedores.nombre_prov FROM compra
+JOIN proveedores ON proveedores.id_proveedor = compra.id_proveedor";
 $resultado = mysqli_query($conexiondb, $query);
-$proveedor = mysqli_fetch_row($resultado);
+mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,11 +43,11 @@ $proveedor = mysqli_fetch_row($resultado);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -55,11 +55,11 @@ $proveedor = mysqli_fetch_row($resultado);
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../reportes.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./productos.php">
+                <li><a href="./listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -96,6 +96,11 @@ $proveedor = mysqli_fetch_row($resultado);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
@@ -107,30 +112,43 @@ $proveedor = mysqli_fetch_row($resultado);
                 <a href="./agg_proveedor.php">Agregar Proveedor</a>
                 <a href="./list_compra.php">Compras</a>
             </div>
-            <div class="signupFrm">
-                <form action="./update_prov.php" method="POST" class="form_categoria">
-                    <h1 class="title">Editar Productos</h1>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre_prov" value='<?php echo $proveedor[1]; ?>'>
-                        <label for="" class="label">Nombre</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="ruc" value='<?php echo $proveedor[2]; ?>'>
-                        <label for="" class="label">RUC</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="telefono" value='<?php echo $proveedor[3]; ?>'>
-                        <label for="" class="label">Telefono</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="ciudad" value='<?php echo $proveedor[4]; ?>'>
-                        <label for="" class="label">Ciudad</label>
-                    </div>
-                    <input type="hidden" name="id_proveedor" id="" value='<?php echo $proveedor[0] ?>' readonly>
-                    <input type="hidden" name="editar" id="" value='si' readonly>
-                    <input type="submit" class="submitBtn" value="GUARDAR">
-                </form>
+            <div class="">
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th align="center">Producto</th>
+                            <th align="center">Proveedor</th>
+                            <th align="center">Precio</th>
+                            <th align="center">Cantidad</th>
+                            <th align="center">Total</th>
+                            <th align="center">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $index = 1;
+                        while ($producto = mysqli_fetch_assoc($resultado)) {
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<tr>";
+                            echo "<th scope ='row'>" . $index++ . "</th>";
+                            echo "<td align= 'center'>" . $producto['producto'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['nombre_prov'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['precio'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['cantidad'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['total_pagar'] . ' Gs'. "</td>";
+                            echo "<td>";
+                            echo "<a href='./editar_producto.php?id_producto=" . $producto['id_compra'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_compra'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
+        </div>
     </section>
 
     <script src="../JS/script.js"></script>

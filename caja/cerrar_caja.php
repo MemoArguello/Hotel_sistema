@@ -8,7 +8,7 @@ if (!isset($usuario)) {
 }
 $conexiondb = conectardb();
 $id_caja = $_GET['id_caja'];
-$query = "SELECT * FROM caja";
+$query = "SELECT * FROM caja WHERE id_caja=" . $id_caja;
 $resultado = mysqli_query($conexiondb, $query);
 $caja = mysqli_fetch_row($resultado);
 
@@ -128,7 +128,7 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <br>
             <div class="signupFrm">
-                <form action="./close_caja.php" method="POST" class="formCaja">
+                <form action="./close_caja.php" method="POST" class="form">
                     <h3 align="center">Cerrar Caja</h3>
                     <br>
                     <div class="inputContainer">
@@ -138,6 +138,14 @@ mysqli_close($conexiondb);
                     <div class="inputContainer">
                         <input type="time" class="input" placeholder="a" name="hora_cierre" min="0"value='<?php echo $caja[4]; ?>'>
                         <label for="" class="label">Hora de Cierre</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="ingreso" min="0"value='<?php echo $caja[5]; ?>' readonly>
+                        <label for="" class="label">Ingreso</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="egreso" min="0"value='<?php echo $caja[6]; ?>' readonly>
+                        <label for="" class="label">Egreso</label>
                     </div>
                     <input type="hidden" name="id_caja" id="" value='<?php echo $caja[0] ?>' readonly >
                     <input type="submit" class="submitBtn" value="GUARDAR">

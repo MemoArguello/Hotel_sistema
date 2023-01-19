@@ -103,6 +103,9 @@ $producto = mysqli_fetch_row($resultado);
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos.php">Productos</a>
                 <a href="./productos.php">Registrar Producto</a>
+                <a href="./proveedores.php">Proveedores</a>
+                <a href="./agg_proveedor.php">Agregar Proveedor</a>
+                <a href="./list_compra.php">Compras</a>
             </div>
             <div class="signupFrm">
                 <form action="./guardar_producto.php" method="POST" class="form_categoria">
@@ -114,6 +117,23 @@ $producto = mysqli_fetch_row($resultado);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre_producto" value='<?php echo $producto[2]; ?>'>
                         <label for="" class="label">Nombre Producto</label>
+                    </div>
+                    <div class="inputContainer">
+                        <?php
+                        $query_categoria = mysqli_query($conexiondb, "select * FROM proveedores");
+                        $result_categoria = mysqli_num_rows($query_categoria);
+                        ?>
+                        <select class="input" name="id_proveedor" class="" id="inputGroupSelect01"></P>
+                            <?php
+                            if ($result_categoria > 0) {
+                                while ($categoria = mysqli_fetch_assoc($query_categoria)) {
+                            ?>
+                                    <option value="<?php echo $categoria['id_proveedor'] ?>"><?php echo $categoria['nombre_prov'] ?></option>
+                            <?php
+                                }
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[3]; ?>'>

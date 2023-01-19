@@ -109,6 +109,7 @@ mysqli_close($conexiondb);
                 <a href="./productos.php">Registrar Producto</a>
                 <a href="./proveedores.php">Proveedores</a>
                 <a href="./agg_proveedor.php">Agregar Proveedor</a>
+                <a href="./list_compra.php">Compras</a>
             </div>
             <div class="">
                 <table class="">
