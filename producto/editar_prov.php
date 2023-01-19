@@ -7,10 +7,10 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$id_producto = $_GET['id_producto'];
-$query = "SELECT * FROM producto where id_producto=" . $id_producto;
+$id_proveedor= $_GET['id_proveedor'];
+$query = "SELECT * FROM proveedores where id_proveedor=" . $id_proveedor;
 $resultado = mysqli_query($conexiondb, $query);
-$producto = mysqli_fetch_row($resultado);
+$proveedor = mysqli_fetch_row($resultado);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,23 +103,29 @@ $producto = mysqli_fetch_row($resultado);
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos.php">Productos</a>
                 <a href="./productos.php">Registrar Producto</a>
+                <a href="./proveedores.php">Proveedores</a>
+                <a href="./agg_proveedor.php">Agregar Proveedor</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_producto.php" method="POST" class="form_categoria">
+                <form action="./update_prov.php" method="POST" class="form_categoria">
                     <h1 class="title">Editar Productos</h1>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="codigo" value='<?php echo $producto[1]; ?>'>
-                        <label for="" class="label">Codigo</label>
+                        <input type="text" class="input" placeholder="a" name="nombre_prov" value='<?php echo $proveedor[1]; ?>'>
+                        <label for="" class="label">Nombre</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre_producto" value='<?php echo $producto[2]; ?>'>
-                        <label for="" class="label">Nombre Producto</label>
+                        <input type="text" class="input" placeholder="a" name="ruc" value='<?php echo $proveedor[2]; ?>'>
+                        <label for="" class="label">RUC</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[3]; ?>'>
-                        <label for="" class="label">Stock Inicial</label>
+                        <input type="text" class="input" placeholder="a" name="telefono" value='<?php echo $proveedor[3]; ?>'>
+                        <label for="" class="label">Telefono</label>
                     </div>
-                    <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="ciudad" value='<?php echo $proveedor[4]; ?>'>
+                        <label for="" class="label">Ciudad</label>
+                    </div>
+                    <input type="hidden" name="id_proveedor" id="" value='<?php echo $proveedor[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

@@ -102,6 +102,8 @@ mysqli_close($conexiondb);
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos.php">Productos</a>
                 <a href="./productos.php">Registrar Producto</a>
+                <a href="./proveedores.php">Proveedores</a>
+                <a href="./agg_proveedor.php">Agregar Proveedor</a>
             </div>
             <div class="signupFrm">
                 <form action="./insert_producto.php" method="POST" class="form_categoria">

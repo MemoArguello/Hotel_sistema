@@ -5,7 +5,13 @@ $id_producto = $_GET['id_producto'];
 
 $conexiondb = conectardb();
 
-$query ="DELETE FROM producto WHERE id_producto=".$id_producto;
+try {
+    $query ="DELETE FROM producto WHERE id_producto=".$id_producto;
+
+}finally{
+    echo "<script>alert('Registros Actualizados');
+window.location.href='./listado_productos.php'</script>";
+}
 
 $respuesta= mysqli_query($conexiondb, $query);
 

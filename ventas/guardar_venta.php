@@ -7,18 +7,22 @@ $precio         =$_POST['precio'];
 $cantidad       =$_POST['cantidad'];
 $total_pagar    =($_POST['total_pagar'] = $precio * $cantidad);
 
-$conexion = conectardb();
-$estado = "SELECT estado FROM `caja` WHERE estado = 'abierto'";
 
+$conexion = conectardb();
 
 $query = "INSERT INTO venta (id_producto, id_cliente, precio, cantidad, total_pagar) VALUES
 ('$producto','$cliente','$precio','$cantidad','$total_pagar')";
 
+$query2 = "UPDATE caja SET ingreso='" . $total_pagar."' WHERE estado= 'abierto'";
 
+$query3 = "UPDATE producto SET stock_inicial= (stock_inicial -" . $cantidad . ") WHERE id_producto=" . $producto;
 
 $respuesta = mysqli_query($conexion, $query);
+$respuesta2 = mysqli_query($conexion, $query2);
+$respuesta3 = mysqli_query($conexion, $query3);
 
-if ($respuesta) {
+
+if ($respuesta and $respuesta2 and $respuesta3) {
     echo "<script>alert('Registro Exitoso');
                            window.location.href='./ventas.php'</script>";
   } else {

@@ -7,10 +7,9 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$id_producto = $_GET['id_producto'];
-$query = "SELECT * FROM producto where id_producto=" . $id_producto;
+$query = "SELECT * FROM producto";
 $resultado = mysqli_query($conexiondb, $query);
-$producto = mysqli_fetch_row($resultado);
+mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,11 +42,11 @@ $producto = mysqli_fetch_row($resultado);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -55,11 +54,11 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../reportes.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./productos.php">
+                <li><a href="./listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
@@ -69,7 +68,7 @@ $producto = mysqli_fetch_row($resultado);
                     </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
+                        <span class="link-name">Configuracion</span>
                     </a></li>
             </ul>
 
@@ -103,25 +102,30 @@ $producto = mysqli_fetch_row($resultado);
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos.php">Productos</a>
                 <a href="./productos.php">Registrar Producto</a>
+                <a href="./proveedores.php">Proveedores</a>
+                <a href="./agg_proveedor.php">Agregar Proveedor</a>
             </div>
             <div class="signupFrm">
-                <form action="./guardar_producto.php" method="POST" class="form_categoria">
-                    <h1 class="title">Editar Productos</h1>
+                <form action="./guardar_prov.php" method="POST" class="form_categoria">
+                    <h2 class="title">Registrar Proveedor</h2>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="codigo" value='<?php echo $producto[1]; ?>'>
-                        <label for="" class="label">Codigo</label>
+                        <input type="text" class="input" placeholder="a" name="nombre_prov">
+                        <label for="" class="label">Nombre</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre_producto" value='<?php echo $producto[2]; ?>'>
-                        <label for="" class="label">Nombre Producto</label>
+                        <input type="text" class="input" placeholder="a" name="ruc">
+                        <label for="" class="label">RUC</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[3]; ?>'>
-                        <label for="" class="label">Stock Inicial</label>
+                        <input type="text" class="input" placeholder="a" name="telefono">
+                        <label for="" class="label">Telefono</label>
                     </div>
-                    <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>
-                    <input type="hidden" name="editar" id="" value='si' readonly>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="ciudad">
+                        <label for="" class="label">Ciudad</label>
+                    </div>
                     <input type="submit" class="submitBtn" value="GUARDAR">
+                    <input type="hidden" name="editar" id="" value='si' readonly>
                 </form>
             </div>
     </section>
