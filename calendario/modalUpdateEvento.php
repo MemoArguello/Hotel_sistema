@@ -10,9 +10,15 @@
   <form name="formEventoUpdate" id="formEventoUpdate" action="UpdateEvento.php" class="form-horizontal" method="POST">
     <input type="hidden" class="form-control" name="id_recepcion" id="id_recepcion">
     <div class="form-group">
+      <label for="fecha_inicio" class="col-sm-12 control-label">Cliente</label>
+      <div class="col-sm-10">
+        <input type="" class="form-control" name="id_cliente" id="fecha_inicio" placeholder="" readonly>
+      </div>
+    </div>
+    <div class="form-group">
       <label for="fecha_inicio" class="col-sm-12 control-label">Habitacion</label>
       <div class="col-sm-10">
-        <input type="" class="form-control" name="id_habitacion" id="fecha_inicio" placeholder="">
+        <input type="" class="form-control" name="id_reserva" id="fecha_inicio" placeholder="" readonly>
       </div>
     </div>
     <div class="form-group">

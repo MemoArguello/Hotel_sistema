@@ -37,7 +37,7 @@ $resultado = mysqli_query($conexiondb, $query);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="index.php">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>

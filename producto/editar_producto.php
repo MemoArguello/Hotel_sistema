@@ -43,11 +43,11 @@ $producto = mysqli_fetch_row($resultado);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../Recepcion/listado_recepcion.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -55,7 +55,7 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../reportes.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
@@ -67,6 +67,10 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
+                    <li><a href="../reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>

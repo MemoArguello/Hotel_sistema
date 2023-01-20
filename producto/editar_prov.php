@@ -43,11 +43,11 @@ $proveedor = mysqli_fetch_row($resultado);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../Recepcion/habitaciones.php">
                         <i class="uil uil-clipboard-notes"></i>
                         <span class="link-name">Recepción</span>
                     </a></li>
@@ -55,7 +55,7 @@ $proveedor = mysqli_fetch_row($resultado);
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="#">
+                <li><a href="../reportes_caja.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
@@ -67,6 +67,10 @@ $proveedor = mysqli_fetch_row($resultado);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
+                    <li><a href="../reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
@@ -105,11 +109,11 @@ $proveedor = mysqli_fetch_row($resultado);
                 <a href="./productos.php">Registrar Producto</a>
                 <a href="./proveedores.php">Proveedores</a>
                 <a href="./agg_proveedor.php">Agregar Proveedor</a>
-                <a href="./list_compra.php">Compras</a>
+                <a href="./list_compra.php">Compras</a>  
             </div>
             <div class="signupFrm">
                 <form action="./update_prov.php" method="POST" class="form_categoria">
-                    <h1 class="title">Editar Productos</h1>
+                    <h1 class="title">Editar Proveedores</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre_prov" value='<?php echo $proveedor[1]; ?>'>
                         <label for="" class="label">Nombre</label>

@@ -169,8 +169,8 @@ $(document).ready(function() {
        while($dataEvento = mysqli_fetch_array($resulEventos)){ ?>
           {
           _id: '<?php echo $dataEvento['id_recepcion']; ?>',
-          title: '<?php echo $dataEvento['nombre']; ?>',
-          title2: '<?php echo $dataEvento['nombre_habitacion']; ?>',
+          title2: '<?php echo $dataEvento['nombre']; ?>',
+          title: '<?php echo $dataEvento['nombre_habitacion']; ?>',
           start: '<?php echo $dataEvento['fecha_inicio']; ?>',
           end:   '<?php echo $dataEvento['fecha_fin']; ?>',
           },
@@ -232,7 +232,7 @@ eventClick:function(event){
     var id_recepcion = event._id;
     $('input[name=id_recepcion').val(id_recepcion);
     $('input[name=id_reserva').val(event.title);
-    $('input[name=id_habitacion').val(event.title2);
+    $('input[name=id_cliente').val(event.title2);
     $('input[name=fecha_inicio').val(event.start.format('DD-MM-YYYY'));
     $('input[name=fecha_fin').val(event.end.format("DD-MM-YYYY"));
 

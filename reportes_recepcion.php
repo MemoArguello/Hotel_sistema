@@ -72,7 +72,7 @@ if (!isset($usuario)) {
                         <i class="uil uil-money-withdrawal"></i>
                         <span class="link-name">Caja</span>
             </a></li>
-                <li><a href="admin/cuentas.php">
+                <li><a href="admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuración</span>
                     </a></li>
