@@ -30,3 +30,4 @@ if($codigo == isset($filas['codigo'])){
 
 
 mysqli_free_result($resultado);
+?>

@@ -18,9 +18,8 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 
 $consulta =
-"SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, recepcion.total_dias, recepcion.total_pagar, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion 
-FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
-JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion";
+"SELECT *
+FROM caja";
 $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 $data=$resultado->fetchALL(PDO::FETCH_ASSOC);

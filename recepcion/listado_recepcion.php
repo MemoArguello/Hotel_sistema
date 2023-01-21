@@ -28,7 +28,7 @@ if (!isset($usuario)) {
 <body>
     <?php
     $conexiondb = conectardb();
-    $query = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion, habitaciones.precio, TIMESTAMPDIFF(DAY, fecha_inicio, fecha_fin) AS fecha 
+    $query = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, recepcion.total_dias, recepcion.total_pagar, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion, habitaciones.precio
     FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
     JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion";
     $resultado = mysqli_query($conexiondb, $query);
@@ -127,6 +127,7 @@ if (!isset($usuario)) {
                             <th>Dias</th>
                             <th>Total a Pagar</th>
                             <th align="left">Opciones</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -142,10 +143,13 @@ if (!isset($usuario)) {
                             echo "<td align= 'center'>" . $recepcion['nombre'] . "</td>";
                             echo "<td align= 'center'>" . $recepcion['nombre_habitacion'] . "</td>";
                             echo "<td align= 'center'>" . $recepcion['precio'] . 'Gs'."</td>";
-                            echo "<td align= 'center'>" . $recepcion['fecha'] . ' Dias'. "</td>";
-                            echo "<td align= 'center'>" . $recepcion['fecha'] * $recepcion['precio'] . 'Gs' . "</td>";
+                            echo "<td align= 'center'>" . $recepcion['total_dias'] . ' Dias'. "</td>";
+                            echo "<td align= 'center'>" . $recepcion['total_pagar'] . 'Gs' . "</td>";
                             echo "<td>";
                             echo "<a href='./editar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='./eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "</td>";
+                            echo "<td>";
                             echo "<a href='./eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
                             echo "</td>";
                             echo "</tr>";

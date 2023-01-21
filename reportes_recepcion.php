@@ -123,6 +123,8 @@ if (!isset($usuario)) {
                                     <th>Habitacion</th>
                                     <th>Fecha de Entrada</th>
                                     <th>Fecha de salida</th>
+                                    <th>Estadia (Dias)</th>
+                                    <th>Total a Pagar (Gs)</th>
                                 </tr>
                             </thead>
                         </table>
@@ -184,6 +186,12 @@ if (!isset($usuario)) {
                             },
                             {
                                 "data": "fecha_fin"
+                            },
+                            {
+                                "data": "total_dias"
+                            },
+                            {
+                                "data": "total_pagar"
                             },
                         ]
                     });

@@ -10,7 +10,7 @@ try{
 }
 finally{
     echo "<script>alert('Registros Actualizados');
-          window.location.href='./index.php'</script>";
+          window.location.href='../calendario/index.php'</script>";
 }
 $respuesta= mysqli_query($conexiondb, $query);
 

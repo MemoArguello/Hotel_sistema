@@ -127,9 +127,10 @@ mysqli_close($conexiondb);
                             <th align="center">hora_cierre</th>
                             <th align="center">Ingreso</th>
                             <th align="center">Egreso</th>
-                            <th align="center">Saldo Cierre</th>
+                            <th align="center">Saldo_Cierre</th>
                             <th align="center">Estado</th>
                             <th align="center">Opciones</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,13 +145,15 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $producto['hora_aper'] . "</td>";
                             echo "<td align= 'center'>" . $producto['fecha_cierre'] . "</td>";
                             echo "<td align= 'center'>" . $producto['hora_cierre'] . "</td>";
-                            echo "<td align= 'center'>" . $producto['ingreso'] . "</td>";
-                            echo "<td align= 'center'>" . $producto['egreso'] . "</td>";
-                            echo "<td align= 'center'>" . $producto['saldo_cierre'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['ingreso'] . " Gs". "</td>";
+                            echo "<td align= 'center'>" . $producto['egreso'] . " Gs"."</td>";
+                            echo "<td align= 'center'>" . $producto['saldo_cierre'] . " Gs". "</td>";
                             echo "<td align= 'center'>" . $producto['estado'] . "</td>";
                             echo "<td>";
                             echo "<a href='./caja/editar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='./caja/eliminar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonEliminar'>Borrar</i></a>";
+                            echo "</td>";
+                            echo "<td>";
                             echo "<a href='./caja/cerrar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonPass'>Cerrar</i></a>";
                             echo "</td>";
                             echo "</tr>";
