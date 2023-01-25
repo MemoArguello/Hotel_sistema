@@ -180,7 +180,7 @@ $resultado6 = mysqli_query($conexiondb, $query6);
                     <div class="card-head">
                         <?php
                         while ($reserva = mysqli_fetch_assoc($resultado2)) {
-                            echo "<td align= 'center'>" . $reserva['total2'] . ' Habitaciones ocupadas' . "</td>";
+                            echo "<td align= 'center'>" . $reserva['total2'] . ' Habitaciones Reservadas' . "</td>";
                         }
                         ?>
                         <span class="uil uil-bed"></span>

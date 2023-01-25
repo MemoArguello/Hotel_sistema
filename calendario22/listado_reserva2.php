@@ -37,13 +37,9 @@ $resultado = mysqli_query($conexiondb, $query);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="index2.php">
+                <li><a href="../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
-                    </a></li>
-                <li><a href="../Recepcion/habitaciones2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
                     </a></li>
                 <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
@@ -57,6 +53,14 @@ $resultado = mysqli_query($conexiondb, $query);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../ventas/ventas2.php">
+            <i class="uil uil-usd-circle"></i>
+            <span class="link-name">Ventas</span>
+          </a></li>
+          <li><a href="../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -91,7 +95,7 @@ $resultado = mysqli_query($conexiondb, $query);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./index2.php">Calendario</a>
+                <a href="../calendario/index2.php">Calendario</a>
                 <a href="../Recepcion/recepcionar2.php">Registrar Cliente</a>
                 <a href="./listado_reserva2.php">Lista de Clientes</a>
             </div>

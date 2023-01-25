@@ -46,10 +46,6 @@ if (!isset($usuario)) {
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../Recepcion/habitaciones2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -62,6 +58,14 @@ if (!isset($usuario)) {
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../../ventas/ventas2.php">
+            <i class="uil uil-usd-circle"></i>
+            <span class="link-name">Ventas</span>
+          </a></li>
+          <li><a href="../../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -98,9 +102,6 @@ if (!isset($usuario)) {
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
-                <a href="../habitaciones/registrar_habitacion2.php">Registrar Habitacion</a>
-                <a href="../categoria/listado_categoria2.php">Listado Categoria</a>
-                <a href="../categoria/categoria2.php">Registrar Categorias</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>

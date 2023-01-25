@@ -56,10 +56,6 @@ $resultado = mysqli_query($conexiondb, $query);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/habitaciones2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -72,6 +68,14 @@ $resultado = mysqli_query($conexiondb, $query);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../ventas/ventas2.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Ventas</span>
+                    </a></li>
+                    <li><a href="../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -107,8 +111,6 @@ $resultado = mysqli_query($conexiondb, $query);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../producto/listado_productos2.php">Productos</a>
-                <a href="../producto/listado_productos2.php">Registrar Producto</a>
                 <a href="../ventas/ventas2.php">Realizar Ventas</a>
             </div>
             <div class="signupFrm">
@@ -156,7 +158,6 @@ $resultado = mysqli_query($conexiondb, $query);
                             <th>Precio</th>
                             <th>Cantidad</th>
                             <th>Total a pagar</th>
-                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -173,9 +174,6 @@ $resultado = mysqli_query($conexiondb, $query);
                             echo "<td align= 'center'>" . $venta['precio'] . ' Gs'."</td>";
                             echo "<td align= 'center'>" . $venta['cantidad']. "</td>";
                             echo "<td align= 'center'>" . $venta['total_pagar']. ' Gs'."</td>";
-                            echo "<td>";
-                            echo "<a href='../eliminar_cuenta.php?id_usuario=" . $venta['id_venta'] . "' class='submitBotonEliminar'> Borrar </a>";
-                            echo "</td>";
                             echo "</tr>";
                         }
                         ?>

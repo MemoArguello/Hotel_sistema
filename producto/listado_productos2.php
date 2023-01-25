@@ -46,10 +46,6 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/recepcionar2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -62,6 +58,14 @@ mysqli_close($conexiondb);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../ventas/ventas2.php">
+            <i class="uil uil-usd-circle"></i>
+            <span class="link-name">Ventas</span>
+          </a></li>
+          <li><a href="../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -98,8 +102,6 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos2.php">Productos</a>
-                <a href="./producto2.php">Registrar Producto</a>
-                <a href="../ventas/ventas2.php">Realizar Ventas</a>
             </div>
             <div class="">
                         <table class="">
@@ -121,7 +123,7 @@ mysqli_close($conexiondb);
                                     echo "<tr>";
                                     echo "<th scope ='row'>" . $index++ . "</th>";
                                     echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
-                                    echo "<td align= 'center'>" . $producto['nombre'] . "</td>";
+                                    echo "<td align= 'center'>" . $producto['nombre_producto'] . "</td>";
                                     echo "<td align= 'center'>" . $producto['stock_inicial'] ."</td>";
                                     echo "<td>";
                                     echo "<a href='./editar_producto2.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";

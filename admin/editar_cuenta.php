@@ -127,7 +127,7 @@ $usuarios = mysqli_fetch_row($resultado);
                         $query_rol = mysqli_query($conexiondb, "select * FROM cargo");
                         $result_cargo = mysqli_num_rows($query_rol);
                         ?>
-                        <select class="input" name="id" class="" id="inputGroupSelect01">
+                        <select class="input" name="id_cargo" class="" id="inputGroupSelect01">
                             <?php
                             if ($result_cargo > 0) {
                                 while ($cargo = mysqli_fetch_array($query_rol)) {
