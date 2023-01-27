@@ -148,8 +148,8 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $producto['cantidad'] . "</td>";
                             echo "<td align= 'center'>" . $producto['total_pagar'] . ' Gs'. "</td>";
                             echo "<td>";
-                            echo "<a href='./editar_producto.php?id_producto=" . $producto['id_compra'] . "' class='submitBoton'> Editar </a>";
-                            echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_compra'] . "' class='submitBotonEliminar'> Borrar </a>";
+                            echo "<a href='./editar_compra.php?id_compra=" . $producto['id_compra'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='./eliminar_compra.php?id_compra=" . $producto['id_compra'] . "' class='submitBotonEliminar'> Borrar </a>";
                             echo "</td>";
                             echo "</tr>";
                         }

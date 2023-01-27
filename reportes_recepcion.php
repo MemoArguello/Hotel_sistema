@@ -129,7 +129,9 @@ $usuario = $_SESSION['usuario'];
                                     <th>Fecha de Entrada</th>
                                     <th>Fecha de salida</th>
                                     <th>Estadia (Dias)</th>
-                                    <th>Total a Pagar (Gs)</th>
+                                    <th>Total habitaion (Gs)</th>
+                                    <th>Productos</th>
+                                    <th>Total (Gs)</th>
                                 </tr>
                             </thead>
                         </table>
@@ -197,6 +199,12 @@ $usuario = $_SESSION['usuario'];
                             },
                             {
                                 "data": "total_pagar"
+                            },
+                            {
+                                "data": "pago_producto"
+                            },
+                            {
+                                "data": "total"
                             },
                         ]
                     });

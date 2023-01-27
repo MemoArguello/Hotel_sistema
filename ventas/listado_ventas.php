@@ -16,9 +16,15 @@ $conexiondb = conectardb();
 }
 $usuario = $_SESSION['usuario'];
 $conexiondb = conectardb();
-$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
-FROM venta JOIN producto ON producto.id_producto = venta.id_producto
-JOIN reserva ON reserva.id = venta.id_cliente";
+
+$sql = "SELECT recepcion.id_recepcion, recepcion.id_reserva, reserva.nombre FROM recepcion
+JOIN reserva ON reserva.id = recepcion.id_reserva";
+$resultado_hab = mysqli_query($conexiondb, $sql);
+
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, recepcion.id_reserva
+FROM venta
+JOIN producto ON producto.id_producto = venta.id_producto
+JOIN recepcion ON recepcion.id_recepcion = venta.id_cliente";
 $resultado = mysqli_query($conexiondb, $query);
 
 mysqli_close($conexiondb);
@@ -46,7 +52,7 @@ mysqli_close($conexiondb);
     <?php
     $conexiondb = conectardb();
     $query_r = "SELECT * FROM producto";
-    $query_h = "SELECT * FROM reserva";
+    $query_h = "SELECT * FROM recepcion";
     $resultado_r = mysqli_query($conexiondb, $query_r);
     $resultado_h = mysqli_query($conexiondb, $query_h);
 
@@ -135,7 +141,6 @@ mysqli_close($conexiondb);
                 <tr>
                     <th>Nº</th>
                     <th>Producto</th>
-                    <th>Cliente</th>
                     <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Total a pagar</th>
@@ -151,7 +156,6 @@ mysqli_close($conexiondb);
                     echo "<tr>";
                     echo "<tr>";
                     echo "<th scope ='row'>" . $index++ . "</th>";
-                    echo "<td align= 'center'>" . $venta['nombre'] . "</td>";
                     echo "<td align= 'center'>" . $venta['nombre_producto'] . "</td>";
                     echo "<td align= 'center'>" . $venta['precio'] . ' Gs' . "</td>";
                     echo "<td align= 'center'>" . $venta['cantidad'] . "</td>";
