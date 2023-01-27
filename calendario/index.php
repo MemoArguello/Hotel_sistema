@@ -99,6 +99,7 @@ $usuario = $_SESSION['usuario'];
     <div class="dash-content">
       <div class="topnav" id="myTopnav">
         <a href="./index.php">Calendario</a>
+        <a href="./listado_recepciones.php">Recepciones</a>
         <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
         <a href="../calendario22/listado_reserva.php">Lista de Clientes</a>
       </div>

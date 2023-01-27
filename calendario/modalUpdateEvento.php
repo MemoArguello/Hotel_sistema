@@ -33,9 +33,6 @@
         <input type="text" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha Final">
       </div>
     </div>
-
-
-    
      <div class="modal-footer">
         <button type="submit" class="btn btn-success">Editar Fecha</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>

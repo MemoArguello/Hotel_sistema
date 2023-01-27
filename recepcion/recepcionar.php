@@ -109,6 +109,7 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../calendario/index.php">Calendario</a>
+                <a href="../calendario/listado_recepciones.php">Recepciones</a>
                 <a href="./recepcionar.php">Registrar Cliente</a>
                 <a href="../calendario22/listado_reserva.php">Lista de Clientes</a>
             </div>

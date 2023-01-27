@@ -1,16 +1,16 @@
 <?php
 require('../db.php');
 
-$id = $_GET['id_reserva'];
+$id = $_GET['id'];
 
 $conexiondb = conectardb();
 
 try{
-    $query ="DELETE FROM recepcion WHERE id_reserva=".$id;
+    $query ="DELETE FROM reserva WHERE id=".$id;
 }
 finally{
     echo "<script>alert('Registros Actualizados');
-          window.location.href='../calendario/index.php'</script>";
+          window.location.href='./listado_reserva.php'</script>";
 }
 $respuesta= mysqli_query($conexiondb, $query);
 

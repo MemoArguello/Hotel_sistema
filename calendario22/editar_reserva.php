@@ -7,6 +7,14 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $resultado = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($resultado)) {
+        if ($usuario['id_cargo'] != 1) {
+            header("location:../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
 $id_categoria = $_GET['id'];
 $query = "SELECT * FROM reserva where id=" . $id_categoria;
 $resultado = mysqli_query($conexiondb, $query);
@@ -45,10 +53,6 @@ $habitacion = mysqli_fetch_row($resultado_c);
                 <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
-                    </a></li>
-                <li><a href="../Recepcion/habitaciones.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
                     </a></li>
                 <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
@@ -105,8 +109,10 @@ $habitacion = mysqli_fetch_row($resultado_c);
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="../Recepcion/habitaciones.php">Habitaciones</a>
-                <a href="./listado_reserva.php">Listado de Reservas</a>
+                <a href="../calendario/index.php">Calendario</a>
+                <a href="../calendario/listado_recepciones.php">Recepciones</a>
+                <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
+                <a href="./listado_reserva.php">Lista de Clientes</a>
             </div>
             <div class="signupFrm">
                 <form action="./update_reserva.php" method="POST" class="formRecepcion">

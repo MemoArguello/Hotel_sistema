@@ -15,7 +15,12 @@ if (!isset($usuario)) {
         }
 }
 $conexiondb = conectardb();
-$query = "SELECT * FROM reserva";
+$query ="SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, 
+recepcion.fecha_fin, recepcion.total_dias, recepcion.total_pagar, recepcion.pago_producto,recepcion.total,
+reserva.id, reserva.cedula, reserva.nombre, 
+habitaciones.nombre_habitacion 
+FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
+JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion";
 $resultado = mysqli_query($conexiondb, $query);
 $usuario = $_SESSION['usuario'];
 
@@ -110,19 +115,23 @@ $usuario = $_SESSION['usuario'];
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../calendario/index.php">Calendario</a>
-                <a href="../calendario/listado_recepciones.php">Recepciones</a>
+                <a href="./listado_recepciones.php">Recepciones</a>
                 <a href="../Recepcion/recepcionar.php">Registrar Cliente</a>
-                <a href="./listado_reserva.php">Lista de Clientes</a>
+                <a href="../calendario22/listado_reserva.php">Lista de Clientes</a>
             </div>
+            <h1 align="center">CHECK OUT</h1>
             <table class="">
                 <thead>
                     <tr>
                         <th>Nº</th>
-                        <th>Cedula</th>
-                        <th>Nombre</th>
-                        <th>telefono</th>
-                        <th>Procedencia</th>
-                        <th>Factura</th>
+                        <th>Cliente</th>
+                        <th>Habitacion</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Total Dias</th>
+                        <th>Precio Hospedaje</th>
+                        <th>Gastos Producto</th>
+                        <th>Total a Pagar</th>
                         <th align="left">Opciones</th>
                     </tr>
                 </thead>
@@ -135,14 +144,17 @@ $usuario = $_SESSION['usuario'];
                         echo "<tr>";
                         echo "<tr>";
                         echo "<th scope ='row'>" . $index++ . "</th>";
-                        echo "<td align= 'center'>" . $reserva['cedula'] . "</td>";
                         echo "<td align= 'center'>" . $reserva['nombre'] . "</td>";
-                        echo "<td align= 'center'>" . $reserva['telefono'] . "</td>";
-                        echo "<td align= 'center'>" . $reserva['procedencia'] . "</td>";
-                        echo "<td align= 'center'>" . $reserva['factura'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['nombre_habitacion'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['fecha_inicio'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['fecha_fin'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['total_dias'] . "</td>";
+                        echo "<td align= 'center'>" . $reserva['total_pagar'] .  " Gs" . "</td>";
+                        echo "<td align= 'center'>" . $reserva['pago_producto'] .  " Gs" . "</td>";
+                        echo "<td align= 'center'>" . $reserva['total'] .  " Gs" . "</td>";
                         echo "<td>";
-                        echo "<a href='./editar_reserva.php?id=" . $reserva['id'] . "' class='submitBoton'> Editar </a>";
-                        echo "<a href='./eliminar_reserva.php?id=" . $reserva['id'] . "' class='submitBotonEliminar'> Borrar </a>";
+                        echo "<a href='./editar_reserva.php?id=" . $reserva['id_recepcion'] . "' class='submitBoton'> Editar </a>";
+                        echo "<a href='./eliminar_reserva.php?id=" . $reserva['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
                         echo "</td>";
                         echo "</tr>";
                     }

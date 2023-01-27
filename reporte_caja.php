@@ -126,14 +126,14 @@ $usuario = $_SESSION['usuario'];
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Habitacion</th>
-                                    <th>Fecha de Entrada</th>
-                                    <th>Fecha de salida</th>
-                                    <th>Estadia (Dias)</th>
-                                    <th>Total habitaion (Gs)</th>
-                                    <th>Productos</th>
-                                    <th>Total (Gs)</th>
+                                    <th>fecha Apertura</th>
+                                    <th>Hora Apertura</th>
+                                    <th>Fecha Cierre</th>
+                                    <th>Hora Cierre</th>
+                                    <th>Ingreso</th>
+                                    <th>Egreso</th>
+                                    <th>Saldo Cierre</th>
+                                    <th>Estado</th>
                                 </tr>
                             </thead>
                         </table>
@@ -178,35 +178,35 @@ $usuario = $_SESSION['usuario'];
                             },
                         ],
                         "ajax": {
-                            "url": "list.php",
+                            "url": "list_caja.php",
                             "dataSrc": ""
                         },
                         "columns": [{
-                                "data": "id_recepcion"
+                                "data": "id_caja"
                             },
                             {
-                                "data": "nombre"
+                                "data": "fecha_aper"
                             },
                             {
-                                "data": "nombre_habitacion"
+                                "data": "hora_aper"
                             },
                             {
-                                "data": "fecha_inicio"
+                                "data": "fecha_cierre"
                             },
                             {
-                                "data": "fecha_fin"
+                                "data": "hora_cierre"
                             },
                             {
-                                "data": "total_dias"
+                                "data": "ingreso"
                             },
                             {
-                                "data": "total_pagar"
+                                "data": "egreso"
                             },
                             {
-                                "data": "pago_producto"
+                                "data": "saldo_cierre"
                             },
                             {
-                                "data": "total"
+                                "data": "estado"
                             },
                         ]
                     });

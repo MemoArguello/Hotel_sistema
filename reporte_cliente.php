@@ -117,6 +117,7 @@ $usuario = $_SESSION['usuario'];
                 <a href="./reporte_habitacion.php">Reporte Habitaciones</a>
                 <a href="./reporte_cliente.php">Reporte Clientes</a>
                 <a href="./reporte_caja.php">Reporte Caja</a>
+
             </div>
             <div class="container">
                 <br>
@@ -126,14 +127,11 @@ $usuario = $_SESSION['usuario'];
                             <thead>
                                 <tr>
                                     <th>Id</th>
+                                    <th>Cedula</th>
                                     <th>Nombre</th>
-                                    <th>Habitacion</th>
-                                    <th>Fecha de Entrada</th>
-                                    <th>Fecha de salida</th>
-                                    <th>Estadia (Dias)</th>
-                                    <th>Total habitaion (Gs)</th>
-                                    <th>Productos</th>
-                                    <th>Total (Gs)</th>
+                                    <th>Numero de Telefono</th>
+                                    <th>Procedencia</th>
+                                    <th>Factura</th>
                                 </tr>
                             </thead>
                         </table>
@@ -178,35 +176,26 @@ $usuario = $_SESSION['usuario'];
                             },
                         ],
                         "ajax": {
-                            "url": "list.php",
+                            "url": "list_cliente.php",
                             "dataSrc": ""
                         },
                         "columns": [{
-                                "data": "id_recepcion"
+                                "data": "id"
+                            },
+                            {
+                                "data": "cedula"
                             },
                             {
                                 "data": "nombre"
                             },
                             {
-                                "data": "nombre_habitacion"
+                                "data": "telefono"
                             },
                             {
-                                "data": "fecha_inicio"
+                                "data": "procedencia"
                             },
                             {
-                                "data": "fecha_fin"
-                            },
-                            {
-                                "data": "total_dias"
-                            },
-                            {
-                                "data": "total_pagar"
-                            },
-                            {
-                                "data": "pago_producto"
-                            },
-                            {
-                                "data": "total"
+                                "data": "factura"
                             },
                         ]
                     });

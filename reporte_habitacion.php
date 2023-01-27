@@ -127,13 +127,10 @@ $usuario = $_SESSION['usuario'];
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Habitacion</th>
-                                    <th>Fecha de Entrada</th>
-                                    <th>Fecha de salida</th>
-                                    <th>Estadia (Dias)</th>
-                                    <th>Total habitaion (Gs)</th>
-                                    <th>Productos</th>
-                                    <th>Total (Gs)</th>
+                                    <th>Detalles</th>
+                                    <th>Categoria</th>
+                                    <th>Precio</th>
+                                    <th>Estado</th>
                                 </tr>
                             </thead>
                         </table>
@@ -178,36 +175,27 @@ $usuario = $_SESSION['usuario'];
                             },
                         ],
                         "ajax": {
-                            "url": "list.php",
+                            "url": "list_habitacion.php",
                             "dataSrc": ""
                         },
                         "columns": [{
-                                "data": "id_recepcion"
-                            },
-                            {
-                                "data": "nombre"
+                                "data": "id_habitaciones"
                             },
                             {
                                 "data": "nombre_habitacion"
                             },
                             {
-                                "data": "fecha_inicio"
+                                "data": "detalles"
                             },
                             {
-                                "data": "fecha_fin"
+                                "data": "categoria"
                             },
                             {
-                                "data": "total_dias"
+                                "data": "precio"
                             },
                             {
-                                "data": "total_pagar"
-                            },
-                            {
-                                "data": "pago_producto"
-                            },
-                            {
-                                "data": "total"
-                            },
+                                "data": "estado"
+                            }
                         ]
                     });
                 });

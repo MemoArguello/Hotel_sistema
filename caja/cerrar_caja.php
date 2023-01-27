@@ -6,7 +6,17 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
     header("location:../index.php");
 }
+
 $conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $resultado = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($resultado)) {
+        if ($usuario['id_cargo'] != 1) {
+            header("location:../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+
 $id_caja = $_GET['id_caja'];
 $query = "SELECT * FROM caja WHERE id_caja=" . $id_caja;
 $resultado = mysqli_query($conexiondb, $query);

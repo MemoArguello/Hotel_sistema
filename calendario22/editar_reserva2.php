@@ -96,13 +96,9 @@ $habitacion = mysqli_fetch_row($resultado_c);
         </div>
 
         <div class="dash-content">
-            <div class="topnav" id="myTopnav">
-                <a href="../Recepcion/habitaciones2.php">Habitaciones</a>
-                <a href="./listado_reserva2.php">Listado de Reservas</a>
-            </div>
             <div class="signupFrm">
                 <form action="./update_reserva2.php" method="POST" class="formRecepcion">
-                    <h3 align="center">Recepcion</h3>
+                    <h3 align="center">Editar Cliente</h3>
                     <br>
                     <div class="inputContainer">
                         <input type="number" class="input" placeholder="a" name="cedula" value='<?php echo $reserva[1]; ?>'>

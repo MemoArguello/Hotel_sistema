@@ -15,7 +15,12 @@ $seteando_f_final  = date('Y-m-d', strtotime($f_fin));
 $fecha_fin1        = strtotime($seteando_f_final);
 $fecha_fin         = date('Y-m-d', ($fecha_fin1));  
 
-$UpdateProd = ("UPDATE recepcion SET fecha_inicio ='$fecha_inicio',fecha_fin ='$fecha_fin'
+
+$fechaInicialSegundos = strtotime($fecha_inicio);
+$fechaFinalSegundos = strtotime($fecha_fin);
+$dias = ($fechaFinalSegundos - $fechaInicialSegundos) / 86400;
+
+$UpdateProd = ("UPDATE recepcion SET fecha_inicio ='$fecha_inicio',fecha_fin ='$fecha_fin', total_dias ='$dias'
     WHERE id_recepcion='".$idEvento."' ");
 $result = mysqli_query($con, $UpdateProd);
 

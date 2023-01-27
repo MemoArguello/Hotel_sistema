@@ -168,7 +168,10 @@ $resultado6 = mysqli_query($conexiondb, $query6);
             <div class="topnav" id="myTopnav">
                 <a href="./reportes.php">General</a>
                 <a href="./reportes_recepcion.php">Reporte Reservas</a>
-                <a href="./reportes_habitacion.php">Reporte Habitaciones</a>
+                <a href="./reporte_habitacion.php">Reporte Habitaciones</a>
+                <a href="./reporte_cliente.php">Reporte Clientes</a>
+                <a href="./reporte_caja.php">Reporte Caja</a>
+
             </div>
             <div class="analytics">
                 <div class="card">
