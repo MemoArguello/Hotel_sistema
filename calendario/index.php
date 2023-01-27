@@ -6,6 +6,18 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
   header("location:../index.php");
 }
+
+
+$conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $resultado = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($resultado)) {
+        if ($usuario['id_cargo'] != 1) {
+            header("location:../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,10 +51,6 @@ if (!isset($usuario)) {
         <li><a href="./index.php">
             <i class="uil uil-calendar-alt"></i>
             <span class="link-name">Reservas</span>
-          </a></li>
-        <li><a href="../Recepcion/habitaciones.php">
-            <i class="uil uil-clipboard-notes"></i>
-            <span class="link-name">Recepción</span>
           </a></li>
         <li><a href="../admin/listado/form_habitaciones.php">
             <i class="uil uil-bed"></i>

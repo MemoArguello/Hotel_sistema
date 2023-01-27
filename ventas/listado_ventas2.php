@@ -4,9 +4,13 @@ include '../db.php';
 
 $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
-    header("location:../index");
+    header("location:../index.php");
 }
-
+$conexiondb = conectardb();
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
+FROM venta JOIN producto ON producto.id_producto = venta.id_producto
+JOIN reserva ON reserva.id = venta.id_cliente";
+$resultado = mysqli_query($conexiondb, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,18 +24,20 @@ if (!isset($usuario)) {
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/registrar.css">
     <link rel="stylesheet" href="../admin/listado/listado.css">
+
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="./IMG/logo.svg" rel="icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <?php
+<?php
     $conexiondb = conectardb();
-    $query = "SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, recepcion.fecha_fin, recepcion.total_dias, recepcion.total_pagar, reserva.id, reserva.cedula, reserva.nombre, habitaciones.nombre_habitacion, habitaciones.precio
-    FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
-    JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion";
-    $resultado = mysqli_query($conexiondb, $query);
+    $query_r = "SELECT * FROM producto";
+    $query_h = "SELECT * FROM reserva";
+    $resultado_r = mysqli_query($conexiondb, $query_r);
+    $resultado_h = mysqli_query($conexiondb, $query_h);
 
     mysqli_close($conexiondb);
     ?>
@@ -46,42 +52,34 @@ if (!isset($usuario)) {
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../calendario/index.php">
+                <li><a href="../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="./habitaciones.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
-                <li><a href="../admin/listado/form_habitaciones.php">
+                <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="../reportes.php">
+                <li><a href="../reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../producto/listado_productos.php">
+                <li><a href="../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                    <li><a href="../ventas/ventas.php">
+                    <li><a href="../ventas/ventas2.php">
                         <i class="uil uil-usd-circle"></i>
-                        <span class="link-name">Venta</span>
+                        <span class="link-name">Ventas</span>
                     </a></li>
-                    <li><a href="../reportes_caja.php">
+                    <li><a href="../reportes_caja2.php">
                         <i class="uil uil-money-withdrawal"></i>
                         <span class="link-name">Caja</span>
             </a></li>
-                <li><a href="../admin/listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
-                    </a></li>
             </ul>
 
             <ul class="logout-mode">
-                <li><a>
+            <li><a>
                         <i class="uil uil-user"></i>
                         <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
                     </a>
@@ -91,10 +89,11 @@ if (!isset($usuario)) {
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
 
-                <li class="mode">
+                    <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
+
             </ul>
         </div>
     </nav>
@@ -107,64 +106,48 @@ if (!isset($usuario)) {
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <img src="../IMG/admin.svg" alt="">
+            <img src="../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./habitaciones.php">Recepcion</a>
-                <a href="./listado_recepcion.php">Listado de Recepcion</a>
+                <a href="../ventas/ventas2.php">Realizar Ventas</a>
+                <a href="../ventas/listado_ventas2.php">Realizar Ventas</a>
             </div>
-            <div class="">
-                <table>
+            <table class="">
                     <thead>
                         <tr>
-                            <th>N°</th>
-                            <th>Cedula</th>
+                            <th>Nº</th>
+                            <th>Producto</th>
                             <th>Cliente</th>
-                            <th>Habitacion</th>
                             <th>Precio</th>
-                            <th>Dias</th>
-                            <th>Total a Pagar</th>
-                            <th align="left">Opciones</th>
-                            <th></th>
+                            <th>Cantidad</th>
+                            <th>Total a pagar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $index = 1;
-                        while ($recepcion = mysqli_fetch_assoc($resultado)) {
+                        while ($venta = mysqli_fetch_assoc($resultado)) {
                             echo "<tr>";
                             echo "<tr>";
                             echo "<tr>";
                             echo "<tr>";
                             echo "<th scope ='row'>" . $index++ . "</th>";
-                            echo "<td align= 'center'>" . $recepcion['cedula'] . "</td>";
-                            echo "<td align= 'center'>" . $recepcion['nombre'] . "</td>";
-                            echo "<td align= 'center'>" . $recepcion['nombre_habitacion'] . "</td>";
-                            echo "<td align= 'center'>" . $recepcion['precio'] . 'Gs'."</td>";
-                            echo "<td align= 'center'>" . $recepcion['total_dias'] . ' Dias'. "</td>";
-                            echo "<td align= 'center'>" . $recepcion['total_pagar'] . 'Gs' . "</td>";
-                            echo "<td>";
-                            echo "<a href='./editar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBoton'> Editar </a>";
-                            echo "<a href='./eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<a href='./eliminar_recepcion.php?id_recepcion=" . $recepcion['id_recepcion'] . "' class='submitBotonEliminar'> Borrar </a>";
-                            echo "</td>";
+                            echo "<td align= 'center'>" . $venta['nombre'] . "</td>";
+                            echo "<td align= 'center'>" . $venta['nombre_producto'] . "</td>";
+                            echo "<td align= 'center'>" . $venta['precio'] . ' Gs'."</td>";
+                            echo "<td align= 'center'>" . $venta['cantidad']. "</td>";
+                            echo "<td align= 'center'>" . $venta['total_pagar']. ' Gs'."</td>";
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
-
-
-            </div>
-        </div>
     </section>
 
     <script src="../JS/script.js"></script>
-    <script src="../JS/registro.js"></script>
+
 </body>
 
 </html>

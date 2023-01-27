@@ -47,10 +47,6 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/recepcionar2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -63,6 +59,14 @@ $producto = mysqli_fetch_row($resultado);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../ventas/ventas2.php">
+            <i class="uil uil-usd-circle"></i>
+            <span class="link-name">Ventas</span>
+          </a></li>
+          <li><a href="../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -95,7 +99,6 @@ $producto = mysqli_fetch_row($resultado);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos2.php">Productos</a>
-                <a href="./productos2.php">Registrar Producto</a>
             </div>
             <div class="signupFrm">
                 <form action="./guardar_producto2.php" method="POST" class="form_categoria">
@@ -105,20 +108,12 @@ $producto = mysqli_fetch_row($resultado);
                         <label for="" class="label">Codigo</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre" value='<?php echo $producto[2]; ?>'>
+                        <input type="text" class="input" placeholder="a" name="nombre_producto" value='<?php echo $producto[2]; ?>'>
                         <label for="" class="label">Nombre Producto</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_compra" value='<?php echo $producto[3]; ?>'>
-                        <label for="" class="label">Precio de Compra</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio_venta" value='<?php echo $producto[4]; ?>'>
-                        <label for="" class="label">Precio de Venta</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[5]; ?>'>
-                        <label for="" class="label">Stock Inicial</label>
+                        <input type="number" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[4]; ?>'>
+                        <label for="" class="label">Stock</label>
                     </div>
                     <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>

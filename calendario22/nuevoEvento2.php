@@ -15,10 +15,10 @@ $query = "INSERT into reserva(cedula, nombre, telefono, procedencia, factura) VA
 $respuesta = mysqli_query($conexiondb, $query);
 if ($respuesta) {
   echo "<script>alert('Registro Exitoso');
-                          window.location.href='./index2.php'</script>";
+                          window.location.href='../calendario/index2.php'</script>";
 } else {
   echo "<script>alert('Registro Fallido');
-                          window.location.href='./index2.php'</script>";
+                          window.location.href='../calendario/index2.php'</script>";
 }
 mysqli_close($conexiondb);
 ?>

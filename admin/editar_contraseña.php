@@ -53,10 +53,6 @@ $usuarios = mysqli_fetch_row($resultado);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/habitaciones.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="./habitaciones/registrar_habitacion.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -129,7 +125,6 @@ $usuarios = mysqli_fetch_row($resultado);
         </div>
     </section>
 
-    <script src="./../JS/script.js"></script>
     <?php
     mysqli_close($conexiondb);
     ?>

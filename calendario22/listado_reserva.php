@@ -6,9 +6,19 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
     header("location:../index.php");
 }
+    $conexiondb = conectardb();
+    $sql = "SELECT usuario, id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $resultado1 = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($resultado1)) {
+        if ($usuario['id_cargo'] != 1) {
+            header("location:../index.php");
+        }
+}
 $conexiondb = conectardb();
 $query = "SELECT * FROM reserva";
 $resultado = mysqli_query($conexiondb, $query);
+$usuario = $_SESSION['usuario'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,10 +50,6 @@ $resultado = mysqli_query($conexiondb, $query);
                 <li><a href="../calendario/index.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
-                    </a></li>
-                <li><a href="../Recepcion/habitaciones.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
                     </a></li>
                 <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>

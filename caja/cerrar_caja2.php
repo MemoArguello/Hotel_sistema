@@ -7,10 +7,10 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
-FROM venta JOIN producto ON producto.id_producto = venta.id_producto
-JOIN reserva ON reserva.id = venta.id_cliente";
+$id_caja = $_GET['id_caja'];
+$query = "SELECT * FROM caja WHERE id_caja=" . $id_caja;
 $resultado = mysqli_query($conexiondb, $query);
+$caja = mysqli_fetch_row($resultado);
 
 mysqli_close($conexiondb);
 ?>
@@ -60,33 +60,29 @@ mysqli_close($conexiondb);
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="../calendario/index.php">
+                <li><a href="../calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../admin/listado/form_habitaciones.php">
+                <li><a href="../admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="../reportes.php">
+                <li><a href="../reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="../producto/listado_productos.php">
+                <li><a href="../producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                    <li><a href="../ventas/ventas.php">
+                    <li><a href="../ventas/ventas2.php">
                         <i class="uil uil-usd-circle"></i>
-                        <span class="link-name">Venta</span>
+                        <span class="link-name">Ventas</span>
                     </a></li>
-                    <li><a href="../reportes_caja.php">
+                    <li><a href="../reportes_caja2.php">
                         <i class="uil uil-money-withdrawal"></i>
                         <span class="link-name">Caja</span>
-                    </a></li>
-                <li><a href="../admin/listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
@@ -124,18 +120,26 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <br>
             <div class="signupFrm">
-                <form action="./guardar_caja.php" method="POST" class="formCaja">
-                    <h3 align="center">Apertura de Caja</h3>
+                <form action="./close_caja2.php" method="POST" class="form">
+                    <h3 align="center">Cerrar Caja</h3>
                     <br>
                     <div class="inputContainer">
-                        <input type="date" class="input" placeholder="a" name="fecha_aper" min="0">
-                        <label for="" class="label">Apertura de caja</label>
+                        <input type="date" class="input" placeholder="a" name="fecha_cierre" min="0" value='<?php echo $caja[3]; ?>'>
+                        <label for="" class="label">Cierre de caja</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="time" class="input" placeholder="a" name="hora_aper" min="0">
-                        <label for="" class="label">Hora de Apertura</label>
+                        <input type="time" class="input" placeholder="a" name="hora_cierre" min="0"value='<?php echo $caja[4]; ?>'>
+                        <label for="" class="label">Hora de Cierre</label>
                     </div>
-                    <input type="hidden" name="editar" id="" value='no' readonly>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="ingreso" min="0"value='<?php echo $caja[5]; ?>' readonly>
+                        <label for="" class="label">Ingreso</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="egreso" min="0"value='<?php echo $caja[6]; ?>' readonly>
+                        <label for="" class="label">Egreso</label>
+                    </div>
+                    <input type="hidden" name="id_caja" id="" value='<?php echo $caja[0] ?>' readonly >
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>

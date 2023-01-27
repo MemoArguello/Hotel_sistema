@@ -45,10 +45,6 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/habitaciones.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="./listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -144,7 +140,7 @@ mysqli_close($conexiondb);
         </div>
     </section>
 
-    <script src="./../JS/script.js"></script>
+    <script src="../JS/script.js"></script>
 
 </body>
 

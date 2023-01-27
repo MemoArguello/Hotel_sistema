@@ -100,7 +100,7 @@ mysqli_close($conexiondb);
                 <a href="../calendario22/listado_reserva2.php">Lista de Clientes</a>
             </div>
             <div class="signupFrm">
-                <form action="../calendario/nuevoEvento2.php" method="POST" class="formRecepcion">
+                <form action="../calendario22/nuevoEvento2.php" method="POST" class="formRecepcion">
                     <h3 align="center">Recepcion</h3>
                     <br>
                     <div class="inputContainer">

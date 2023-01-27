@@ -50,10 +50,6 @@ $habitacion = mysqli_fetch_row($resultado);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../Recepcion/habitaciones2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -66,6 +62,14 @@ $habitacion = mysqli_fetch_row($resultado);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../../ventas/ventas2.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Ventas</span>
+                    </a></li>
+                    <li><a href="../../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -97,9 +101,6 @@ $habitacion = mysqli_fetch_row($resultado);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
-                <a href="./registrar_habitacion2.php">Registrar Habitacion</a>
-                <a href="../categoria/listado_categoria2.php">Listado Categoria</a>
-                <a href="../categoria/categoria2.php">Registrar Categorias</a>
             </div>
             <div class="signupFrm">
                 <form action="./update_habitacion2.php" method="POST" class="form_habitacion">

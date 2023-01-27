@@ -112,6 +112,7 @@ $resultado = mysqli_query($conexiondb, $query);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../ventas/ventas2.php">Realizar Ventas</a>
+                <a href="../ventas/listado_ventas2.php">Listado Ventas</a>
             </div>
             <div class="signupFrm">
                 <form action="./guardar_venta2.php" method="POST" class="formDatos">
@@ -149,36 +150,6 @@ $resultado = mysqli_query($conexiondb, $query);
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
-            <table class="">
-                    <thead>
-                        <tr>
-                            <th>Nº</th>
-                            <th>Producto</th>
-                            <th>Cliente</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total a pagar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $index = 1;
-                        while ($venta = mysqli_fetch_assoc($resultado)) {
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<th scope ='row'>" . $index++ . "</th>";
-                            echo "<td align= 'center'>" . $venta['id_producto'] . "</td>";
-                            echo "<td align= 'center'>" . $venta['id_cliente'] . "</td>";
-                            echo "<td align= 'center'>" . $venta['precio'] . ' Gs'."</td>";
-                            echo "<td align= 'center'>" . $venta['cantidad']. "</td>";
-                            echo "<td align= 'center'>" . $venta['total_pagar']. ' Gs'."</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
     </section>
 
     <script src="../JS/script.js"></script>

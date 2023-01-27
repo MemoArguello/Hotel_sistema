@@ -113,8 +113,8 @@ $resulEventos = mysqli_query($con, $SqlEventos);
 
 
 <?php  
-  include('modalNuevoEvento.php');
-  include('modalUpdateEvento.php');
+  include('modalNuevoEvento2.php');
+  include('modalUpdateEvento2.php');
 ?>
 
 
