@@ -7,6 +7,15 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($result)) {
+        if ($usuario['id_cargo'] != 1) {
+            header("location:../../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+$conexiondb = conectardb();
 $query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
 FROM venta JOIN producto ON producto.id_producto = venta.id_producto
 JOIN reserva ON reserva.id = venta.id_cliente";

@@ -7,6 +7,15 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($result)) {
+        if ($usuario['id_cargo'] != 1) {
+            header("location:../../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+$conexiondb = conectardb();
 $id_proveedor= $_GET['id_proveedor'];
 $query = "SELECT * FROM proveedores where id_proveedor=" . $id_proveedor;
 $resultado = mysqli_query($conexiondb, $query);
