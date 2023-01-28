@@ -44,7 +44,8 @@ $resultado = mysqli_query($conexiondb, $query);
 <?php
     $conexiondb = conectardb();
     $query_r = "SELECT * FROM producto";
-    $query_h = "SELECT * FROM reserva";
+    $query_h = "SELECT recepcion.id_recepcion, recepcion.id_reserva, reserva.nombre FROM recepcion
+    JOIN reserva ON reserva.id = recepcion.id_reserva";
     $resultado_r = mysqli_query($conexiondb, $query_r);
     $resultado_h = mysqli_query($conexiondb, $query_h);
 
@@ -138,10 +139,10 @@ $resultado = mysqli_query($conexiondb, $query);
                         <label for="" class="label">Producto</label>
                     </div>
                     <div class="inputContainer">
-                        <select class="input" name="id_cliente" id="inputGroupSelect01"></P>
+                        <select class="input" name="id_recepcion" id="inputGroupSelect01"></P>
                             <?php
                             while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
-                                echo "<option value='" . $habitacion['id'] . "'>" . $habitacion['nombre'] . "</option>";
+                                echo "<option value='" . $habitacion['id_recepcion'] . "'>" . $habitacion['nombre'] . "</option>";
                             }
                             ?>
                         </select>

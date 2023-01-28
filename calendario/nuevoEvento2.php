@@ -24,8 +24,8 @@ $monto = mysqli_fetch_assoc($resultado);
 
 $total_pagar = ($dias * $monto['precio']);
 
-$InsertNuevoEvento = "INSERT INTO recepcion (id_reserva, id_habitacion, fecha_inicio, fecha_fin, total_dias, total_pagar) VALUES
-('$reserva','$habitacion', '$fecha_inicio', '$fecha_fin','$dias','$total_pagar')";
+$InsertNuevoEvento = "INSERT INTO recepcion (id_reserva, id_habitacion, fecha_inicio, fecha_fin, total_dias, total_pagar, pago_producto, total) VALUES
+('$reserva','$habitacion', '$fecha_inicio', '$fecha_fin','$dias','$total_pagar','0', '$total_pagar')";
 $resultadoNuevoEvento = mysqli_query($con, $InsertNuevoEvento);
 
 $query3 = "UPDATE caja SET ingreso= (ingreso +" . $total_pagar. ") WHERE estado= 'abierto'";
