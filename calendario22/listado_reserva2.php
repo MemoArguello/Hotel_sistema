@@ -6,6 +6,16 @@ $usuario = $_SESSION['usuario'];
 if (!isset($usuario)) {
     header("location:../index.php");
 }
+
+$conexiondb = conectardb();
+$sql = "SELECT usuario, id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+$result_vista = mysqli_query($conexiondb, $sql);
+while ($usuario= mysqli_fetch_assoc($result_vista )) {
+    if ($usuario['id_cargo'] != 2) {
+        header("location:../index.php");
+    }
+}
+$usuario = $_SESSION['usuario'];
 $conexiondb = conectardb();
 $query = "SELECT * FROM reserva";
 $resultado = mysqli_query($conexiondb, $query);
@@ -96,6 +106,7 @@ $resultado = mysqli_query($conexiondb, $query);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../calendario/index2.php">Calendario</a>
+                <a href="../calendario/listado_recepciones2.php">Recepciones</a>
                 <a href="../Recepcion/recepcionar2.php">Registrar Cliente</a>
                 <a href="./listado_reserva2.php">Lista de Clientes</a>
             </div>
