@@ -135,7 +135,6 @@ mysqli_close($conexiondb);
                             <th align="center">Saldo_Cierre</th>
                             <th align="center">Estado</th>
                             <th align="center">Opciones</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -155,12 +154,8 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $producto['saldo_cierre'] . " Gs". "</td>";
                             echo "<td align= 'center'>" . $producto['estado'] . "</td>";
                             echo "<td>";
-                            echo "<a href='./caja/editar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBoton'> Editar </a>";
+                            echo "<a href='./caja/cerrar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonCerrar'>Cerrar</i></a>";
                             echo "<a href='./caja/eliminar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonEliminar'>Borrar</i></a>";
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<a href='./caja/cerrar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonPass'>Cerrar</i></a>";
-                            echo "</td>";
                             echo "</tr>";
                         }
                         ?>

@@ -15,60 +15,8 @@ $conexiondb = conectardb();
         }
 }
 $usuario = $_SESSION['usuario'];
-
-$conexiondb = conectardb();
-$query1 = "SELECT COUNT(*) total1 FROM reserva";
-$query2 = "SELECT COUNT(*) total2 FROM recepcion";
-$query3 = "SELECT COUNT(*) total3 FROM habitaciones";
-$query4 = "SELECT COUNT(*) total4 FROM producto";
-$query5 = "SELECT sum(total_pagar) total5 FROM venta";
-$query6 = "SELECT SUM(total_pagar) total6 FROM compra";
-
-
-$resultado1 = mysqli_query($conexiondb, $query1);
-$resultado2 = mysqli_query($conexiondb, $query2);
-$resultado3 = mysqli_query($conexiondb, $query3);
-$resultado4 = mysqli_query($conexiondb, $query4);
-$resultado5 = mysqli_query($conexiondb, $query5);
-$resultado6 = mysqli_query($conexiondb, $query6);
-
-
-
 ?>
-<style>
-    
-    .card-head span {
-    font-size: 3.2rem;
-    color: grey;
-}
-    .card {
-        box-shadow: 0px 10px 10px -5px rgb(0 0 0 / 10%);
-        background: #fff;
-        padding: 1rem;
-        border-radius: 3px;
-        height: 100px;
-        width: 340px;
-    }
 
-    .card-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .analytics {
-        font-family: 'Poppins', sans-serif;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 2rem;
-        margin-top: 0.5rem;
-        margin-bottom: 2rem;
-    }
-    .page-content {
-    padding: 1.3rem 1rem;
-    background: #f1f4f9;
-    }
-</style>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -81,11 +29,8 @@ $resultado6 = mysqli_query($conexiondb, $query6);
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/registrar.css">
 
-
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-
     <link href="./IMG/logo.svg" rel="icon">
     <!---bootstrap 4 css-->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -160,6 +105,7 @@ $resultado6 = mysqli_query($conexiondb, $query6);
 
             <img src="./IMG/recepcionista.svg" alt="">
         </div>
+        <div>
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="./reportes2.php">Estadisticas</a>
@@ -168,71 +114,104 @@ $resultado6 = mysqli_query($conexiondb, $query6);
                 <a href="./reporte_cliente2.php">Reporte Clientes</a>
                 <a href="./reporte_caja2.php">Reporte Caja</a>
             </div>
-            <div class="analytics">
-                <div class="card">
-                    <div class="card-head">
-                        <?php
-                        while ($reserva = mysqli_fetch_assoc($resultado1)) {
-                            echo "<td align= 'center'>" . $reserva['total1'] . ' Clientes totales' . "</td>";
-                        }
-                        ?>
-                            <span class="las la-user-friends"></span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-head">
-                        <?php
-                        while ($reserva = mysqli_fetch_assoc($resultado2)) {
-                            echo "<td align= 'center'>" . $reserva['total2'] . ' Habitaciones Reservadas' . "</td>";
-                        }
-                        ?>
-                        <span class="uil uil-bed"></span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-head">
-                        <?php
-                        while ($reserva = mysqli_fetch_assoc($resultado3)) {
-                            echo "<td align= 'center'>" . $reserva['total3'] . ' Habitaciones Registradas' . "</td>";
-                        }
-                        ?>
-                        <span class="uil uil-house-user"></span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-head">
-                        <?php
-                        while ($reserva = mysqli_fetch_assoc($resultado4)) {
-                            echo "<td align= 'center'>" . $reserva['total4'] . ' Productos Registrados' . "</td>";
-                        }
-                        ?>
-                            <span class="las la-shopping-cart"></span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-head">
-                        <?php
-                        while ($reserva = mysqli_fetch_assoc($resultado5)) {
-                            echo "<td align= 'center'>" . $reserva['total5'] . ' Gs en Ventas Realizadas' . "</td>";
-                        }
-                        ?>
-                            <span class="las la-money-bill"></span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-head">
-                        <?php
-                        while ($reserva = mysqli_fetch_assoc($resultado6)) {
-                            echo "<td align= 'center'>" . $reserva['total6'] . ' Gs en Compras Realizadas' . "</td>";
-                        }
-                        ?>
-                            <span class="las la-store"></span>
+            <div class="container">
+                <br>
+                <div class"row">
+                    <div class="col-lg-12">
+                        <table id="tablaUsuarios" class="table-striped table-bordered" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Habitacion</th>
+                                    <th>Fecha de Entrada</th>
+                                    <th>Fecha de salida</th>
+                                    <th>Estadia (Dias)</th>
+                                    <th>Total habitaion (Gs)</th>
+                                    <th>Productos</th>
+                                    <th>Total (Gs)</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
-            
+            <!--Jquery. popper.js, Bootstrap JS-->
+            <script src="jquery/jquery-3.5.1.min.js"></script>
+            <script src="popper/popper.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <!--Datatables JS-->
+            <script type="text/javascript" src="datatables/datatables.min.js"></script>
+            <!--Para usar botones en datatables JS-->
+            <script src="datatables/Buttons-2.3.2/js/dataTables.buttons.js"></script>
+            <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>
+            <script src="datatables/pdfmake-0.1.36/pdfmake.js"></script>
+            <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+            <script src="datatables/Buttons-2.3.2/js/buttons.html5.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#tablaUsuarios').DataTable({
+                        //para usar botones
+                        responsive: "true",
+                        dom: 'Bfrtilp',
+                        buttons: [{
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                                titleAttr: 'Exportar a Excel',
+                                className: 'btn btn-success'
+                            },
+                            {
+                                extend: 'pdfHtml5',
+                                text: 'PDF',
+                                titleAttr: 'Exportar a PDF',
+                                className: 'btn btn-danger'
+                            },
+                            {
+                                extend: 'print',
+                                text: 'imprimir',
+                                titleAttr: 'imprimir',
+                                className: 'btn btn-info'
+                            },
+                        ],
+                        "ajax": {
+                            "url": "list.php",
+                            "dataSrc": ""
+                        },
+                        "columns": [{
+                                "data": "id_recepcion"
+                            },
+                            {
+                                "data": "nombre"
+                            },
+                            {
+                                "data": "nombre_habitacion"
+                            },
+                            {
+                                "data": "fecha_inicio"
+                            },
+                            {
+                                "data": "fecha_fin"
+                            },
+                            {
+                                "data": "total_dias"
+                            },
+                            {
+                                "data": "total_pagar"
+                            },
+                            {
+                                "data": "pago_producto"
+                            },
+                            {
+                                "data": "total"
+                            },
+                        ]
+                    });
+                });
+            </script>
         </div>
     </section>
+
+
     <script src="./JS/script.js"></script>
 </body>
 

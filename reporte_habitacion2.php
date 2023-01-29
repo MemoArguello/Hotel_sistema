@@ -10,7 +10,7 @@ $conexiondb = conectardb();
     $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
     $result = mysqli_query($conexiondb, $sql);
     while ($usuario= mysqli_fetch_assoc($result)) {
-        if ($usuario['id_cargo'] != 1) {
+        if ($usuario['id_cargo'] != 2) {
             header("location:../../index.php");
         }
 }
@@ -53,34 +53,30 @@ $usuario = $_SESSION['usuario'];
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="calendario/index.php">
+                <li><a href="calendario/index2.php">
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="admin/listado/form_habitaciones.php">
+                <li><a href="admin/listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
                     </a></li>
-                <li><a href="reportes.php">
+                <li><a href="reportes2.php">
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="producto/listado_productos.php">
+                <li><a href="producto/listado_productos2.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                <li><a href="ventas/ventas.php">
+                <li><a href="ventas/ventas2.php">
                         <i class="uil uil-usd-circle"></i>
-                        <span class="link-name">Venta</span>
+                        <span class="link-name">Ventas</span>
                     </a></li>
-                    <li><a href="reportes_caja.php">
+                    <li><a href="reportes_caja2.php">
                         <i class="uil uil-money-withdrawal"></i>
                         <span class="link-name">Caja</span>
             </a></li>
-                <li><a href="admin/listado/form_cuentas.php">
-                        <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuración</span>
-                    </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -107,17 +103,16 @@ $usuario = $_SESSION['usuario'];
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
-            <img src="./IMG/admin.svg" alt="">
+            <img src="./IMG/recepcionista.svg" alt="">
         </div>
         <div>
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-            <a href="./reportes.php">Estadisticas</a>
-                <a href="./reportes_recepcion.php">Reporte Reservas</a>
-                <a href="./reporte_habitacion.php">Reporte Habitaciones</a>
-                <a href="./reporte_cliente.php">Reporte Clientes</a>
-                <a href="./reporte_caja.php">Reporte Caja</a>
-
+            <a href="./reportes2.php">Estadisticas</a>
+                <a href="./reportes_recepcion2.php">Reporte Reservas</a>
+                <a href="./reporte_habitacion2.php">Reporte Habitaciones</a>
+                <a href="./reporte_cliente2.php">Reporte Clientes</a>
+                <a href="./reporte_caja2.php">Reporte Caja</a>
             </div>
             <div class="container">
                 <br>
@@ -127,11 +122,11 @@ $usuario = $_SESSION['usuario'];
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Cedula</th>
                                     <th>Nombre</th>
-                                    <th>Numero de Telefono</th>
-                                    <th>Procedencia</th>
-                                    <th>Factura</th>
+                                    <th>Detalles</th>
+                                    <th>Categoria</th>
+                                    <th>Precio</th>
+                                    <th>Estado</th>
                                 </tr>
                             </thead>
                         </table>
@@ -176,27 +171,27 @@ $usuario = $_SESSION['usuario'];
                             },
                         ],
                         "ajax": {
-                            "url": "list_cliente.php",
+                            "url": "list_habitacion.php",
                             "dataSrc": ""
                         },
                         "columns": [{
-                                "data": "id"
+                                "data": "id_habitaciones"
                             },
                             {
-                                "data": "cedula"
+                                "data": "nombre_habitacion"
                             },
                             {
-                                "data": "nombre"
+                                "data": "detalles"
                             },
                             {
-                                "data": "telefono"
+                                "data": "categoria"
                             },
                             {
-                                "data": "procedencia"
+                                "data": "precio"
                             },
                             {
-                                "data": "factura"
-                            },
+                                "data": "estado"
+                            }
                         ]
                     });
                 });

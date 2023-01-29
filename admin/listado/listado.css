@@ -75,10 +75,28 @@ td {
   font-size: 16px;
   border-radius: 4px;
 }
+.submitBotonCerrar {
+  background-color: #ffd000ab;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 5px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+.submitBotonCerrar:hover {
+  background-color: #ffd900;
+  transform: translateY(2px);
+  color: rgb(255, 255, 255);
+
+}
 .submitBotonFactura:hover {
   background-color: #00eeff;
   transform: translateY(2px);
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+
 }
 .submitBoton:hover {
   background-color: #1100ff;
