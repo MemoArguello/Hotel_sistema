@@ -130,7 +130,6 @@ $usuario = $_SESSION['usuario'];
                             <th>Categoria</th>
                             <th>Detalles</th>
                             <th>Precio</th>
-                            <th>Estado</th>
                             <th align="left">Opciones</th>
                         </tr>
                     </thead>
@@ -147,7 +146,6 @@ $usuario = $_SESSION['usuario'];
                             echo "<td align= 'center'>" . $habitaciones['categoria'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['detalles'] . "</td>";
                             echo "<td align= 'center'>" . $habitaciones['precio'] . "</td>";
-                            echo "<td align= 'center'>" . $habitaciones['estado'] . "</td>";
                             echo "<td>";
                             echo "<a href='../habitaciones/editar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='../habitaciones/eliminar_habitacion.php?id_habitaciones=" . $habitaciones['id_habitaciones'] . "' class='submitBotonEliminar'> Borrar </a>";

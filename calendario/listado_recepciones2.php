@@ -106,7 +106,7 @@ $usuario = $_SESSION['usuario'];
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search here...">
             </div>
-            <img src="../IMG/admin.svg" alt="">
+            <img src="../IMG/recepcionista.svg" alt="">
         </div>
 
         <div class="dash-content">

@@ -111,6 +111,7 @@ mysqli_close($conexiondb);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="./listado_productos2.php">Productos</a>
+                <a href="../producto/producto2.php">Registrar Productos</a>
             </div>
             <div class="">
                         <table class="">
