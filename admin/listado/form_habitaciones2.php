@@ -111,6 +111,9 @@ $usuario = $_SESSION['usuario'];
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
+                <a href="../habitaciones/registrar_habitacion2.php">Registrar Habitacion</a>
+                <a href="../categoria/listado_categoria2.php">Listado Categoria</a>
+                <a href="../categoria/categoria2.php">Registrar Categorias</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>

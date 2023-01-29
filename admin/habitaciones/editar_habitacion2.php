@@ -110,10 +110,13 @@ $habitacion = mysqli_fetch_row($resultado);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
+                <a href="./registrar_habitacion2.php">Registrar Habitacion</a>
+                <a href="../categoria/listado_categoria2.php">Listado Categoria</a>
+                <a href="../categoria/categoria2.php">Registrar Categorias</a>
             </div>
             <div class="signupFrm">
                 <form action="./update_habitacion2.php" method="POST" class="form_habitacion">
-                    <h1 class="title">Registrar Habitacion</h1>
+                    <h1 class="title">Editar Habitacion</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre_habitacion" value='<?php echo$habitacion[1]; ?>'>
                         <label for="" class="label">Nombre</label>

@@ -46,10 +46,6 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../Recepcion/habitaciones2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -62,6 +58,14 @@ mysqli_close($conexiondb);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../../ventas/ventas2.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Ventas</span>
+                    </a></li>
+                    <li><a href="../../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -109,10 +113,6 @@ mysqli_close($conexiondb);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="piso">
                         <label for="" class="label">Ingrese Piso</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="tarifa">
-                        <label for="" class="label">Ingrese tarifa</label>
                     </div>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

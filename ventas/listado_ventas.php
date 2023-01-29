@@ -161,6 +161,7 @@ mysqli_close($conexiondb);
                     echo "<td align= 'center'>" . $venta['cantidad'] . "</td>";
                     echo "<td align= 'center'>" . $venta['total_pagar'] . ' Gs' . "</td>";
                     echo "<td>";
+                    echo "<a href='./editar_ventas.php?id_venta=" . $venta['id_venta'] . "' class='submitBoton'> Editar </a>";
                     echo "<a href='./eliminar_ventas.php?id_venta=" . $venta['id_venta'] . "' class='submitBotonEliminar'> Borrar </a>";
                     echo "</td>";
                     echo "</tr>";

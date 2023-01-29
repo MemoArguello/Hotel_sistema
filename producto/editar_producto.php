@@ -145,7 +145,11 @@ $producto = mysqli_fetch_row($resultado);
                         </select>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[4]; ?>'>
+                        <input type="text" class="input" placeholder="a" name="precio" value='<?php echo $producto[4]; ?>'>
+                        <label for="" class="label">precio</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="text" class="input" placeholder="a" name="stock_inicial" value='<?php echo $producto[5]; ?>'>
                         <label for="" class="label">Stock Inicial</label>
                     </div>
                     <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>

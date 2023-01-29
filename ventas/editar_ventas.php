@@ -16,8 +16,11 @@ $conexiondb = conectardb();
 }
 $usuario = $_SESSION['usuario'];
 $conexiondb = conectardb();
-$query = "SELECT * FROM producto";
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
+FROM venta JOIN producto ON producto.id_producto = venta.id_producto
+JOIN reserva ON reserva.id = venta.id_cliente";
 $resultado = mysqli_query($conexiondb, $query);
+
 mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
@@ -40,10 +43,18 @@ mysqli_close($conexiondb);
 </head>
 
 <body>
-<?php
+    <?php
     $conexiondb = conectardb();
-    $query = "SELECT * FROM proveedores";
-    $resultadop = mysqli_query($conexiondb, $query);
+    $query_r = "SELECT * FROM producto";
+    $query_h = "SELECT recepcion.id_recepcion, recepcion.id_reserva, reserva.nombre FROM recepcion
+    JOIN reserva ON reserva.id = recepcion.id_reserva";
+    $resultado_r = mysqli_query($conexiondb, $query_r);
+    $resultado_h = mysqli_query($conexiondb, $query_h);
+
+    $id_venta = $_GET['id_venta'];
+    $sql = "SELECT * FROM venta WHERE id_venta=" . $id_venta;
+    $resultadov = mysqli_query($conexiondb, $sql);
+    $venta = mysqli_fetch_row($resultadov);
 
     mysqli_close($conexiondb);
     ?>
@@ -70,21 +81,21 @@ mysqli_close($conexiondb);
                         <i class="uil uil-file-graph"></i>
                         <span class="link-name">Reportes</span>
                     </a></li>
-                <li><a href="./listado_productos.php">
+                <li><a href="../producto/listado_productos.php">
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                    <li><a href="../ventas/ventas.php">
+                    <li><a href="./ventas.php">
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
                     <li><a href="../reportes_caja.php">
                         <i class="uil uil-money-withdrawal"></i>
                         <span class="link-name">Caja</span>
-            </a></li>
+                    </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
-                        <span class="link-name">Configuracion</span>
+                        <span class="link-name">Configuración</span>
                     </a></li>
             </ul>
 
@@ -111,49 +122,56 @@ mysqli_close($conexiondb);
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
             <img src="../IMG/admin.svg" alt="">
         </div>
 
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-                <a href="./listado_productos.php">Productos</a>
-                <a href="./productos.php">Registrar Producto</a>
-                <a href="./proveedores.php">Proveedores</a>
-                <a href="./agg_proveedor.php">Agregar Proveedor</a>
-                <a href="./list_compra.php">Compras</a>
+                <a href="../ventas/ventas.php">Realizar Ventas</a>
+                <a href="../ventas/listado_ventas.php">Listado de Ventas</a>
             </div>
             <div class="signupFrm">
-                <form action="./insert_producto.php" method="POST" class="form_producto">
-                    <h1 class="title">Registrar Productos</h1>
+                <form action="./update_venta.php" method="POST" class="formDatos">
+                    <h3 align="center">Venta</h3>
+                    <br>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="codigo">
-                        <label for="" class="label">Codigo</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="nombre_producto">
-                        <label for="" class="label">Nombre Producto</label>
-                    </div>
-                    <div class="inputContainer">
-                    <select class="input" name="id_proveedor" id="inputGroupSelect01"></P>
+                        <select class="input" name="id_producto" id="inputGroupSelect01"></P>
                             <?php
-                            while ($proveedores = mysqli_fetch_assoc($resultadop)) {
-                                echo "<option value='" . $proveedores['id_proveedor'] . "'>" . $proveedores['nombre_prov'] . "</option>";
+                            while ($habitacion = mysqli_fetch_assoc($resultado_r)) {
+                                echo "<option value='" . $habitacion['id_producto'] . "'>" . $habitacion['nombre_producto'] . "</option>";
                             }
                             ?>
-                        </select>                        
-                        <label for="" class="label">Proveedor</label>
+                        </select>
+                        <label for="" class="label">Producto</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio">
+                        <select class="input" name="id_recepcion" id="inputGroupSelect01" readonly></P>
+                            <?php
+                            while ($habitacion = mysqli_fetch_assoc($resultado_h)) {
+                                echo "<option value='" . $habitacion['id_recepcion'] . "'>" . $habitacion['nombre'] . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <label for="" class="label">Cliente</label>
+                    </div>
+                    <div class="inputContainer">
+                        <input type="number" class="input" placeholder="a" name="precio" min="0" value='<?php echo $venta[3]; ?>'>
                         <label for="" class="label">Precio</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="text" class="input" placeholder="a" name="stock_inicial">
+                        <input type="number" class="input" placeholder="a" name="cantidad" min="0" value='<?php echo $venta[4]; ?>'>
                         <label for="" class="label">Cantidad</label>
                     </div>
+                    <input type="hidden" name="id_venta" id="" value='<?php echo $venta[0]; ?>' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>
             </div>
+        </div>
     </section>
 
     <script src="../JS/script.js"></script>

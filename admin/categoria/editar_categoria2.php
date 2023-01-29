@@ -7,6 +7,15 @@ if (!isset($usuario)) {
     header("location:../../index.php");
 }
 $conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($result)) {
+        if ($usuario['id_cargo'] != 2) {
+            header("location:../../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+$conexiondb = conectardb();
 $id_categoria = $_GET['id_categoria'];
 $query = "SELECT * FROM categorias where id_categoria=". $id_categoria;
 $resultado = mysqli_query($conexiondb, $query);
@@ -47,10 +56,6 @@ $categoria = mysqli_fetch_row($resultado);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../Recepcion/habitaciones2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -63,6 +68,14 @@ $categoria = mysqli_fetch_row($resultado);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../../ventas/ventas2.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Ventas</span>
+                    </a></li>
+                    <li><a href="../../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
@@ -97,7 +110,8 @@ $categoria = mysqli_fetch_row($resultado);
             <div class="topnav" id="myTopnav">
                 <a href="../listado/form_habitaciones2.php">Habitaciones Existentes</a>
                 <a href="../habitaciones/registrar_habitacion2.php">Registrar Habitacion</a>
-                <a href="categoria2.php">Categorias</a>
+                <a href="../categoria/listado_categoria2.php">Listado Categoria</a>
+                <a href="categoria2.php">Registrar Categorias</a>
             </div>
             <div class="signupFrm">
                 <form action="./update_categoria2.php" method="POST" class="form_categoria">
@@ -109,10 +123,6 @@ $categoria = mysqli_fetch_row($resultado);
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="piso" value='<?php echo $categoria[2]; ?>'>
                         <label for="" class="label">Ingrese Piso</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="tarifa" value='<?php echo $categoria[3]; ?>'>
-                        <label for="" class="label">Ingrese Tarifa</label>
                     </div>
                     <input type="hidden" name="categoria" id="" value='<?php echo $categoria[0] ?>' readonly>
                     <input type="hidden" name="editar" id="" value='si' readonly>

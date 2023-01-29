@@ -7,19 +7,27 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$sql = "SELECT usuario, id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
-$result_vista = mysqli_query($conexiondb, $sql);
-while ($usuario= mysqli_fetch_assoc($result_vista )) {
-    if ($usuario['id_cargo'] != 2) {
-        header("location:../index.php");
-    }
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($result)) {
+        if ($usuario['id_cargo'] != 2) {
+            header("location:../../index.php");
+        }
 }
 $usuario = $_SESSION['usuario'];
 $conexiondb = conectardb();
-$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
-FROM venta JOIN producto ON producto.id_producto = venta.id_producto
-JOIN reserva ON reserva.id = venta.id_cliente";
+
+$sql = "SELECT recepcion.id_recepcion, recepcion.id_reserva, reserva.nombre FROM recepcion
+JOIN reserva ON reserva.id = recepcion.id_reserva";
+$resultado_hab = mysqli_query($conexiondb, $sql);
+
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, recepcion.id_reserva
+FROM venta
+JOIN producto ON producto.id_producto = venta.id_producto
+JOIN recepcion ON recepcion.id_recepcion = venta.id_cliente";
 $resultado = mysqli_query($conexiondb, $query);
+
+mysqli_close($conexiondb);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,10 +49,10 @@ $resultado = mysqli_query($conexiondb, $query);
 </head>
 
 <body>
-<?php
+    <?php
     $conexiondb = conectardb();
     $query_r = "SELECT * FROM producto";
-    $query_h = "SELECT * FROM reserva";
+    $query_h = "SELECT * FROM recepcion";
     $resultado_r = mysqli_query($conexiondb, $query_r);
     $resultado_h = mysqli_query($conexiondb, $query_h);
 
@@ -77,7 +85,7 @@ $resultado = mysqli_query($conexiondb, $query);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
-                    <li><a href="../ventas/ventas2.php">
+                <li><a href="./ventas2.php">
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Ventas</span>
                     </a></li>
@@ -88,7 +96,7 @@ $resultado = mysqli_query($conexiondb, $query);
             </ul>
 
             <ul class="logout-mode">
-            <li><a>
+                <li><a>
                         <i class="uil uil-user"></i>
                         <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
                     </a>
@@ -98,7 +106,7 @@ $resultado = mysqli_query($conexiondb, $query);
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
 
-                    <li class="mode">
+                <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -121,38 +129,42 @@ $resultado = mysqli_query($conexiondb, $query);
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="../ventas/ventas2.php">Realizar Ventas</a>
-                <a href="../ventas/listado_ventas2.php">Realizar Ventas</a>
+                <a href="../ventas/listado_ventas2.php">Listado de Ventas</a>
             </div>
-            <table class="">
-                    <thead>
-                        <tr>
-                            <th>Nº</th>
-                            <th>Producto</th>
-                            <th>Cliente</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total a pagar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $index = 1;
-                        while ($venta = mysqli_fetch_assoc($resultado)) {
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<tr>";
-                            echo "<th scope ='row'>" . $index++ . "</th>";
-                            echo "<td align= 'center'>" . $venta['nombre'] . "</td>";
-                            echo "<td align= 'center'>" . $venta['nombre_producto'] . "</td>";
-                            echo "<td align= 'center'>" . $venta['precio'] . ' Gs'."</td>";
-                            echo "<td align= 'center'>" . $venta['cantidad']. "</td>";
-                            echo "<td align= 'center'>" . $venta['total_pagar']. ' Gs'."</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
+        </div>
+        <table class="">
+            <thead>
+                <tr>
+                    <th>Nº</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total a pagar</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $index = 1;
+                while ($venta = mysqli_fetch_assoc($resultado)) {
+                    echo "<tr>";
+                    echo "<tr>";
+                    echo "<tr>";
+                    echo "<tr>";
+                    echo "<th scope ='row'>" . $index++ . "</th>";
+                    echo "<td align= 'center'>" . $venta['nombre_producto'] . "</td>";
+                    echo "<td align= 'center'>" . $venta['precio'] . ' Gs' . "</td>";
+                    echo "<td align= 'center'>" . $venta['cantidad'] . "</td>";
+                    echo "<td align= 'center'>" . $venta['total_pagar'] . ' Gs' . "</td>";
+                    echo "<td>";
+                    echo "<a href='./editar_ventas2.php?id_venta=" . $venta['id_venta'] . "' class='submitBoton'> Editar </a>";
+                    echo "<a href='./eliminar_ventas2.php?id_venta=" . $venta['id_venta'] . "' class='submitBotonEliminar'> Borrar </a>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
     </section>
 
     <script src="../JS/script.js"></script>

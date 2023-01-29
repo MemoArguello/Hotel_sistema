@@ -118,7 +118,7 @@ $habitacion = mysqli_fetch_row($resultado);
             </div>
             <div class="signupFrm">
                 <form action="./update_habitacion.php" method="POST" class="form_habitacion">
-                    <h1 class="title">Registrar Habitacion</h1>
+                    <h1 class="title">Editar Habitacion</h1>
                     <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="nombre_habitacion" value='<?php echo $habitacion[1]; ?>'>
                         <label for="" class="label">Nombre</label>

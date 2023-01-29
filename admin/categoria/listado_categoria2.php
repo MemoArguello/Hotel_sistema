@@ -7,6 +7,15 @@ if (!isset($usuario)) {
     header("location:../../index.php");
 }
 $conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($result)) {
+        if ($usuario['id_cargo'] != 2) {
+            header("location:../../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+$conexiondb = conectardb();
 $query = "SELECT * FROM categorias";
 $resultado = mysqli_query($conexiondb, $query);
 mysqli_close($conexiondb);
@@ -46,10 +55,6 @@ mysqli_close($conexiondb);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../../Recepcion/habitaciones2.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../listado/form_habitaciones2.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -62,20 +67,28 @@ mysqli_close($conexiondb);
                         <i class="uil uil-coffee"></i>
                         <span class="link-name">Productos</span>
                     </a></li>
+                    <li><a href="../../ventas/ventas2.php">
+                        <i class="uil uil-usd-circle"></i>
+                        <span class="link-name">Ventas</span>
+                    </a></li>
+                    <li><a href="../../reportes_caja2.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
             </ul>
 
             <ul class="logout-mode">
-            <li><a>
-            <i class="uil uil-user"></i>
-            <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
-          </a>
-        </li>
+                <li><a>
+                        <i class="uil uil-user"></i>
+                        <span class="link-name"><?php echo "Usuario: $usuario"; ?></span>
+                    </a>
+                </li>
                 <li><a href="../../cerrar_sesion.php">
                         <i class="uil uil-signout"></i>
                         <span class="link-name">Cerrar Sesión</span>
                     </a></li>
 
-                    <li class="mode">
+                <li class="mode">
                     <div class="mode-toggle">
                     </div>
                 </li>
@@ -108,7 +121,6 @@ mysqli_close($conexiondb);
                         <th>Nº</th>
                         <th align="center">Categoria</th>
                         <th align="center">Piso</th>
-                        <th align="center">Precio</th>
                         <th align="left">Opciones</th>
                     </tr>
                 </thead>
@@ -122,8 +134,7 @@ mysqli_close($conexiondb);
                         echo "<tr>";
                         echo "<th scope ='row'>" . $index++ . "</th>";
                         echo "<td align= 'center'>" . $categoria['categoria'] . "</td>";
-                        echo "<td align= 'center'>" . $categoria['piso']. "</td>";
-                        echo "<td align= 'center'>" . $categoria['tarifa']. " Gs". "</td>";
+                        echo "<td align= 'center'>" . $categoria['piso'] . "</td>";
                         echo "<td>";
                         echo "<a href='./editar_categoria2.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBoton'> Editar </a>";
                         echo "<a href='./eliminar_categoria2.php?id_categoria=" . $categoria['id_categoria'] . "' class='submitBotonEliminar'> Borrar </a>";

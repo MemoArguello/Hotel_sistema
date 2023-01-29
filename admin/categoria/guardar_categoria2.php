@@ -2,12 +2,11 @@
         include('../../db.php');
         $categoria=$_POST['nombre'];
         $piso=$_POST['piso'];
-        $tarifa=$_POST['tarifa'];
         
         $conexiondb = conectardb();
 
-        $query = "INSERT INTO categorias (categoria, piso, tarifa) VALUES 
-            ('$categoria', '$piso',$tarifa)";
+        $query = "INSERT INTO categorias (categoria, piso) VALUES 
+            ('$categoria', '$piso')";
         
         $respuesta = mysqli_query($conexiondb, $query);
 
