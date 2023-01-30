@@ -7,8 +7,9 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $sql = "SELECT * FROM `usuarios` WHERE usuario = '$usuario';";
     $result = mysqli_query($conexiondb, $sql);
+    $venta = mysqli_fetch_row($result);
     while ($usuario= mysqli_fetch_assoc($result)) {
         if ($usuario['id_cargo'] != 1) {
             header("location:../../index.php");
@@ -162,6 +163,7 @@ mysqli_close($conexiondb);
                         <input type="number" class="input" placeholder="a" name="cantidad" min="0">
                         <label for="" class="label">Cantidad</label>
                     </div>
+                    <input type="hidden" name="id_usuario" id="" value='<?php echo $venta[0]; ?>' readonly>
                     <input type="hidden" name="editar" id="" value='no' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

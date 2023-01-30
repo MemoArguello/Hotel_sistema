@@ -7,6 +7,16 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
+    $sql = "SELECT * FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    $usuarioN = mysqli_fetch_row($result);
+    while ($usuario= mysqli_fetch_assoc($result)) {
+        if ($usuario['id_cargo'] != 1) {
+            header("location:../../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+$conexiondb = conectardb();
 $id_producto = $_GET['id_producto'];
 $query = "SELECT * FROM producto WHERE id_producto=" . $id_producto;
 $resultado = mysqli_query($conexiondb, $query);
@@ -149,6 +159,7 @@ mysqli_close($conexiondb);
                         <input type="number" class="input" placeholder="a" name="cantidad">
                         <label for="" class="label">Cantidad</label>
                     </div>
+                    <input type="hidden" name="id_usuario" id="" value='<?php echo $usuarioN[0]; ?>' readonly>
                     <input type="hidden" name="id_producto" id="" value='<?php echo $producto[0] ?>' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

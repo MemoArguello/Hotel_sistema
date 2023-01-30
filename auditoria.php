@@ -112,13 +112,12 @@ $usuario = $_SESSION['usuario'];
         <div>
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
-            <a href="./reportes.php">Estadisticas</a>
-            <a href="./auditoria.php">Registro</a>
+                <a href="./reportes.php">Estadisticas</a>
+                <a href="./auditoria.php">Registro</a>
                 <a href="./reportes_recepcion.php">Reporte Reservas</a>
                 <a href="./reporte_habitacion.php">Reporte Habitaciones</a>
                 <a href="./reporte_cliente.php">Reporte Clientes</a>
                 <a href="./reporte_caja.php">Reporte Caja</a>
-
             </div>
             <div class="container">
                 <br>
@@ -127,12 +126,10 @@ $usuario = $_SESSION['usuario'];
                         <table id="tablaUsuarios" class="table-striped table-bordered" style="width: 100%">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Cedula</th>
-                                    <th>Nombre</th>
-                                    <th>Numero de Telefono</th>
-                                    <th>Procedencia</th>
-                                    <th>Factura</th>
+                                    <th>ID</th>
+                                    <th>Usuario</th>
+                                    <th>Evento</th>
+                                    <th>Fecha</th>
                                 </tr>
                             </thead>
                         </table>
@@ -177,26 +174,20 @@ $usuario = $_SESSION['usuario'];
                             },
                         ],
                         "ajax": {
-                            "url": "list_cliente.php",
+                            "url": "list_auditoria.php",
                             "dataSrc": ""
                         },
                         "columns": [{
-                                "data": "id"
+                                "data": "id_auditoria"
                             },
                             {
-                                "data": "cedula"
+                                "data": "usuario"
                             },
                             {
-                                "data": "nombre"
+                                "data": "evento"
                             },
                             {
-                                "data": "telefono"
-                            },
-                            {
-                                "data": "procedencia"
-                            },
-                            {
-                                "data": "factura"
+                                "data": "fecha"
                             },
                         ]
                     });

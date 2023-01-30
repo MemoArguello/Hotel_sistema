@@ -5,6 +5,7 @@ setlocale(LC_ALL,"es_ES");
 
 require("config.php");
 $reserva =$_POST['id_reserva'];
+$usuario        =$_POST['id_usuario'];
 $habitacion =$_POST['id_habitacion'];
 $f_inicio          = $_REQUEST['fecha_inicio'];
 $fecha_inicio      = date('Y-m-d', strtotime($f_inicio)); 
@@ -31,6 +32,10 @@ $resultadoNuevoEvento = mysqli_query($con, $InsertNuevoEvento);
 $query3 = "UPDATE caja SET ingreso= (ingreso +" . $total_pagar. ") WHERE estado= 'abierto'";
 $resultado = mysqli_query($con, $query3);
 
+$query4 = "INSERT INTO auditoria (id_usuario, evento, fecha) VALUES
+('$usuario','Registro de Recepcion',now())";
+
+$resultado = mysqli_query($con, $query4);
 
 header("Location:index.php?e=1");
 

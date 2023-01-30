@@ -109,6 +109,7 @@ $usuario = $_SESSION['usuario'];
         <div class="dash-content">
             <div class="topnav" id="myTopnav">
                 <a href="./reportes2.php">Estadisticas</a>
+                <a href="./auditoria.php">Registro</a>
                 <a href="./reportes_recepcion2.php">Reporte Reservas</a>
                 <a href="./reporte_habitacion2.php">Reporte Habitaciones</a>
                 <a href="./reporte_cliente2.php">Reporte Clientes</a>

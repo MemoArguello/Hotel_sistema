@@ -7,8 +7,9 @@ if (!isset($usuario)) {
     header("location:../index.php");
 }
 $conexiondb = conectardb();
-$sql = "SELECT usuario, id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+$sql = "SELECT * FROM `usuarios` WHERE usuario = '$usuario';";
 $result_vista = mysqli_query($conexiondb, $sql);
+$usuarioN = mysqli_fetch_row($result_vista);
 while ($usuario= mysqli_fetch_assoc($result_vista )) {
     if ($usuario['id_cargo'] != 2) {
         header("location:../index.php");
@@ -141,6 +142,7 @@ mysqli_close($conexiondb);
                         <input type="time" class="input" placeholder="a" name="hora_aper" min="0">
                         <label for="" class="label">Hora de Apertura</label>
                     </div>
+                    <input type="hidden" name="id_usuario" id="" value='<?php echo $usuarioN[0]; ?>' readonly>
                     <input type="hidden" name="editar" id="" value='no' readonly>
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

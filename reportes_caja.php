@@ -154,7 +154,9 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $producto['saldo_cierre'] . " Gs". "</td>";
                             echo "<td align= 'center'>" . $producto['estado'] . "</td>";
                             echo "<td>";
+                            if ($producto['estado'] == 'abierto') {
                             echo "<a href='./caja/cerrar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonCerrar'>Cerrar</i></a>";
+                            }
                             echo "<a href='./caja/eliminar_caja.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonEliminar'>Borrar</i></a>";
                             echo "</tr>";
                         }

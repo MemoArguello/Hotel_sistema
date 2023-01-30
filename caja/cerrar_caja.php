@@ -8,9 +8,10 @@ if (!isset($usuario)) {
 }
 
 $conexiondb = conectardb();
-    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
-    $resultado = mysqli_query($conexiondb, $sql);
-    while ($usuario= mysqli_fetch_assoc($resultado)) {
+    $sql = "SELECT * FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    $usuarioN = mysqli_fetch_row($result);
+    while ($usuario= mysqli_fetch_assoc($result)) {
         if ($usuario['id_cargo'] != 1) {
             header("location:../index.php");
         }
@@ -157,6 +158,7 @@ mysqli_close($conexiondb);
                         <input type="text" class="input" placeholder="a" name="egreso" min="0"value='<?php echo $caja[6]; ?>' readonly>
                         <label for="" class="label">Egreso</label>
                     </div>
+                    <input type="hidden" name="id_usuario" id="" value='<?php echo $usuarioN[0]; ?>' readonly>
                     <input type="hidden" name="id_caja" id="" value='<?php echo $caja[0] ?>' readonly >
                     <input type="submit" class="submitBtn" value="GUARDAR">
                 </form>

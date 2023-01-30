@@ -6,6 +6,15 @@
     $resultado_h = mysqli_query($conexiondb, $query_h);
 
     mysqli_close($conexiondb);
+    $usuario = $_SESSION['usuario'];
+    if (!isset($usuario)) {
+      header("location:../index.php");
+    }
+    $conexiondb = conectardb();
+      $sql = "SELECT * FROM `usuarios` WHERE usuario = '$usuario';";
+      $result = mysqli_query($conexiondb, $sql);
+      $venta = mysqli_fetch_row($result);
+  
     ?>
 <div class="modal" id="exampleModal"  tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -53,7 +62,7 @@
         <input type="text" class="form-control" name="fecha_fin" id="fecha_fin" placeholder="Fecha Final">
       </div>
     </div>
-
+    <input type="hidden" name="id_usuario" id="" value='<?php echo $venta[0]; ?>' readonly>
 
 		
 	   <div class="modal-footer">
