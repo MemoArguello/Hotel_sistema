@@ -10,7 +10,11 @@ $conexiondb = conectardb();
     $sql = "SELECT * FROM `usuarios` WHERE usuario = '$usuario';";
     $result = mysqli_query($conexiondb, $sql);
     $venta = mysqli_fetch_row($result);
-    while ($usuario= mysqli_fetch_assoc($result)) {
+
+
+    $sql2 = "SELECT * FROM `usuarios` WHERE usuario = '$usuario';";
+    $result2 = mysqli_query($conexiondb, $sql2);
+    while ($usuario= mysqli_fetch_assoc($result2)) {
         if ($usuario['id_cargo'] != 2) {
             header("location:../../index.php");
         }

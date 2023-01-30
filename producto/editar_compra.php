@@ -62,10 +62,6 @@ $compra = mysqli_fetch_row($resultado);
                         <i class="uil uil-calendar-alt"></i>
                         <span class="link-name">Reservas</span>
                     </a></li>
-                <li><a href="../Recepcion/habitaciones.php">
-                        <i class="uil uil-clipboard-notes"></i>
-                        <span class="link-name">Recepción</span>
-                    </a></li>
                 <li><a href="../admin/listado/form_habitaciones.php">
                         <i class="uil uil-bed"></i>
                         <span class="link-name">Habitación</span>
@@ -82,6 +78,10 @@ $compra = mysqli_fetch_row($resultado);
                         <i class="uil uil-usd-circle"></i>
                         <span class="link-name">Venta</span>
                     </a></li>
+                    <li><a href="../reportes_caja.php">
+                        <i class="uil uil-money-withdrawal"></i>
+                        <span class="link-name">Caja</span>
+            </a></li>
                 <li><a href="../admin/listado/form_cuentas.php">
                         <i class="uil uil-setting"></i>
                         <span class="link-name">Configuracion</span>

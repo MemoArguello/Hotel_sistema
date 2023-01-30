@@ -150,8 +150,9 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $producto['saldo_cierre'] . " Gs". "</td>";
                             echo "<td align= 'center'>" . $producto['estado'] . "</td>";
                             echo "<td>";
-                            echo "<a href='./caja/cerrar_caja2.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonPass'>Cerrar</i></a>";
-                            echo "</td>";
+                            if ($producto['estado'] == 'abierto') {
+                                echo "<a href='./caja/cerrar_caja2.php?id_caja=" . $producto['id_caja'] . "' class='submitBotonCerrar'>Cerrar</i></a>";
+                                }                            echo "</td>";
                             echo "</tr>";
                         }
                         ?>

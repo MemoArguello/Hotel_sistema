@@ -7,6 +7,15 @@ if (!isset($usuario)) {
     header("location:../../index.php");
 }
 $conexiondb = conectardb();
+    $sql = "SELECT id_cargo FROM `usuarios` WHERE usuario = '$usuario';";
+    $result = mysqli_query($conexiondb, $sql);
+    while ($usuario= mysqli_fetch_assoc($result)) {
+        if ($usuario['id_cargo'] != 2) {
+            header("location:../../index.php");
+        }
+}
+$usuario = $_SESSION['usuario'];
+$conexiondb = conectardb();
 $query = "SELECT * FROM categorias";
 $resultado = mysqli_query($conexiondb, $query);
 mysqli_close($conexiondb);

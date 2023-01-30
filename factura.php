@@ -31,7 +31,7 @@ require './fpdf/conexion.php';
     $id = $_GET['id_recepcion'];
     $stmt = $connect->prepare("SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, 
     recepcion.fecha_fin, recepcion.total_dias, recepcion.total_pagar, recepcion.pago_producto,recepcion.total,
-    reserva.id, reserva.cedula, reserva.nombre, 
+    reserva.id, reserva.cedula, reserva.nombre, reserva.factura,
     habitaciones.nombre_habitacion 
     FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
     JOIN habitaciones ON habitaciones.id_habitaciones = recepcion.id_habitacion WHERE id_recepcion= '$id'");
@@ -42,6 +42,10 @@ while($row = $stmt->fetch()){
     $pdf->Cell(130 ,5,'Paraguay',0,0);
     $pdf->Cell(25 ,5,'Cliente:',0,0);
     $pdf->Cell(34 ,5,$row['nombre'],0,1);
+
+    $pdf->Cell(130 ,5,'Misiones',0,0);
+    $pdf->Cell(25 ,5,'Factura:',0,0);
+    $pdf->Cell(34 ,5,$row['factura'],0,1);
 
     $pdf->Cell(130 ,5,'Ayolas',0,0);
     $pdf->Cell(25 ,5,'Fecha Entrada:',0,0);
