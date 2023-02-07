@@ -21,7 +21,7 @@ $sql = "SELECT recepcion.id_recepcion, recepcion.id_reserva, reserva.nombre FROM
 JOIN reserva ON reserva.id = recepcion.id_reserva";
 $resultado_hab = mysqli_query($conexiondb, $sql);
 
-$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, recepcion.id_reserva
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.cantidad, venta.total_pagar, producto.nombre_producto, recepcion.id_reserva
 FROM venta
 JOIN producto ON producto.id_producto = venta.id_producto
 JOIN recepcion ON recepcion.id_recepcion = venta.id_cliente";
@@ -141,7 +141,6 @@ mysqli_close($conexiondb);
                 <tr>
                     <th>Nº</th>
                     <th>Producto</th>
-                    <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Total a pagar</th>
                     <th>Opciones</th>
@@ -157,7 +156,6 @@ mysqli_close($conexiondb);
                     echo "<tr>";
                     echo "<th scope ='row'>" . $index++ . "</th>";
                     echo "<td align= 'center'>" . $venta['nombre_producto'] . "</td>";
-                    echo "<td align= 'center'>" . $venta['precio'] . ' Gs' . "</td>";
                     echo "<td align= 'center'>" . $venta['cantidad'] . "</td>";
                     echo "<td align= 'center'>" . $venta['total_pagar'] . ' Gs' . "</td>";
                     echo "<td>";

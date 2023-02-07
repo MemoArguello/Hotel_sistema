@@ -132,7 +132,10 @@ mysqli_close($conexiondb);
         </div>
 
         <div class="dash-content">
-            <br>
+        <div class="topnav" id="myTopnav">
+                <a href="../reportes_caja.php">General</a>
+                <a href="./caja.php">Abrir Nueva caja</a>
+            </div>
             <div class="signupFrm">
                 <form action="./guardar_caja.php" method="POST" class="formCaja">
                     <h3 align="center">Apertura de Caja</h3>

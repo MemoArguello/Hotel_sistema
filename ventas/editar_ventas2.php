@@ -16,7 +16,7 @@ $conexiondb = conectardb();
 }
 $usuario = $_SESSION['usuario'];
 $conexiondb = conectardb();
-$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
 FROM venta JOIN producto ON producto.id_producto = venta.id_producto
 JOIN reserva ON reserva.id = venta.id_cliente";
 $resultado = mysqli_query($conexiondb, $query);
@@ -156,11 +156,7 @@ mysqli_close($conexiondb);
                         <label for="" class="label">Cliente</label>
                     </div>
                     <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="precio" min="0" value='<?php echo $venta[3]; ?>'>
-                        <label for="" class="label">Precio</label>
-                    </div>
-                    <div class="inputContainer">
-                        <input type="number" class="input" placeholder="a" name="cantidad" min="0" value='<?php echo $venta[4]; ?>'>
+                        <input type="number" class="input" placeholder="a" name="cantidad" min="0" value='<?php echo $venta[3]; ?>'>
                         <label for="" class="label">Cantidad</label>
                     </div>
                     <input type="hidden" name="id_venta" id="" value='<?php echo $venta[0]; ?>' readonly>

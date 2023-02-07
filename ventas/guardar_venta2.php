@@ -3,16 +3,21 @@ include '../db.php';
 
 $producto       =$_POST['id_producto'];
 $cliente        =$_POST['id_recepcion'];
-$precio         =$_POST['precio'];
 $cantidad       =$_POST['cantidad'];
 $usuario        =$_POST['id_usuario'];
-$total_pagar    =($_POST['total_pagar'] = $precio * $cantidad);
+
 
 $conexion = conectardb();
 
 
-$query = "INSERT INTO venta (id_producto, id_cliente, precio, cantidad, total_pagar) VALUES
-('$producto','$cliente','$precio','$cantidad','$total_pagar')";
+$precio = "SELECT precio FROM producto WHERE id_producto=" . $producto;
+$resultado = mysqli_query($conexion, $precio);
+$monto = mysqli_fetch_assoc($resultado);
+ 
+$total_pagar    =($cantidad * $monto['precio']);
+
+$query = "INSERT INTO venta (id_producto, id_cliente, cantidad, total_pagar) VALUES
+('$producto','$cliente','$cantidad','$total_pagar')";
 
 $query2 = "UPDATE caja SET ingreso= (ingreso +" . $total_pagar. ") WHERE estado= 'abierto'";
 
@@ -26,7 +31,7 @@ $query6 = "INSERT INTO auditoria (id_usuario, evento, fecha) VALUES
 ('$usuario','Registro de Venta',now())";
 
 
-$respuesta  = mysqli_query($conexion, $query);
+$respuesta = mysqli_query($conexion, $query);
 $respuesta2 = mysqli_query($conexion, $query2);
 $respuesta3 = mysqli_query($conexion, $query3);
 $respuesta4 = mysqli_query($conexion, $query4);
@@ -35,11 +40,11 @@ $respuesta6 = mysqli_query($conexion, $query6);
 
 
 if ($respuesta and $respuesta2 and $respuesta3 and $respuesta4 and $respuesta5 and $respuesta6) {
-    echo "<script>alert('Registro Exitoso');
-                           window.location.href='./ventas2.php'</script>";
+  echo "<script>alert('Registro ingresado');
+  window.location.href='./ventas2.php'</script>";
   } else {
     echo "<script>alert('Registro Fallido');
                             window.location.href='./ventas2.php'</script>";
   }
-  mysqli_close($conexiondb);
+  mysqli_close($conexion);
 ?>
