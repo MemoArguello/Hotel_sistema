@@ -121,6 +121,7 @@ mysqli_close($conexiondb);
                                     <th align="center">Codigo</th>
                                     <th align="center">Nombre</th>
                                     <th align="center">Stock</th>
+                                    <th align="center">Precio</th>
                                     <th align="center">Opciones</th>
                                 </tr>
                             </thead>
@@ -135,6 +136,8 @@ mysqli_close($conexiondb);
                                     echo "<td align= 'center'>" . $producto['codigo'] . "</td>";
                                     echo "<td align= 'center'>" . $producto['nombre_producto'] . "</td>";
                                     echo "<td align= 'center'>" . $producto['stock_inicial'] ."</td>";
+                                    echo "<td align= 'center'>" . $producto['precio'] . "</td>";
+
                                     echo "<td>";
                                     echo "<a href='./editar_producto2.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
                                     echo "<a href='./eliminar_producto2.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";

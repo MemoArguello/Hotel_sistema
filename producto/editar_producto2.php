@@ -121,23 +121,6 @@ $producto = mysqli_fetch_row($resultado);
                         <label for="" class="label">Nombre Producto</label>
                     </div>
                     <div class="inputContainer">
-                        <?php
-                        $query_categoria = mysqli_query($conexiondb, "select * FROM proveedores");
-                        $result_categoria = mysqli_num_rows($query_categoria);
-                        ?>
-                        <select class="input" name="id_proveedor" class="" id="inputGroupSelect01"></P>
-                            <?php
-                            if ($result_categoria > 0) {
-                                while ($categoria = mysqli_fetch_assoc($query_categoria)) {
-                            ?>
-                                    <option value="<?php echo $categoria['id_proveedor'] ?>"><?php echo $categoria['nombre_prov'] ?></option>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="inputContainer">
                         <input type="text" class="input" placeholder="a" name="precio" value='<?php echo $producto[4]; ?>'>
                         <label for="" class="label">precio</label>
                     </div>

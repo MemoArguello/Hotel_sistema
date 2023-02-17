@@ -16,7 +16,7 @@ $conexiondb = conectardb();
 }
 $usuario = $_SESSION['usuario'];
 $conexiondb = conectardb();
-$query = "SELECT producto.id_producto, producto.codigo, producto.nombre_producto, producto.id_proveedor, producto.stock_inicial, proveedores.nombre_prov FROM producto
+$query = "SELECT producto.id_producto, producto.codigo, producto.nombre_producto, producto.id_proveedor, producto.stock_inicial, producto.precio, proveedores.nombre_prov FROM producto
 JOIN proveedores ON proveedores.id_proveedor = producto.id_proveedor";
 $resultado = mysqli_query($conexiondb, $query);
 mysqli_close($conexiondb);
@@ -130,6 +130,7 @@ mysqli_close($conexiondb);
                             <th align="center">Nombre</th>
                             <th align="center">Proveedor</th>
                             <th align="center">Stock</th>
+                            <th align="center">Precio</th>
                             <th align="center">Opciones</th>
                             <th align="center"></th>
                         </tr>
@@ -146,6 +147,7 @@ mysqli_close($conexiondb);
                             echo "<td align= 'center'>" . $producto['nombre_producto'] . "</td>";
                             echo "<td align= 'center'>" . $producto['nombre_prov'] . "</td>";
                             echo "<td align= 'center'>" . $producto['stock_inicial'] . "</td>";
+                            echo "<td align= 'center'>" . $producto['precio'] . "</td>";
                             echo "<td>";
                             echo "<a href='./editar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBoton'> Editar </a>";
                             echo "<a href='./eliminar_producto.php?id_producto=" . $producto['id_producto'] . "' class='submitBotonEliminar'> Borrar </a>";
