@@ -17,7 +17,7 @@ $conexiondb = conectardb();
 }
 $usuario = $_SESSION['usuario'];
 $conexiondb = conectardb();
-$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.precio, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
+$query = "SELECT venta.id_venta, venta.id_producto, venta.id_cliente, venta.cantidad, venta.total_pagar, producto.nombre_producto, reserva.nombre
 FROM venta JOIN producto ON producto.id_producto = venta.id_producto
 JOIN reserva ON reserva.id = venta.id_cliente";
 $resultado = mysqli_query($conexiondb, $query);

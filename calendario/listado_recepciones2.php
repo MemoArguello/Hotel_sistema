@@ -16,7 +16,7 @@ if (!isset($usuario)) {
 }
 $conexiondb = conectardb();
 $query ="SELECT recepcion.id_recepcion, recepcion.id_reserva, recepcion.id_habitacion, recepcion.fecha_inicio, 
-recepcion.fecha_fin, recepcion.total_dias, recepcion.total_pagar, recepcion.pago_producto,recepcion.total,
+recepcion.fecha_fin, recepcion.total_dias, recepcion.total_pagar, recepcion.pago_producto,recepcion.total,recepcion.estado,
 reserva.id, reserva.cedula, reserva.nombre, 
 habitaciones.nombre_habitacion 
 FROM recepcion JOIN reserva ON reserva.id = recepcion.id_reserva
@@ -129,6 +129,7 @@ $usuario = $_SESSION['usuario'];
                         <th>Precio Hospedaje</th>
                         <th>Gastos Producto</th>
                         <th>Total a Pagar</th>
+                        <th>Estado</th>
                         <th align="left">Opciones</th>
                     </tr>
                 </thead>
@@ -149,8 +150,10 @@ $usuario = $_SESSION['usuario'];
                         echo "<td align= 'center'>" . $reserva['total_pagar'] .  " Gs" . "</td>";
                         echo "<td align= 'center'>" . $reserva['pago_producto'] .  " Gs" . "</td>";
                         echo "<td align= 'center'>" . $reserva['total'] .  " Gs" . "</td>";
+                        echo "<td align= 'center'>" . $reserva['estado'] .  "</td>";
                         echo "<td>";
-                        echo "<a href='../factura.php?id_recepcion=" . $reserva['id_recepcion'] . "' class='submitBotonPass'>Imprimir Factura</a>";
+                        echo "<a href='../factura.php?id_recepcion=" . $reserva['id_recepcion'] . "' class='submitBotonPass'>Factura</a>";
+                        echo "<a href='./pagado3.php?id_recepcion=" . $reserva['id_recepcion'] . "' class='submitBoton'>Pagado</a>";
                         echo "</td>";
                         echo "</tr>";
                     }

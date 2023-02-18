@@ -24,9 +24,11 @@ if ($respuesta and $respuesta2) {
     echo
     "<script>alert('Registro Exitoso');
     window.location.href='../reportes_caja.php'</script>";
+}else{
     echo "<script>alert('Registro Exitoso');
     window.location.href='../reportes_caja.php'</script>";
 }
+
 mysqli_close($conexiondb);
 
 
